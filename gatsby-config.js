@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Flame engine`,
     description: `2D game engine made on top of Flutter`,
-    author: `@gatsbyjs`,
+    author: `@Fireslime4`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -22,10 +22,10 @@ module.exports = {
         name: `gatsby-starter-default`,
         short_name: `starter`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#D20101`,
+        theme_color: `#D20101`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/flame-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
