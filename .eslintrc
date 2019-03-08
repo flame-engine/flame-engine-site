@@ -1,0 +1,37 @@
+{
+    "extends": [
+        "react-app",
+        "prettier",
+        "prettier/react",
+        "prettier/standard"
+    ],
+    "plugins": ["prettier"],
+    "globals": {
+        "process": true
+    },
+    "rules": {
+        "jsx-a11y/anchor-is-valid": [
+            "warn",
+            {
+                "aspects": [
+                    "invalidHref"
+                ]
+            }
+        ],
+        "prettier/prettier": "warn",
+        "no-debugger": "warn",
+        "no-var": "warn",
+        "no-console": ["warn", {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }],
+        "max-params": ["warn", 4],
+        "react/jsx-wrap-multilines": "warn",
+        "no-mixed-spaces-and-tabs": "warn",
+        "no-trailing-spaces": "warn",
+        "react/no-string-refs": "warn",
+        "react/no-did-update-set-state": "warn"
+    }
+}
