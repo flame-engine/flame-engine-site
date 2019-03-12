@@ -2,6 +2,7 @@ import React from "react"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { Header } from "./Header"
 import { SEO } from "./Seo"
+import { Container } from "./Container"
 
 const styledTheme = {
   accentColor: "#D20101",
@@ -72,7 +73,7 @@ export const PageWrapper = ({ title, children }) => {
   return (
     <main>
       <SEO title={title} />
-      <main>{children}</main>
+      <Container>{children}</Container>
     </main>
   )
 }

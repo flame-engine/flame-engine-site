@@ -44,6 +44,16 @@ const HeroImage = () => (
   </HeroImageContainer>
 )
 
+const Flex = styled.div`
+  display: flex;
+  align-self: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  & > *:first-child {
+    margin-right: 2.25em;
+  }
+`
+
 const HeroText = styled.p`
   font-size: 1.875rem;
   color: #333;
@@ -71,10 +81,10 @@ const IndexPage = () => {
         <HeroText>
           2D game engine made on top of <b>Flutter</b>
         </HeroText>
-        <div>
+        <Flex>
           <ButtonLink>See docs</ButtonLink>
           <ButtonLink border> Github</ButtonLink>
-        </div>
+        </Flex>
       </HeroContainer>
     </PageWrapper>
   )
