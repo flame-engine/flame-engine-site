@@ -59,6 +59,10 @@ const HeroText = styled.p`
   color: #333;
   font-weight: 200;
   margin: 2em 0;
+  text-aligin: center;
+  @media (max-width: 40em) {
+    font-size: 1.4rem;
+  }
   & b {
     font-weight: 800;
   }
@@ -82,8 +86,7 @@ const IndexPage = () => {
           2D game engine made on top of <b>Flutter</b>
         </HeroText>
         <Flex>
-          <ButtonLink>See docs</ButtonLink>
-          <ButtonLink border> Github</ButtonLink>
+          <ButtonLink href="https://github.com/luanpotter/flame/" border>Github</ButtonLink>
         </Flex>
       </HeroContainer>
     </PageWrapper>

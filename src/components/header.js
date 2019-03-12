@@ -68,10 +68,7 @@ export const Header = ({ showLogo }) => {
       <Container>
         <Nav>
           <Logo showLogo={showLogo} />
-          <NavLinks>
-            <NavLink to="/">Articles</NavLink>
-            <NavLink to="/">Games</NavLink>
-            <NavLink to="/">Docs</NavLink>
+          <NavLinks> 
           </NavLinks>
         </Nav>
       </Container>
