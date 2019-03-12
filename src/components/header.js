@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import { Link } from "gatsby"
-import { Image } from "./Image"
+import { Link, StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import { Container } from "./Container"
 
 const HeaderStyled = styled.header`
@@ -27,7 +27,6 @@ const LogoLink = styled(Link)`
 
 const NavLinks = styled.div`
   display: flex;
-  font-weight: 800;
 `
 
 const NavLink = styled(Link)`
@@ -35,6 +34,7 @@ const NavLink = styled(Link)`
   margin: 0 2em;
   display: block;
   text-decoration: none;
+  font-weight: 800;
   color: ${props => props.theme.accentColor};
   &:last-child {
     margin-right: 0;
@@ -43,7 +43,22 @@ const NavLink = styled(Link)`
 
 const Logo = ({ showLogo }) => (
   <LogoLink showLogo={showLogo} to="/">
-    <Image maxWidth={50} />
+    <StaticQuery
+      query={graphql`
+        query {
+          placeholderImage: file(relativePath: { eq: "flame-icon.png" }) {
+            childImageSharp {
+              fluid(maxWidth: 50) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      `}
+      render={data => (
+        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+      )}
+    />
   </LogoLink>
 )
 
