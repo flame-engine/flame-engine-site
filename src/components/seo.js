@@ -23,8 +23,8 @@ export function SEO({ description, lang, meta, keywords, title }) {
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={title || site.siteMetadata.titl}
+      titleTemplate={`%s`}
       meta={[
         {
           name: `description`,

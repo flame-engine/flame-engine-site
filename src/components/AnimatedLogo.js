@@ -128,7 +128,7 @@ const AnimatedLogoContainer = styled.div`
   position: relative;
   color: #fff;
   font-weight: 800;
-  margin: 4rem 0 1.8rem;
+  margin: 4rem 0 4rem;
   &:after {
     content: "";
     width: 25px;

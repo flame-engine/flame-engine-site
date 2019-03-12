@@ -48,7 +48,7 @@
     "lint": "eslint --ext=js --ext=jsx ./src",
     "format": "eslint --fix --ext=js --ext=jsx ./src",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+    "deploy": "gatsby build --prefix-paths && cp CNAME ./public && gh-pages -d public"
   },
   "repository": {
     "type": "git",

@@ -1,13 +1,14 @@
 import React from "react"
 
 import styled from "styled-components"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import GitHubButton from "react-github-button"
 
 import { PageWrapper } from "../components/Page"
 import { ButtonLink } from "../components/Button"
 import { AnimatedLogo } from "../components/AnimatedLogo"
+
+import logo from "../images/flame-icon.png"
+import ghlogo from "../images/ghlogo.png"
 
 const HeroContainer = styled.div`
   height: 100vh;
@@ -25,22 +26,7 @@ const HeroImageContainer = styled.div`
 
 const HeroImage = () => (
   <HeroImageContainer>
-    <StaticQuery
-      query={graphql`
-        query {
-          placeholderImage: file(relativePath: { eq: "flame-icon.png" }) {
-            childImageSharp {
-              fluid(maxWidth: 200) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      `}
-      render={data => (
-        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-      )}
-    />
+    <img src={logo} alt="Logo" />
   </HeroImageContainer>
 )
 
@@ -51,6 +37,12 @@ const Flex = styled.div`
   flex-wrap: wrap;
   & > *:first-child {
     margin-right: 2.25em;
+  }
+  @media (max-width: 40em) {
+    font-size: 1.8em;
+    & > *:first-child {
+      margin-right: 0;
+    }
   }
 `
 
@@ -66,6 +58,11 @@ const HeroText = styled.p`
   & b {
     font-weight: 800;
   }
+`
+
+const Ghlogo = styled.img`
+  width: 1em;
+  margin-right: 0.6em;
 `
 
 const IndexPage = () => {
@@ -86,7 +83,10 @@ const IndexPage = () => {
           2D game engine made on top of <b>Flutter</b>
         </HeroText>
         <Flex>
-          <ButtonLink href="https://github.com/luanpotter/flame/" border>Github</ButtonLink>
+          <ButtonLink href="https://github.com/luanpotter/flame/" border>
+            <Ghlogo src={ghlogo} alt="github" /> Github
+          </ButtonLink>
+          <ButtonLink href="https://github.com/luanpotter/flame/">See docs</ButtonLink>
         </Flex>
       </HeroContainer>
     </PageWrapper>

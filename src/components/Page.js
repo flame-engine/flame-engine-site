@@ -55,6 +55,9 @@ const GlobalStyle = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+    img{
+        max-width: 100%;
+    }
 `
 
 export const Page = ({ uri, children }) => {
@@ -71,9 +74,11 @@ export const Page = ({ uri, children }) => {
 
 export const PageWrapper = ({ title, children }) => {
   return (
-    <main>
-      <SEO title={title} />
-      <Container>{children}</Container>
-    </main>
+    <ThemeProvider theme={styledTheme}>
+      <main>
+        <SEO title={title} />
+        <Container>{children}</Container>
+      </main>
+    </ThemeProvider>
   )
 }
