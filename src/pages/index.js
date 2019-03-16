@@ -4,7 +4,7 @@ import styled from "styled-components"
 import GitHubButton from "react-github-button"
 
 import { PageWrapper } from "../components/Page"
-import { ButtonLink } from "../components/Button"
+import { ButtonLink } from "../components/UI"
 import { AnimatedLogo } from "../components/AnimatedLogo"
 
 import logo from "../images/flame-icon.png"

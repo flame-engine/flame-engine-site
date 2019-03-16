@@ -7,7 +7,7 @@ import logo from "../images/flame-icon.png"
 import ghlogo from "../images/ghlogo.png"
 
 import { AnimatedLogo } from "./AnimatedLogo"
-import { ButtonLink } from "./Button"
+import { ButtonLink } from "./UI"
 
 const HeaderStyled = styled.header`
   position: ${props => (props.isHome ? "absolute" : "relative")};
