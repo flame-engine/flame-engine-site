@@ -4,6 +4,6 @@ date: "2017-11-07"
 title: "Getting started"
 ---
 
-# Getting started
+# Get started
 
 what is flame

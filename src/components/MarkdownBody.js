@@ -6,7 +6,7 @@ export const MarkdownBody = styled.div`
   font-size: 1.25em;
   line-height: 1.5;
   word-wrap: break-word;
-  padding-top: 4rem;
+  
 
   & details {
     display: block;
