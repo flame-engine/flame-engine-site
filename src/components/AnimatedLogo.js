@@ -119,20 +119,21 @@ const flame4 = keyframes`
 `
 
 const AnimatedLogoContainer = styled.div`
-  padding: 20px 26px;
+  padding: ${props => (props.small ? "9px 20px 9px 16px" : "20px 26px")};
   background: linear-gradient(45deg, #d20101 50%, #e5cc00 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 72px;
+  font-size: ${props => (props.small ? "24px" : "72px")};
   position: relative;
   color: #fff;
   font-weight: 800;
-  margin: 4rem 0 4rem;
+  text-decoration: none;
+  margin: ${props => (props.small ? "0rem 1rem 0rem" : "4rem 0 4rem")};
   &:after {
     content: "";
-    width: 25px;
-    height: 25px;
+    width: ${props => (props.small ? "12px" : "25px")};
+    height: ${props => (props.small ? "12px" : "25px")};
     background-color: #fff;
     position: absolute;
     top: 0;
@@ -142,8 +143,8 @@ const AnimatedLogoContainer = styled.div`
 
 const Flame = styled.div`
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: ${props => (props.small ? "12px" : "25px")};
+  height: ${props => (props.small ? "12px" : "25px")};
   background-color: #ecc504;
   top: 0px;
   right: 0px;
@@ -159,14 +160,14 @@ Flame.defaultProps = {
   delay: "0.0s",
 }
 
-export const AnimatedLogo = () => (
-  <AnimatedLogoContainer>
+export const AnimatedLogo = ({ small }) => (
+  <AnimatedLogoContainer small={small}>
     Flame
     <div>
-      <Flame animation={flame1} duration="0.8s" />
-      <Flame animation={flame2} duration="1.7s" delay="0.6s" />
-      <Flame animation={flame3} duration="0.8s" delay="0.9s" />
-      <Flame animation={flame4} duration="2s" delay="0.2s" />
+      <Flame animation={flame1} duration="0.8s" small={small} />
+      <Flame animation={flame2} duration="1.7s" delay="0.6s" small={small} />
+      <Flame animation={flame3} duration="0.8s" delay="0.9s" small={small} />
+      <Flame animation={flame4} duration="2s" delay="0.2s" small={small} />
     </div>
   </AnimatedLogoContainer>
 )

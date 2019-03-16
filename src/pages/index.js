@@ -9,6 +9,7 @@ import { AnimatedLogo } from "../components/AnimatedLogo"
 
 import logo from "../images/flame-icon.png"
 import ghlogo from "../images/ghlogo.png"
+import { Ghlogo } from "../components/UI";
 
 const HeroContainer = styled.div`
   height: 100vh;
@@ -60,11 +61,6 @@ const HeroText = styled.p`
   }
 `
 
-const Ghlogo = styled.img`
-  width: 1em;
-  margin-right: 0.6em;
-`
-
 const IndexPage = () => {
   return (
     <PageWrapper title="Flame">
@@ -86,7 +82,10 @@ const IndexPage = () => {
           <ButtonLink href="https://github.com/luanpotter/flame/" border>
             <Ghlogo src={ghlogo} alt="github" /> Github
           </ButtonLink>
-          <ButtonLink href="https://github.com/luanpotter/flame/blob/master/doc/README.md">See docs</ButtonLink>
+          <ButtonLink href="/docs">Get started</ButtonLink>
+          <ButtonLink href="https://pub.dartlang.org/documentation/flame/latest/">
+            API reference
+          </ButtonLink>
         </Flex>
       </HeroContainer>
     </PageWrapper>

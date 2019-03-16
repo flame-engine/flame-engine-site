@@ -1,11 +1,16 @@
 import React from "react"
 import styled from "styled-components"
-import { Link, StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
-import { Container } from "./Container"
+import { Link } from "gatsby"
+import { Container, Ghlogo } from "./UI"
+
+import logo from "../images/flame-icon.png"
+import ghlogo from "../images/ghlogo.png"
+
+import { AnimatedLogo } from "./AnimatedLogo"
+import { ButtonLink } from "./Button"
 
 const HeaderStyled = styled.header`
-  position: absolute;
+  position: ${props => (props.isHome ? "absolute" : "relative")};
   top: 0;
   left: 0;
   right: 0;
@@ -16,11 +21,11 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 2em 0;
 `
 const LogoLink = styled(Link)`
-  display: block;
-  width: 3rem;
+  display: flex;
+  align-items: center;
   transition: all 0.1s;
   opacity: ${props => (props.showLogo ? "1.0" : "0.0")};
 `
@@ -29,46 +34,47 @@ const NavLinks = styled.div`
   display: flex;
 `
 
-const NavLink = styled(Link)`
-  text-size: 1.25rem;
-  margin: 0 2em;
-  display: block;
+const NavLink = styled(ButtonLink)`
+  text-size: 0.825rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.8em;
   text-decoration: none;
   font-weight: 800;
   color: ${props => props.theme.accentColor};
-  &:last-child {
-    margin-right: 0;
-  }
+`
+
+const LogoImageContainer = styled.div`
+  width: 2.5rem;
 `
 
 const Logo = ({ showLogo }) => (
   <LogoLink showLogo={showLogo} to="/">
-    <StaticQuery
-      query={graphql`
-        query {
-          placeholderImage: file(relativePath: { eq: "flame-icon.png" }) {
-            childImageSharp {
-              fluid(maxWidth: 50) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-      `}
-      render={data => (
-        <Img fluid={data.placeholderImage.childImageSharp.fluid} />
-      )}
-    />
+    <LogoImageContainer>
+      <img src={logo} alt="Logo" />
+    </LogoImageContainer>
+    <AnimatedLogo small />
   </LogoLink>
 )
 
-export const Header = ({ showLogo }) => {
+export const Header = ({ isHome }) => {
   return (
-    <HeaderStyled>
+    <HeaderStyled isHome={isHome}>
       <Container>
-        <Nav>
-          <Logo showLogo={showLogo} />
-          <NavLinks> 
+        <Nav isHome={isHome}>
+          <Logo showLogo={!isHome} />
+          <NavLinks>
+            <NavLink as={Link} to="/docs">
+              Get started
+            </NavLink>
+            <NavLink
+              as="a"
+              href="https://pub.dartlang.org/documentation/flame/latest/"
+            >
+              API
+            </NavLink>
+            <NavLink border href="https://github.com/luanpotter/flame/">
+              <Ghlogo src={ghlogo} alt="github" /> Github
+            </NavLink>
           </NavLinks>
         </Nav>
       </Container>
