@@ -86,7 +86,7 @@ const IndexPage = () => {
           <ButtonLink href="https://github.com/luanpotter/flame/" border>
             <Ghlogo src={ghlogo} alt="github" /> Github
           </ButtonLink>
-          <ButtonLink href="https://github.com/luanpotter/flame/">See docs</ButtonLink>
+          <ButtonLink href="https://github.com/luanpotter/flame/blob/master/doc/README.md">See docs</ButtonLink>
         </Flex>
       </HeroContainer>
     </PageWrapper>
