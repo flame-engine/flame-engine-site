@@ -48,28 +48,29 @@ lorem ipsum
 
 To keep learning how Flame works and how to use it, check the following concepts
 
-* [Components](components.md)
-* [The Game Loop](game.md)
-* [Text Rendering](text.md)
-* [Colors and the Palette](palette.md)
+* [Components](/docs/components)
+* [The Game Loop](/docs/game-loop)
+* [Text Rendering](/docs/text-rendering)
+* [Colors and the Palette](/docs/colors)
 
 ### Assets
 
 How to put resourcefiles into you game:
 
-* [File Structure](structure.md)
-* [Audio](audio.md)
-* [Images](images.md)
+* [File Structure](/docs/file-structure)
+* [Audio](/docs/audio)
+* [Images](/docs/images)
 
 ### User gestures
 
 Because it  is a game, player should do stuff
 
-* [Input](input.md)
+* [Input](/docs/input)
 
 
 ### Util
 
 Utility stuff
 
-* [Util](util.md)
+* [Util](/docs/util)
+* [Gamepad](/docs/gamepad)

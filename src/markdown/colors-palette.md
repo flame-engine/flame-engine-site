@@ -1,5 +1,5 @@
 ---
-path: "/colors"
+path: "/docs/colors"
 title: "Colors and the Palette"
 category: 1
 order: 4

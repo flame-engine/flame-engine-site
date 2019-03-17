@@ -1,3 +1,11 @@
+---
+path: "/docs/util"
+title: "Util"
+category: 4
+order: 1
+---
+
+
 # Util
 
 Some stuff just doesn't fit anywhere else.
