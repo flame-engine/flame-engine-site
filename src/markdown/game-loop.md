@@ -1,3 +1,10 @@
+---
+path: "/docs/game-loop"
+title: "Game loop"
+category: 1
+order: 2
+---
+
 # Game Loop
 
 The Game Loop module is a simple abstraction over the game loop concept. Basically most games are built upon two methods: 

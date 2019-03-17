@@ -6,10 +6,12 @@ export const MarkdownBody = styled.div`
   font-size: 1.25em;
   line-height: 1.5;
   word-wrap: break-word;
-  
+  min-height: 70vh;
+  flex: 1;
+  max-width: 100%;
 
   & details {
-    display: block;
+    paddisplay: block;
   }
 
   & summary {
@@ -28,7 +30,6 @@ export const MarkdownBody = styled.div`
     font-weight: inherit;
     font-weight: bolder;
   }
-
 
   & img {
     border-style: none;
@@ -111,7 +112,6 @@ export const MarkdownBody = styled.div`
     margin-bottom: 0;
     margin-top: 0;
   }
-
 
   & h1,
   & h2 {
@@ -230,8 +230,8 @@ export const MarkdownBody = styled.div`
   & pre,
   & table,
   & ul {
-    margin-bottom: 16px;
-    margin-top: 0;
+    margin-bottom: 25px;
+    margin-top: 10px;
   }
 
   & hr {
@@ -291,12 +291,11 @@ export const MarkdownBody = styled.div`
   }
 
   & h2 {
-    border-bottom: 1px solid #eaecef;
     padding-bottom: 0.3em;
-  }
-
-  & h2 {
-    font-size: 1.5em;
+    line-height: 2;
+    font-size: 1.8em;
+    color: #d20301;
+    font-weight: 400;
   }
 
   & h3 {
@@ -331,6 +330,7 @@ export const MarkdownBody = styled.div`
 
   & li {
     word-wrap: break-all;
+    list-style-type: disc;
   }
 
   & li > p {

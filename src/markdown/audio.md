@@ -1,20 +1,27 @@
+---
+path: "/docs/audio"
+title: "Audio"
+category: 2
+order: 2
+---
+
 # Audio
 
 To play an audio, it's really simple! Just run, at any moment:
 
 ```dart
-    import 'package:flame/flame.dart';
+import 'package:flame/flame.dart';
 
-    Flame.audio.play('explosion.mp3');
+Flame.audio.play('explosion.mp3');
 ```
 
 Or, if you prefer:
 
 ```dart
-    import 'package:flame/audio.dart';
+import 'package:flame/audio.dart';
 
-    Audio audio = new Audio();
-    audio.play('explosion.mp3');
+Audio audio = new Audio();
+audio.play('explosion.mp3');
 ```
 
 The difference is that each instance shares a different cache. Normally you would want to use the `Flame.audio` instance and totally share the cache.
@@ -28,25 +35,25 @@ This uses the [audioplayers](https://github.com/luanpotter/audioplayer) lib, in 
 If you want to play indefinitely, just use `loop` function:
 
 ```dart
-    Flame.audio.loop('music.mp3');
+Flame.audio.loop('music.mp3');
 ```
 
 Finally, you can pre-load your audios. Audios need to be stored in the memory the first time they are requested; therefore, the first time you play each mp3 you might get a delay. In order to pre-load your audios, just use:
 
 ```dart
-    Flame.audio.load('explosion.mp3');
+Flame.audio.load('explosion.mp3');
 ```
 
 You can load all your audios in beginning so that they always play smoothly; to load multiple audios, use the `loadAll` method:
 
 ```dart
-    Flame.audio.loadAll(['explosion.mp3', 'music.mp3'])
+Flame.audio.loadAll(['explosion.mp3', 'music.mp3'])
 ```
 
 Finally, you can use the `clear` method to remove something from the cache:
 
 ```dart
-    Flame.audio.clear('explosion.mp3');
+Flame.audio.clear('explosion.mp3');
 ```
 
 There is also a `clearAll` method, that clears the whole cache.
@@ -62,5 +69,5 @@ Both the `play` and `loop` methods return an instance of a `AudioPlayer` from th
 There's lots of logs; that's reminiscent of the original AudioPlayer plugin. Useful while debug, but afterwards you can disable them with:
 
 ```dart
-    Flame.audio.disableLog();
+Flame.audio.disableLog();
 ```

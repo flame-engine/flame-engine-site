@@ -1,4 +1,12 @@
-# Palette
+---
+path: "/colors"
+title: "Colors and the Palette"
+category: 1
+order: 4
+---
+
+# Colors and the Palette
+
 
 Throught your game you are going to need to use colors in lots of places. There are two classes on `dart:ui` that can be used, `Color` and `Paint`.
 

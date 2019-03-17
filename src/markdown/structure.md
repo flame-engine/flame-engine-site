@@ -1,14 +1,21 @@
-# Structure
+---
+path: "/docs/file-structure"
+title: "File structure"
+category: 2
+order: 1
+---
+
+# File structure
 
 The only structure you are required to comply is a assets folder with two sub folders: audio and images.
 
 An example:
 
 ```dart
-  Flame.audio.play('explosion.mp3');
+Flame.audio.play('explosion.mp3');
 
-  Flame.images.load('player.png');
-  Flame.images.load('enemy.png');
+Flame.images.load('player.png');
+Flame.images.load('enemy.png');
 ```
 
 The file structure would have to be:

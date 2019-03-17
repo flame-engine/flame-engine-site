@@ -1,3 +1,10 @@
+---
+path: "/docs/images"
+title: "Using images"
+category: 2
+order: 3
+---
+
 # Images
 
 If you are using the Component module and doing something simple, you probably won't need to use these classes; use `SpriteComponent` or `AnimationComponent` instead.
@@ -15,13 +22,13 @@ You can create a `Sprite` giving it a pre-loaded `Image` via the `fromImage` con
 For example, this will create a sprite representing the whole image of the file passed, automatically triggering its loading:
 
 ```dart
-    Sprite player = new Sprite('player.png');
+Sprite player = new Sprite('player.png');
 ```
 
 You could also specify the coordinates in the original image where the sprite is located; this allows you to use sprite sheets and reduce the number of images in memory; for example:
 
 ```dart
-    Sprite playerFrame = new Sprite('player.png', x = 32.0, width = 16.0);
+Sprite playerFrame = new Sprite('player.png', x = 32.0, width = 16.0);
 ```
 
 The default values are `0.0` for `x` and `y` and `null` for `width` and `height` (meaning it will use the full width/height of the source image).
@@ -29,10 +36,10 @@ The default values are `0.0` for `x` and `y` and `null` for `width` and `height`
 The `Sprite` class has a `loaded` method that returns wether the image has been loaded, and a render method, that allows you to render the image into a `Canvas`:
 
 ```dart
-    Sprite block = new Sprite('block.png');
+Sprite block = new Sprite('block.png');
 
-    // in your render method
-    block.render(canvas, 16.0, 16.0); //canvas, width, height
+// in your render method
+block.render(canvas, 16.0, 16.0); //canvas, width, height
 ```
 
 You must pass the size to the render method, and the image will be resized accordingly.
@@ -50,17 +57,17 @@ It automatically caches any image loaded by filename, so you can safely call it 
 To load and draw an image, you can use the `load` method, like so:
 
 ```dart
-    import 'package:flame/flame.dart';
+import 'package:flame/flame.dart';
 
-    // inside an async context
-    Image image = await Flame.images.load('player.png');
-    
-    // or
-    Flame.images.load('player.png').then((Image image) {
-      var paint = new Paint()..color = new Color(0xffffffff);
-      var rect = new Rect.fromLTWH(0.0, 0.0, image.width.toDouble(), image.height.toDouble());
-      canvas.drawImageRect(image, rect, rect, paint);
-    });
+// inside an async context
+Image image = await Flame.images.load('player.png');
+
+// or
+Flame.images.load('player.png').then((Image image) {
+    var paint = new Paint()..color = new Color(0xffffffff);
+    var rect = new Rect.fromLTWH(0.0, 0.0, image.width.toDouble(), image.height.toDouble());
+    canvas.drawImageRect(image, rect, rect, paint);
+});
 ```
 
 The methods for loading and clearing the cache are identical to the Audio ones: `load`, `loadAll`, `clear` and `clearAll`. They return a `Future` for the Image loaded.
@@ -78,14 +85,14 @@ The Animation class helps you create a cyclic animation of sprites.
 You can create it by passing a list of equal sized sprites and the stepTime (that is, how many seconds it takes to move to the next frame):
 
 ```dart
-  Animation a = new Animation.spriteList(sprites, stepTime: 0.02);
+Animation a = new Animation.spriteList(sprites, stepTime: 0.02);
 ```
 
 A better alternative to generate a list of sprites is to use the `sequenced` constructor:
 
 ```dart
-  const amountOfFrames = 8;
-  Animation a = Animation.sequenced('player.png', amountOfFrames, textureWidth: 16.0);
+const amountOfFrames = 8;
+Animation a = Animation.sequenced('player.png', amountOfFrames, textureWidth: 16.0);
 ```
 
 In which you pass the file name, the number of frames and the sprite sheet is automatically split for you according to the 4 optional parameters:
@@ -102,10 +109,10 @@ This constructor makes creating an Animation very easy using sprite sheets.
 If you use Aseprite for your animations, Flame does provide some support for Aseprite animation's JSON data, to use this feature, you will need to export the Sprite Sheet's JSON data, and use something like the following snippet:
 
 ```dart
-    Animation animation = await Animation.fromAsepriteData(
-      "chopper.png", // Sprite Sheet image path
-      "./assets/chopper.json" // Sprite Sheet animation JSON data
-    );
+Animation animation = await Animation.fromAsepriteData(
+    "chopper.png", // Sprite Sheet image path
+    "./assets/chopper.json" // Sprite Sheet animation JSON data
+);
 ```
 
 _Note: trimmed sprite sheets are not supported by flame, so if you export your sprite sheet this way, it will have the trimmed size, not the sprite original size._

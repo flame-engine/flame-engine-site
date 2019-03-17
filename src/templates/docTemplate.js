@@ -1,26 +1,12 @@
 import React from "react"
 
 import { graphql } from "gatsby"
+
 import { PageWrapper } from "../components/Page"
 import { MarkdownBody } from "../components/MarkdownBody"
-import {
-  DocsStructure,
-  DocSidebarLink,
-  DocSidebarCotainer,
-} from "../components/UI"
-import Link from "gatsby"
+import DocSidebar from "../components/DocSidebar"
 
-const DocSidebar = () => (
-  <DocSidebarCotainer>
-    <ul>
-      <li>
-        <DocSidebarLink as={Link} to="/">
-          Get started
-        </DocSidebarLink>
-      </li>
-    </ul>
-  </DocSidebarCotainer>
-)
+import { DocsStructure } from "../components/UI"
 
 export default function Template({ data }) {
   const { markdownRemark } = data
@@ -28,7 +14,6 @@ export default function Template({ data }) {
     frontmatter: { title },
     html,
   } = markdownRemark
-  console.log(data)
   return (
     <PageWrapper title={` ${title} | Flame`}>
       <DocsStructure>

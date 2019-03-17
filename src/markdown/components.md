@@ -1,4 +1,13 @@
+---
+path: "/docs/components"
+title: "Components"
+category: 1
+order: 1
+---
+
+
 # Components
+
 
 This class represent a single object on the screen, being a floating rectangle or a rotating sprite.
 
