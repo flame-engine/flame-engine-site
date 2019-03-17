@@ -23,7 +23,7 @@ export const DocsStructure = styled.div`
   display: flex;
   padding-top: 4rem;
   padding-bottom: 2em;
-  max-width: 60em
+  max-width: 100%;
 `
 
 export const Ghlogo = styled.img`
