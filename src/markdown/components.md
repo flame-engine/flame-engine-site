@@ -8,7 +8,6 @@ order: 1
 
 # Components
 
-
 This class represent a single object on the screen, being a floating rectangle or a rotating sprite.
 
 The base abstract class has the common expected methods update and render to be implemented.
@@ -30,7 +29,8 @@ player.x = ... // 0 by default
 player.y = ... // 0 by default
 player.angle = ... // 0 by default
 
-player.render(canvas); // it will render only if the image is loaded and the x, y, width and height parameters are not null
+player.render(canvas);  // it will render only if the image is 
+                        // loaded and the x, y, width and height parameters are not null
 ```
 
 Every `Component` has a few other methods that you can optionally implement, that are used by the `BaseGame` class. If you are not using the base game, you can alternatively use these methods on your own game loop.
@@ -43,13 +43,14 @@ The `isHUD` method can be implemented to return true (default false) to make the
 
 There are also other implementations:
 
-* The `AnimationComponent` takes an `Animation` object and renders a cyclic animated sprite (more details about Animations [here](/docs/images#animation))
+* The `AnimationComponent` takes an `Animation` object and renders a cyclic animated sprite (more details about Animations [here](doc/images.md#Animation))
+* The `SvgComponent` takes an `Svg` object and renders the SVG on the game
 * The `ParallaxComponent` can render a parallax background with several frames
 * The `Box2DComponent`, that has a physics engine built-in (using the [Box2D](https://github.com/google/box2d.dart) port for Dart)
 
 ## Animation Component
 
-This component uses an instance of the [Animation](/docs/images#animation) class to represent a Component that has a sprite that runs a single cyclic animation.
+This component uses an instance of the [Animation](doc/images.md#Animation) class to represent a Component that has a sprite that runs a single cyclic animation.
 
 This will create a simple three frame animation
 
@@ -58,7 +59,7 @@ List<Sprite> sprites = [0, 1, 2].map((i) => new Sprite('player_${i}.png')).toLis
 this.player = new AnimationComponent(64.0, 64.0, new Animation.spriteList(sprites, stepTime: 0.01));
 ```
 
-If you have a spritesheet, you can use the `sequenced` constructor, identical to the one provided by the `Animation` class (check more details in [the appropriate section](/docs/images#animation)):
+If you have a spritesheet, you can use the `sequenced` constructor, identical to the one provided by the `Animation` class (check more details in [the appropriate section](doc/images.md#Animation)):
 
 ```dart
 this.player = new AnimationComponent.sequenced(64.0, 64.0, 'player.png', 2);
@@ -66,6 +67,16 @@ this.player = new AnimationComponent.sequenced(64.0, 64.0, 'player.png', 2);
 
 If you are not using `BaseGame`, don't forget this component needs to be update'd even if static, because the animation object needs to be ticked to move the frames.
 
+## SvgComponent
+
+This component uses an instance of `Svg` class to represent a Component that has a svg that is rendered on the game:
+
+```dart
+Svg svg = Svg('android.svg');
+SvgComponent android = SvgComponent.fromSvg(100, 100, svg);
+android.x = 100;
+android.y = 100;
+```
 
 ## Composed component
 
@@ -95,8 +106,6 @@ class GameOverPanel extends PositionComponent with Resizable, ComposedComponent 
   }
 }
 ```
-
-
 
 ## Parallax Component
 

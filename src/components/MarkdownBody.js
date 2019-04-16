@@ -8,7 +8,7 @@ export const MarkdownBody = styled.div`
   word-wrap: break-word;
   min-height: 70vh;
   flex: 1;
-  max-width: 100%;
+  max-width: calc(100% - 280px);
 
   & details {
     paddisplay: block;

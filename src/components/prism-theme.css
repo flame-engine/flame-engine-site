@@ -10,7 +10,6 @@
 
  code[class*="language-"],
  pre[class*="language-"] {
-     color: #a9b7c6;
      font-family: Consolas, Monaco, 'Andale Mono', monospace;
      direction: ltr;
      text-align: left;
@@ -29,6 +28,10 @@
      hyphens: none;
  }
  
+ pre[class*="language-"] {
+    color: #a9b7c6;
+ }
+
  pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
  code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
      color: inherit;
@@ -48,15 +51,24 @@
      overflow: auto;
  }
  
- :not(pre) > code[class*="language-"],
+ :not(pre) >  code[class*="language-"] {
+    color: #292929;
+    font-size: 0.8em;
+ }
+
  pre[class*="language-"] {
      background: #2b2b2b;
+ }
+
+ :not(pre) > code[class*="language-"]{
+    background: #dcdcdc;
  }
  
  /* Inline code */
  :not(pre) > code[class*="language-"] {
-     padding: .1em;
-     border-radius: .3em;
+    padding: .5em;
+    border-radius: .3em;
+    margin: 0 .4em;
  }
  
  .token.comment,

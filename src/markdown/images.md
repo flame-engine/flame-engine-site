@@ -5,6 +5,7 @@ category: 2
 order: 3
 ---
 
+
 # Images
 
 If you are using the Component module and doing something simple, you probably won't need to use these classes; use `SpriteComponent` or `AnimationComponent` instead.
@@ -46,6 +47,22 @@ You must pass the size to the render method, and the image will be resized accor
 
 The render method will do nothing while the sprite has not been loaded, so you don't need to worry. The image is cached in the `Images` class, so you can safely create many sprites with the same fileName.
 
+## Svg
+
+Flame provides a simple API to render SVG images on your game.
+
+To use it just import the `Svg` class from `'package:flame/svg.dart'`, and use the following snippet to render it on the canvas:
+
+```dart
+Svg svgInstance = Svg('android.svg');
+
+final position = Position(100, 100);
+final width = 300;
+final height = 300;
+
+svgInstance.renderPosition(canvas, position, width, height);
+```
+
 ## Flame.images
 
 The `Flame.images` is a lower level utility for loading images, very similar to the `Flame.audio` instance.
@@ -75,7 +92,7 @@ The methods for loading and clearing the cache are identical to the Audio ones: 
 Also similarly to Audio, you can instantiate your own copy of `Images` (each instance shares a different cache):
 
 ```dart
-    Image image = await new Images().load('asd');
+Image image = await new Images().load('asd');
 ```
 
 ## Animation
