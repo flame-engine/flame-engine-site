@@ -9,7 +9,8 @@ import { AnimatedLogo } from "../components/AnimatedLogo"
 
 import logo from "../images/flame-icon.png"
 import ghlogo from "../images/ghlogo.png"
-import { Ghlogo } from "../components/UI";
+import { Ghlogo } from "../components/UI"
+require("../components/prism-theme.css")
 
 const HeroContainer = styled.div`
   height: 100vh;

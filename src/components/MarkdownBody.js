@@ -428,16 +428,6 @@ export const MarkdownBody = styled.div`
     word-break: normal;
   }
 
-  & .highlight pre,
-  & pre {
-    background-color: #f6f8fa;
-    border-radius: 3px;
-    font-size: 85%;
-    line-height: 1.45;
-    overflow: auto;
-    padding: 16px;
-  }
-
   & pre code {
     background-color: transparent;
     border: 0;
