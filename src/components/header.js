@@ -64,7 +64,7 @@ export const Header = ({ isHome }) => {
           <Logo showLogo={!isHome} />
           <NavLinks>
             <NavLink as={Link} to="/docs">
-              Get started
+              Docs
             </NavLink>
             <NavLink
               as="a"

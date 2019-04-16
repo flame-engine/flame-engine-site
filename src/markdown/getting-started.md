@@ -20,7 +20,13 @@ You can use whatever ones you want, as they are all somewhat independent.
 
 ## Learning resources
 
-The community has created some articles and examples of a good usage of Flame. Check out some of them:
+The community has created some articles and examples of a good usage of Flame.
+
+Check out this great series of articles/tutorials written by [Alekhin](https://github.com/japalekhin)
+
+ - [Create a Mobile Game with Flutter and Flame – Beginner Tutorial](https://jap.alekhin.io/create-mobile-game-flutter-flame-beginner-tutorial)
+ - [2D Casual Mobile Game Tutorial – Step by Step with Flame and Flutter (Part 1 of 5)](https://jap.alekhin.io/2d-casual-mobile-game-tutorial-flame-flutter-part-1)
+ - [Game Graphics and Animation Tutorial – Step by Step with Flame and Flutter (Part 2 of 5)](https://jap.alekhin.io/game-graphics-and-animation-tutorial-flame-flutter-part-2)
 
 
 
@@ -35,11 +41,6 @@ dependencies:
 ```
 
 And start using it!
-
-
-## Creating a game
-
-lorem ipsum
 
 
 ## Read next
@@ -74,3 +75,5 @@ Utility stuff
 
 * [Util](/docs/util)
 * [Gamepad](/docs/gamepad)
+
+
