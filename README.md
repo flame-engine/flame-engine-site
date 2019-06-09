@@ -2,9 +2,9 @@
 
 This is the repository with the official flame website source code.
 
-The website can be seen (https://flame-engine.org)[here]. It is deployed via Github Pages.
+The website can be seen [here](https://flame-engine.org). It is deployed via Github Pages.
 
-This was developed with (https://www.gatsbyjs.org)[Gatsby], with the help of our incredible supporters!
+This was developed with [Gatsby](https://www.gatsbyjs.org), with the help of our incredible supporters!
 
 Part of this readme (below) is copied from the default Gatsby readme.
 
