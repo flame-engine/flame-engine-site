@@ -1,4 +1,4 @@
-# flame-site
+# flame-engine-site
 
 This is the repository with the official flame website source code.
 
