@@ -5,7 +5,6 @@ category: 1
 order: 1
 ---
 
-
 # Components
 
 This class represent a single object on the screen, being a floating rectangle or a rotating sprite.
@@ -29,8 +28,7 @@ player.x = ... // 0 by default
 player.y = ... // 0 by default
 player.angle = ... // 0 by default
 
-player.render(canvas);  // it will render only if the image is 
-                        // loaded and the x, y, width and height parameters are not null
+player.render(canvas); // it will render only if the image is loaded and the x, y, width and height parameters are not null
 ```
 
 Every `Component` has a few other methods that you can optionally implement, that are used by the `BaseGame` class. If you are not using the base game, you can alternatively use these methods on your own game loop.
@@ -43,14 +41,14 @@ The `isHUD` method can be implemented to return true (default false) to make the
 
 There are also other implementations:
 
-* The `AnimationComponent` takes an `Animation` object and renders a cyclic animated sprite (more details about Animations [here](doc/images.md#Animation))
+* The `AnimationComponent` takes an `Animation` object and renders a cyclic animated sprite (more details about Animations [here](/docs/images#Animation))
 * The `SvgComponent` takes an `Svg` object and renders the SVG on the game
 * The `ParallaxComponent` can render a parallax background with several frames
 * The `Box2DComponent`, that has a physics engine built-in (using the [Box2D](https://github.com/google/box2d.dart) port for Dart)
 
 ## Animation Component
 
-This component uses an instance of the [Animation](doc/images.md#Animation) class to represent a Component that has a sprite that runs a single cyclic animation.
+This component uses an instance of the [Animation](/docs/images#Animation) class to represent a Component that has a sprite that runs a single cyclic animation.
 
 This will create a simple three frame animation
 
@@ -59,7 +57,7 @@ List<Sprite> sprites = [0, 1, 2].map((i) => new Sprite('player_${i}.png')).toLis
 this.player = new AnimationComponent(64.0, 64.0, new Animation.spriteList(sprites, stepTime: 0.01));
 ```
 
-If you have a spritesheet, you can use the `sequenced` constructor, identical to the one provided by the `Animation` class (check more details in [the appropriate section](doc/images.md#Animation)):
+If you have a sprite sheet, you can use the `sequenced` constructor, identical to the one provided by the `Animation` class (check more details in [the appropriate section](/docs/images#Animation)):
 
 ```dart
 this.player = new AnimationComponent.sequenced(64.0, 64.0, 'player.png', 2);
@@ -76,6 +74,22 @@ Svg svg = Svg('android.svg');
 SvgComponent android = SvgComponent.fromSvg(100, 100, svg);
 android.x = 100;
 android.y = 100;
+```
+
+## FlareAnimation Component
+
+This component wraps an instance of the [FlareAnimation](/docs/images#FlareAnimation), it receives the filename of the Flare animation file, which animation from that file you want to use, and the `width` and `height` of the rendered animation.
+
+```dart
+final fileName = "assets/Bob_Minion.flr";
+final animation = "Wave";
+final width = 306;
+final height = 228;
+
+FlareComponent flareAnimation = FlareComponent(fileName, animation, width, height);
+flareAnimation.x = 50;
+flareAnimation.y = 240;
+add(flareAnimation);
 ```
 
 ## Composed component
@@ -140,4 +154,4 @@ You can see a more complete example of box2d usage on [this WIP game](https://gi
 
 Currently we have a very basic implementation of a Tiled component. This API uses the lib [Tiled](https://github.com/feroult/tiled.dart) to parse map files and render visible layers.
 
-A example of how to use the API can be found [here](https://github.com/luanpotter/flame/tree/master/examples/tiled). 
+A example of how to use the API can be found [here](https://github.com/flame-engine/flame/tree/master/docs/examples/tiled).
