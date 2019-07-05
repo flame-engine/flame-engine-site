@@ -1,1 +1,0 @@
-{"data":{"markdownRemark":{"html":"<h1>Get started</h1>\n<p>what is flame</p>\n<pre><code class=\"language-dart\">    import 'package:flutter/material.dart' as material;\n\n    Color color = material.Colors.black;\n</code></pre>","frontmatter":{"path":"/docs","title":"Getting started"}}},"pageContext":{}}
