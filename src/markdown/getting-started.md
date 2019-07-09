@@ -38,7 +38,7 @@ As a pub package, you should depend. Just drop it in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  flame: ^0.13.1
+  flame: ^0.14.0
 ```
 
 And start using it!
