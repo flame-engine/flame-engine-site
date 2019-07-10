@@ -57,7 +57,7 @@ To keep learning how Flame works and how to use it, check the following concepts
 
 ### Assets
 
-How to put resourcefiles into you game:
+How to put resource files into you game:
 
 * [File Structure](/docs/file-structure)
 * [Audio](/docs/audio)
