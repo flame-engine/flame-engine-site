@@ -76,5 +76,6 @@ Utility stuff
 
 * [Util](/docs/util)
 * [Gamepad](/docs/gamepad)
+* [Box2d](/docs/box2d)
 
 
