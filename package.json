@@ -46,14 +46,14 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "./cmds/generate_docs.sh && gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "lint": "eslint --ext=js --ext=jsx ./src",
     "format": "eslint --fix --ext=js --ext=jsx ./src",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "deploy": "gatsby build --prefix-paths && cp CNAME ./public && gh-pages -d public"
+    "deploy": "./cmds/generate_docs.sh && gatsby build --prefix-paths && cp CNAME ./public && gh-pages -d public"
   },
   "repository": {
     "type": "git",
