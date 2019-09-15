@@ -41,7 +41,7 @@ const extractInfo = data => {
 
 const toMd = info => `---\n${Object.entries(info).map(([key, data]) => `${key}: ${data}`).join('\n')}\n---\n`;
 const externalLink = url => url.match(/^[a-zA-Z]*:\/\//);
-const replaceLinks = md => md.replace(/\[([^\[\]]*)\]\(([^\(\)]*)\)/g, (_, g1, g2) => externalLink(g2) ? `[${g1}](${g2})` : `[${g1}](/docs/${g2})`);
+const replaceLinks = md => md.replace(/\[([^\[\]]*)\]\(([^\(\)]*)\)/g, (_, g1, g2) => externalLink(g2) ? `[${g1}](${g2})` : `[${g1}](/docs/${g2.replace(/^doc\//, '')})`);
 const enhanceMd = (info, file) => `${toMd(info)}\n${replaceLinks(file)}`;
 
 const links = data.flatMap(e => [e, ...(e.children || [])]).filter(e => e.link);
