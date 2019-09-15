@@ -1,0 +1,31 @@
+{
+  "name": "generate_docs",
+  "version": "0.1.0",
+  "description": "This generates this site's docs based on the documentation from the flame repo (must be clone as a sibiling to this repo)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flame-engine/flame-engine-site.git"
+  },
+  "keywords": [
+    "flame",
+    "engine",
+    "docs",
+    "generator",
+    "flutter",
+    "game"
+  ],
+  "author": "Luan Nico",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flame-engine/flame-engine-site/issues"
+  },
+  "homepage": "https://github.com/flame-engine/flame-engine-site#readme",
+  "private": true,
+  "dependencies": {
+    "flatmap": "0.0.3",
+    "marked": "^0.7.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
+  }
+}
