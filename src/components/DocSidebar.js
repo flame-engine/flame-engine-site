@@ -48,12 +48,12 @@ const CategoryTitle = styled.div`
 }
 `
 
+// TODO read this form the generated files, somehow
 const categoriesNames = {
   0: "",
-  1: "Concepts",
-  2: "Assets",
-  3: "User gestures",
-  4: "Util",
+  1: "Core Concepts",
+  2: "Rendering",
+  3: "Other Modules",
 }
 
 const DocSidebar = ({ allMarkdownRemark }) => {
