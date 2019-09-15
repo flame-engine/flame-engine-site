@@ -72,6 +72,12 @@ export const Header = ({ isHome }) => {
             >
               API
             </NavLink>
+            <NavLink
+              as="a"
+              href="https://discord.gg/pxrBmy4"
+            >
+              Discord
+            </NavLink>
             <NavLink border href="https://github.com/luanpotter/flame/">
               <Ghlogo src={ghlogo} alt="github" /> Github
             </NavLink>
