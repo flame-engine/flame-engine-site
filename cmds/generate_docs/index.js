@@ -41,7 +41,9 @@ const extractInfo = data => {
 
 const toMd = info => `---\n${Object.entries(info).map(([key, data]) => `${key}: ${data}`).join('\n')}\n---\n`;
 const externalLink = url => url.match(/^[a-zA-Z]*:\/\//);
-const replaceLinks = md => md.replace(/\[([^\[\]]*)\]\(([^\(\)]*)\)/g, (_, g1, g2) => externalLink(g2) ? `[${g1}](${g2})` : `[${g1}](/docs/${g2.replace(/^doc\//, '')})`);
+const isDocLink = url => url.match(/^\/?(doc\/)?[^/]*\.md/g);
+const replaceInternalLink = (g1, g2) => isDocLink(g2) ? `[${g1}](/docs/${g2.replace(/^doc\//, '')})` : `[${g1}](https://github.com/flame-engine/flame/blob/master/${g2.replace(/^\//, '')})`;
+const replaceLinks = md => md.replace(/\[([^[\]]*)\]\(([^()]*)\)/g, (_, g1, g2) => externalLink(g2) ? `[${g1}](${g2})` : replaceInternalLink(g1, g2));
 const enhanceMd = (info, file) => `${toMd(info)}\n${replaceLinks(file)}`;
 
 const links = data.flatMap(e => [e, ...(e.children || [])]).filter(e => e.link);
