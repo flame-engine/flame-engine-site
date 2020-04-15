@@ -129,7 +129,7 @@ const AnimatedLogoContainer = styled.div`
   color: #fff;
   font-weight: 800;
   text-decoration: none;
-  margin: ${props => (props.small ? "0rem 1rem 0rem" : "4rem 0 4rem")};
+  margin: ${props => (props.small ? "0" : "4rem 0 4rem")};
   &:after {
     content: "";
     width: ${props => (props.small ? "12px" : "25px")};

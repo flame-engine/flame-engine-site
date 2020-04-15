@@ -10,11 +10,12 @@ const styledTheme = {
   accentColor: "#D20101",
 }
 
-export const Page = ({ "*": uri, children }) => {
+export const Page = ({ children, uri }) => {
+  const isHome = uri === "/"
   return (
     <ThemeProvider theme={styledTheme}>
       <>
-        <Header isHome={!uri} />
+        <Header isHome={isHome} />
         {children}
       </>
     </ThemeProvider>

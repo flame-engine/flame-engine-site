@@ -21,7 +21,7 @@ export const ButtonLink = styled.a`
 
 export const DocsStructure = styled.div`
   display: flex;
-  padding-top: 4rem;
+  padding-top: 1rem;
   padding-bottom: 2em;
   max-width: 100%;
 `

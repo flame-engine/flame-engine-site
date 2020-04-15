@@ -19,15 +19,15 @@ const HeaderStyled = styled.header`
 
 const Nav = styled.nav`
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  padding: 2em 0;
+  padding: ${props => (!props.isHome ? "1em 0" : "2em 0")};
 `
 const LogoLink = styled(Link)`
-  display: flex;
+  display: ${props => (props.showLogo ? "flex" : "none")};
   align-items: center;
   transition: all 0.1s;
-  opacity: ${props => (props.showLogo ? "1.0" : "0.0")};
 `
 
 const NavLinks = styled.div`
@@ -49,9 +49,6 @@ const LogoImageContainer = styled.div`
 
 const Logo = ({ showLogo }) => (
   <LogoLink showLogo={showLogo} to="/">
-    <LogoImageContainer>
-      <img src={logo} alt="Logo" />
-    </LogoImageContainer>
     <AnimatedLogo small />
   </LogoLink>
 )
@@ -61,7 +58,6 @@ export const Header = ({ isHome }) => {
     <HeaderStyled isHome={isHome}>
       <Container>
         <Nav isHome={isHome}>
-          <Logo showLogo={!isHome} />
           <NavLinks>
             <NavLink as={Link} to="/docs">
               Docs
@@ -72,16 +68,14 @@ export const Header = ({ isHome }) => {
             >
               API
             </NavLink>
-            <NavLink
-              as="a"
-              href="https://discord.gg/pxrBmy4"
-            >
+            <NavLink as="a" href="https://discord.gg/pxrBmy4">
               Discord
             </NavLink>
             <NavLink border href="https://github.com/luanpotter/flame/">
               <Ghlogo src={ghlogo} alt="github" /> Github
             </NavLink>
           </NavLinks>
+          <Logo showLogo={!isHome} />
         </Nav>
       </Container>
     </HeaderStyled>
