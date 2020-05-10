@@ -7,7 +7,7 @@ const xpath = require('xpath');
 const xmldom = require('xmldom');
 
 const max = (a, b) => a > b ? a : b;
-const readMd = name => fs.readFileSync(`../flame/doc/${name}`, 'UTF-8');
+const readMd = name => fs.readFileSync(`../flame/docs/${name}`, 'UTF-8');
 const writeMd = (name, content) => fs.writeFileSync(`build/docs/${name}`, content, 'UTF-8');
 
 const toDoc = markdown => new xmldom.DOMParser().parseFromString(marked(markdown));
@@ -41,8 +41,8 @@ const extractInfo = data => {
 
 const toMd = info => `---\n${Object.entries(info).map(([key, data]) => `${key}: ${data}`).join('\n')}\n---\n`;
 const externalLink = url => url.match(/^[a-zA-Z]*:\/\//);
-const isDocLink = url => url.match(/^\/?(doc\/)?[^/]*\.md/g);
-const replaceInternalLink = (g1, g2) => isDocLink(g2) ? `[${g1}](/docs/${g2.replace(/^doc\//, '')})` : `[${g1}](https://github.com/flame-engine/flame/blob/master/${g2.replace(/^\//, '')})`;
+const isDocLink = url => url.match(/^\/?(docs\/)?[^/]*\.md/g);
+const replaceInternalLink = (g1, g2) => isDocLink(g2) ? `[${g1}](/docs/${g2.replace(/^docs\//, '')})` : `[${g1}](https://github.com/flame-engine/flame/blob/master/${g2.replace(/^\//, '')})`;
 const replaceLinks = md => md.replace(/\[([^[\]]*)\]\(([^()]*)\)/g, (_, g1, g2) => externalLink(g2) ? `[${g1}](${g2})` : replaceInternalLink(g1, g2));
 const enhanceMd = (info, file) => `${toMd(info)}\n${replaceLinks(file)}`;
 
