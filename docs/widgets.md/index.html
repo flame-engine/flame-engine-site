@@ -68,7 +68,7 @@
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
 <p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the middle.</p>
 <p>The corners are drawn at the same size, the sides are stretched on the side direction and the middle is expanded both ways.</p>
-<p>The <code class="language-text">NineTileBox</code> widget implements a Container using that standard. This pattern is also implemented in game by the <code class="language-text">NineTileBoxComponent</code> where you can use this same feature, but directly into the game Canvas, to know more about this, check the component docs <a href="/docs/components.md#nine-tile-box-component">here</a>.</p>
+<p>The <code class="language-text">NineTileBox</code> widget implements a Container using that standard. This pattern is also implemented in game by the <code class="language-text">NineTileBoxComponent</code> where you can use this same feature, but directly into the game Canvas, to know more about this, check the component docs <a href="/docs//doc/components.md#nine-tile-box-component">here</a>.</p>
 <p>Here you can find an example of its usage:</p>
 <div class="gatsby-highlight" data-language="dart"><pre class="language-dart"><code class="language-dart"><span class="token keyword">import</span> <span class="token string">'package:flame/widgets/nine_tile_box.dart'</span><span class="token punctuation">;</span>
 
@@ -79,9 +79,9 @@
         child<span class="token punctuation">:</span> <span class="token function">SomeWidget</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// Any Flutter widget</span>
 <span class="token punctuation">)</span></code></pre></div>
 <h2 id="spritebutton" style="position:relative;"><a href="#spritebutton" aria-label="spritebutton permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>SpriteButton</h2>
-<p><code class="language-text">SpriteButton</code> is a simple widget that create a button based on Flame sprites, this can be very usefull when trying to create retro looking buttons for example, where creating that look can be easy to achieve drawing the button on a drawing software instead of making it directly on Flutter.</p>
+<p><code class="language-text">SpriteButton</code> is a simple widget that creates a button based on Flame sprites. This can be very useful when trying to create retro looking buttons. For example when creating that look can be more easily achievable by drawing the button in a drawing software, instead of making it directly in Flutter.</p>
 <p>Remember that the Sprites must have already been loaded when passing it to the widget.</p>
-<p>How to use:</p>
+<p>How to use it:</p>
 <div class="gatsby-highlight" data-language="dart"><pre class="language-dart"><code class="language-dart"><span class="token function">SpriteButton</span><span class="token punctuation">(</span>
           onPressed<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">'Pressed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
