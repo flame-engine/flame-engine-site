@@ -52,8 +52,9 @@ const CategoryTitle = styled.div`
 const categoriesNames = {
   0: "",
   1: "Core Concepts",
-  2: "Rendering",
-  3: "Other Modules",
+  2: "Audio",
+  3: "Rendering",
+  4: "Other Modules",
 }
 
 const DocSidebar = ({ allMarkdownRemark }) => {
