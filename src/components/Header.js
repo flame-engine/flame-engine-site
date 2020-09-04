@@ -3,7 +3,6 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import { Container, Ghlogo } from "./UI"
 
-import logo from "../images/flame-icon.png"
 import ghlogo from "../images/ghlogo.png"
 
 import { AnimatedLogo } from "./AnimatedLogo"
@@ -43,17 +42,17 @@ const NavLink = styled(ButtonLink)`
   color: ${props => props.theme.accentColor};
 `
 
-const LogoImageContainer = styled.div`
-  width: 2.5rem;
-`
-
 const Logo = ({ showLogo }) => (
   <LogoLink showLogo={showLogo} to="/">
     <AnimatedLogo small />
   </LogoLink>
 )
 
-export const Header = ({ isHome }) => {
+export const Header = ({ isHome, hideHeader }) => {
+  if (hideHeader) {
+    return ""
+  }
+
   return (
     <HeaderStyled isHome={isHome}>
       <Container>
