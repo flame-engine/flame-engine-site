@@ -1,8 +1,6 @@
 const path = require("path")
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
-
+const createDocsPage = ({ createPage, graphql }) => {
   const docTemplate = path.resolve(`src/templates/docTemplate.js`)
 
   return graphql(`
@@ -36,4 +34,12 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   })
+}
+
+exports.createPages = ({ actions, graphql }) => {
+  const { createPage } = actions
+
+  return Promise.all([
+    createDocsPage({ createPage, graphql }),
+  ])
 }
