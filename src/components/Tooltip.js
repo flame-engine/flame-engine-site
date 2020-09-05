@@ -33,7 +33,7 @@ const TooltipBody = styled.div`
     height: 0;
     border-width: 8px;
   }
-  \t\t&[data-relation="top"] {
+  &[data-relation="top"] {
     bottom: calc(100% - 20px);
     &.triggered {
       bottom: calc(100% + 10px);
@@ -161,22 +161,9 @@ export const PaperTooltip = ({
     return () => window.removeEventListener("click", clickOut)
   }, [setShow])
 
-  const clonedChildren = React.useMemo(
-    () =>
-      React.Children.map(children, child =>
-        React.cloneElement(child, {
-          onClick: () => {
-            setShow(show => !show)
-          },
-        })
-      ),
-
-    [children]
-  )
-
   return (
     <Root className={className} title={title} ref={me}>
-      {clonedChildren}
+      {children(setShow)}
       <TooltipBody
         data-relation={relation}
         data-position={position}
