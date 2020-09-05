@@ -20,7 +20,6 @@ export default function Template() {
       hour: "numeric",
       minute: "numeric",
     })
-    console.log("ah")
     setLocalTime(formatter.format(theDate))
   })
 
