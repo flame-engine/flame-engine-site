@@ -6,6 +6,7 @@ import {
   faGithub,
   faMeetup,
   faYoutube,
+  faDiscord,
 } from "@fortawesome/free-brands-svg-icons"
 import { PaperTooltip } from "../components/Tooltip"
 
@@ -110,6 +111,9 @@ export default function Template() {
             </a>{" "}
             <a href="https://www.youtube.com/channel/UCinjCGNThGXbUYFgfgsI0bA">
               <FontAwesomeIcon icon={faYoutube} />
+            </a>{" "}
+            <a href="https://discord.gg/s2qHSYT">
+              <FontAwesomeIcon icon={faDiscord} />
             </a>
           </p>
           <a
