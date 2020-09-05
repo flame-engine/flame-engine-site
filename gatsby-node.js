@@ -36,10 +36,21 @@ const createDocsPage = ({ createPage, graphql }) => {
   })
 }
 
+const createFlameconPage = ({ createPage }) => {
+  const flameconTemplate = path.resolve(`src/templates/flameconTemplate.js`)
+
+  return createPage({
+    path: "/flamecon",
+    component: flameconTemplate,
+    context: {},
+  })
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
   return Promise.all([
     createDocsPage({ createPage, graphql }),
+    createFlameconPage({ createPage }),
   ])
 }
