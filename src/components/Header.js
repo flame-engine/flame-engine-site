@@ -34,7 +34,6 @@ const NavLinks = styled.div`
 `
 
 const NavLink = styled(ButtonLink)`
-  text-size: 0.825rem;
   padding: 0.5rem 1.5rem;
   font-size: 0.8em;
   text-decoration: none;
