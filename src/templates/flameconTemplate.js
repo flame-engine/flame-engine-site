@@ -106,7 +106,7 @@ export default function Template() {
 
           <p className="flamecon-join">
             Join us at:{" "}
-            <a href="https://www.meetup.com/FlameCon/">
+            <a href="https://www.meetup.com/FlameCon/events/273073483/">
               <FontAwesomeIcon icon={faMeetup} />
             </a>{" "}
             <a href="https://www.youtube.com/channel/UCinjCGNThGXbUYFgfgsI0bA">
