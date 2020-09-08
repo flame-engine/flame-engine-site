@@ -51,6 +51,7 @@ export default function Template() {
     <PageWrapper
       title="Flamecon - Flame engine online conference"
       fullWitdh={true}
+      hideFlameconBanner
     >
       <div className="flamecon-wrapper">
         <div className="flamecon-inner">
@@ -61,7 +62,7 @@ export default function Template() {
               <b>16 Sept</b> at {time}:
             </p>
             <div className="flamecon-talk">
-              Building RPG games with {" "}
+              Building RPG games with&nbsp;
               <a
                 className="flamecon-boom"
                 title="Bonfire"
@@ -82,7 +83,7 @@ export default function Template() {
               </a>
             </div>
             <div className="flamecon-talk">
-              Optimizing sprite usage with {" "}
+              Optimizing sprite usage with&nbsp;
               <a
                 className="flamecon-boom"
                 title="Fire Atlas"

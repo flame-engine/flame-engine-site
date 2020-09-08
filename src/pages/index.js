@@ -13,8 +13,8 @@ import { Ghlogo } from "../components/UI"
 require("../components/prism-theme.css")
 
 const HeroContainer = styled.div`
-  height: 100vh;
-  min-height: 45.25em;
+  height: calc(100vh - 100px);
+  min-height: 40.25em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,32 +64,34 @@ const HeroText = styled.p`
 
 const IndexPage = () => {
   return (
-    <PageWrapper title="Flame">
-      <HeroContainer>
-        <HeroImage />
-        <AnimatedLogo />
-        <GitHubButton
-          type="stargazers"
-          size="large"
-          namespace="luanpotter"
-          repo="flame"
-        >
-          Star
-        </GitHubButton>
-        <HeroText>
-          2D game engine made on top of <b>Flutter</b>
-        </HeroText>
-        <Flex>
-          <ButtonLink href="https://github.com/luanpotter/flame/" border>
-            <Ghlogo src={ghlogo} alt="github" /> Github
-          </ButtonLink>
-          <ButtonLink href="/docs">Get started</ButtonLink>
-          <ButtonLink href="https://pub.dartlang.org/documentation/flame/latest/">
-            API reference
-          </ButtonLink>
-        </Flex>
-      </HeroContainer>
-    </PageWrapper>
+    <>
+      <PageWrapper title="Flame">
+        <HeroContainer>
+          <HeroImage />
+          <AnimatedLogo />
+          <GitHubButton
+            type="stargazers"
+            size="large"
+            namespace="luanpotter"
+            repo="flame"
+          >
+            Star
+          </GitHubButton>
+          <HeroText>
+            2D game engine made on top of <b>Flutter</b>
+          </HeroText>
+          <Flex>
+            <ButtonLink href="https://github.com/luanpotter/flame/" border>
+              <Ghlogo src={ghlogo} alt="github" /> Github
+            </ButtonLink>
+            <ButtonLink href="/docs">Get started</ButtonLink>
+            <ButtonLink href="https://pub.dartlang.org/documentation/flame/latest/">
+              API reference
+            </ButtonLink>
+          </Flex>
+        </HeroContainer>
+      </PageWrapper>
+    </>
   )
 }
 
