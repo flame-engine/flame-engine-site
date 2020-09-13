@@ -62,7 +62,7 @@ const flame3 = keyframes`
 		opacity: 1;
 		background-color: #D20101;
 	}
-	
+
 	15% {
 		transform: translate(20px, -20px)scale(0.8);
 		opacity: 1;
@@ -97,18 +97,18 @@ const flame4 = keyframes`
 		opacity: 0.7;
 		background-color: #e80711;
 	}
-	
+
 	19%{
 		transform: translate(37px, -26px) scale(0.7);
 		opacity: 0.5;
 	}
-	
+
 	28%{
 		transform: translate(19px, -46px) scale(0.5);
 		opacity: 0.1;
 		background-color: #D20101;
 	}
-	
+
 	32%{
 		transform: translate(19px, -26px) scale(0.2);
 		opacity: 0;
@@ -130,6 +130,9 @@ const AnimatedLogoContainer = styled.div`
   font-weight: 800;
   text-decoration: none;
   margin: ${props => (props.small ? "0" : "4rem 0 4rem")};
+  @media (max-width: 520px) {
+    font-size: ${props => (props.small ? "24px" : "64px")};
+  }
   &:after {
     content: "";
     width: ${props => (props.small ? "12px" : "25px")};
