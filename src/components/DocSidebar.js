@@ -20,6 +20,12 @@ const DocSidebarContainer = styled.div`
   padding: 1em 2em 0 0;
   margin: 0 2em 0 0;
 
+  @media (max-width: 800px) {
+    margin: 2em 0 0 0;
+    border-right: none;
+    border-top-width: 1px;
+  }
+
   & ul {
     margin-bottom: 1.5em;
   }

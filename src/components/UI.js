@@ -22,6 +22,8 @@ export const ButtonLink = styled.a`
   border-radius: 1.575rem;
   display: flex;
   align-items: center;
+  ${props => props.mobileOnly ? '@media (min-width: 521px) { display: none; }': ''}
+  ${props => props.desktopOnly ? '@media (max-width: 520px) { display: none; }': ''}
 `
 
 export const DocsStructure = styled.div`
@@ -29,9 +31,12 @@ export const DocsStructure = styled.div`
   padding-top: 1rem;
   padding-bottom: 2em;
   max-width: 100%;
+
+  @media (max-width: 800px) {
+    flex-direction: column-reverse;
+  }
 `
 
 export const Ghlogo = styled.img`
   width: 1em;
-  margin-right: 0.6em;
 `

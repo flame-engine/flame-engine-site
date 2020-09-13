@@ -22,11 +22,25 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: ${props => (!props.isHome ? "1em 0" : "2em 0")};
+
+  @media (max-width: 520px) {
+    flex-direction: column-reverse;
+  }
 `
+
+export const NavLinkText = styled.span`
+  * + & {
+    margin-left: 0.6em;
+  }
+`;
+
 const LogoLink = styled(Link)`
   display: ${props => (props.showLogo ? "flex" : "none")};
   align-items: center;
   transition: all 0.1s;
+  @media (max-width: 520px) {
+    margin-bottom: 1.5rem;
+  }
 `
 
 const NavLinks = styled.div`
@@ -39,6 +53,9 @@ const NavLink = styled(ButtonLink)`
   text-decoration: none;
   font-weight: 800;
   color: ${props => props.theme.accentColor};
+  @media (max-width: 520px) {
+    padding: 0.5rem 1.2rem;
+  }
 `
 
 const Logo = ({ showLogo }) => (
@@ -69,8 +86,12 @@ export const Header = ({ isHome, hideHeader }) => {
             <NavLink as="a" href="https://discord.gg/pxrBmy4">
               Discord
             </NavLink>
-            <NavLink border href="https://github.com/luanpotter/flame/">
-              <Ghlogo src={ghlogo} alt="github" /> Github
+            <NavLink desktopOnly border href="https://github.com/luanpotter/flame/" >
+              <Ghlogo src={ghlogo} alt="github" />
+              <NavLinkText>Github</NavLinkText>
+            </NavLink>
+            <NavLink mobileOnly href="https://github.com/luanpotter/flame/">
+              <Ghlogo src={ghlogo} alt="github" />
             </NavLink>
           </NavLinks>
           <Logo showLogo={!isHome} />
