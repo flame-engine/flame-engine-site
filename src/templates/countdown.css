@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Firealistic;
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/firealistic-regular.otf") format("opentype");
+}
+
+.flame-logo-inner a,
+.flame-logo-inner a:visited {
+  color: #ffffff;
+}
+
+.countdown {
+  font-family: Firealistic, sans-serif;
+  font-size: 3em;
+  line-height: 1.2;
+}
