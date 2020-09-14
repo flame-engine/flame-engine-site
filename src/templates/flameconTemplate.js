@@ -53,8 +53,8 @@ export default function Template() {
       fullWitdh={true}
       hideFlameconBanner
     >
-      <div className="flamecon-wrapper">
-        <div className="flamecon-inner">
+      <div className="flame-logo-wrapper">
+        <div className="flame-logo-inner">
           <h1 className="flamecon-title">FLAMECON</h1>
           <div className="flamecon-tagline">Flutter game engine conference</div>
           <div className="flamecon-lineup">

@@ -13,7 +13,8 @@ const styledTheme = {
 
 export const Page = ({ children, uri }) => {
   const isHome = uri === "/"
-  const hideHeader = uri.match(/^\/?flamecon\/?$/g)
+  const hideHeader =
+    uri.match(/^\/?flamecon\/?$/g) || uri.match(/^\/?countdown\/?$/g)
 
   return (
     <ThemeProvider theme={styledTheme}>

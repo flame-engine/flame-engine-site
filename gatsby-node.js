@@ -46,11 +46,22 @@ const createFlameconPage = ({ createPage }) => {
   })
 }
 
+const createCountdownPage = ({ createPage }) => {
+  const countdownTemplate = path.resolve(`src/templates/countdownTemplate.js`)
+
+  return createPage({
+    path: "/countdown",
+    component: countdownTemplate,
+    context: {},
+  })
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
   return Promise.all([
     createDocsPage({ createPage, graphql }),
     createFlameconPage({ createPage }),
+    createCountdownPage({ createPage }),
   ])
 }
