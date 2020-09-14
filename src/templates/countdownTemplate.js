@@ -10,20 +10,25 @@ export default function Template() {
   const SEC_IN_MILLIS = 1000
   const MIN_IN_SEC = 60
 
-  const urlParams = new URLSearchParams(window.location.search)
-  const currentTimestamp = new Date().getTime()
-  const targetTimestamp = urlParams.get("timestamp") || currentTimestamp
-  const delta = (targetTimestamp - currentTimestamp) / SEC_IN_MILLIS
-
-  const [counter, setCounter] = useState(delta)
+  const [counter, setCounter] = useState(null)
 
   useEffect(() => {
-    setTimeout(() => setCounter(counter - 1), SEC_IN_MILLIS)
+    const urlParams = new URLSearchParams(window.location.search)
+    const currentTimestamp = new Date().getTime()
+    const targetTimestamp = urlParams.get("timestamp") || currentTimestamp
+    const delta = (targetTimestamp - currentTimestamp) / SEC_IN_MILLIS
+    setCounter(delta)
+  }, [])
+
+  useEffect(() => {
+    if (counter) {
+      setTimeout(() => setCounter(counter - 1), SEC_IN_MILLIS)
+    }
   }, [counter])
 
-  const seconds = num => `${Math.round(num % MIN_IN_SEC)}`.padStart(2, "0")
+  const seconds = num => `${Math.abs(Math.round(num % MIN_IN_SEC))}`.padStart(2, "0")
   const minutes = num => Math.ceil(num / MIN_IN_SEC)
-  const format = num => `${minutes(num)}:${seconds(num)}`
+  const format = num => (num ? `${minutes(num)}:${seconds(num)}` : "-")
 
   return (
     <PageWrapper title="Countdown" fullWitdh={true} hideFlameconBanner>
