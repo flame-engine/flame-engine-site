@@ -9,6 +9,9 @@ export const MarkdownBody = styled.div`
   min-height: 70vh;
   flex: 1;
   max-width: calc(100% - 280px);
+  @media (max-width: 800px) {
+    max-width: 100%;
+  }
 
   & details {
     paddisplay: block;
