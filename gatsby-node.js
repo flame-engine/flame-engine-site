@@ -56,6 +56,24 @@ const createCountdownPage = ({ createPage }) => {
   })
 }
 
+const createMerchPage = ({ createPage }) => {
+  const merchTemplate = path.resolve(`src/templates/merchTemplate.js`)
+  return createPage({
+    path: "/merch",
+    component: merchTemplate,
+    context: {},
+  })
+}
+
+const createDiscordPage = ({ createPage }) => {
+  const discordTemplate = path.resolve(`src/templates/discordTemplate.js`)
+  return createPage({
+    path: "/discord",
+    component: discordTemplate,
+    context: {},
+  })
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
@@ -63,5 +81,11 @@ exports.createPages = ({ actions, graphql }) => {
     createDocsPage({ createPage, graphql }),
     createFlameconPage({ createPage }),
     createCountdownPage({ createPage }),
+    createMerchPage({
+      createPage,
+    }),
+    createDiscordPage({
+      createPage,
+    }),
   ])
 }
