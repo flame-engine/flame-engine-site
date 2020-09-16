@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[10],{SCPZ:function(n,t,e){"use strict";e.r(t);var c=e("UJyY");t.default=Object(c.a)("https://teespring.com/stores/flameengine")},UJyY:function(n,t,e){"use strict";var c=e("q1tI");t.a=function(n){return function(){return Object(c.useEffect)((function(){window.location.replace(n)})),null}}}}]);
+//# sourceMappingURL=component---src-templates-merch-template-js-1900467cf1a24aa79d9f.js.map

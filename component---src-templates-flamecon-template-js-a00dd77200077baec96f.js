@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{oSGp:function(e,n,t){"use strict";t.r(n),t.d(n,"default",(function(){return u}));var o=t("q1tI"),a=t.n(o),r=t("uVCN");function u(e){e.data;return a.a.createElement(r.b,{title:"Flamecon"},"hello there")}}}]);
-//# sourceMappingURL=component---src-templates-flamecon-template-js-a00dd77200077baec96f.js.map
