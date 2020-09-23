@@ -81,11 +81,7 @@ exports.createPages = ({ actions, graphql }) => {
     createDocsPage({ createPage, graphql }),
     createFlameconPage({ createPage }),
     createCountdownPage({ createPage }),
-    createMerchPage({
-      createPage,
-    }),
-    createDiscordPage({
-      createPage,
-    }),
+    createMerchPage({ createPage }),
+    createDiscordPage({ createPage }),
   ])
 }

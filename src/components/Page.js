@@ -5,7 +5,6 @@ import { SEO } from "./Seo"
 import { FullWidthContainer, Container } from "./UI"
 
 import "./layout.css"
-import { FlameconBanner } from "./flameconBanner"
 
 const styledTheme = {
   accentColor: "#D20101",
@@ -26,20 +25,13 @@ export const Page = ({ children, uri }) => {
   )
 }
 
-export const PageWrapper = ({
-  title,
-  children,
-  fullWitdh,
-  hideFlameconBanner,
-}) => {
+export const PageWrapper = ({ title, children, fullWitdh }) => {
   const Wrapper = fullWitdh ? FullWidthContainer : Container
-
-  const mainStyle = hideFlameconBanner && { marginTop: 0 }
 
   return (
     <ThemeProvider theme={styledTheme || {}}>
-      {!hideFlameconBanner && <FlameconBanner />}
-      <main style={mainStyle}>
+      {/* <FlameconBanner />*/}
+      <main>
         <SEO title={title} />
         <Wrapper>{children}</Wrapper>
       </main>

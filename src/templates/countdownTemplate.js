@@ -26,12 +26,13 @@ export default function Template() {
     }
   }, [counter])
 
-  const seconds = num => `${Math.abs(Math.round(num % MIN_IN_SEC))}`.padStart(2, "0")
+  const seconds = num =>
+    `${Math.abs(Math.round(num % MIN_IN_SEC))}`.padStart(2, "0")
   const minutes = num => Math.ceil(num / MIN_IN_SEC)
   const format = num => (num ? `${minutes(num)}:${seconds(num)}` : "-")
 
   return (
-    <PageWrapper title="Countdown" fullWitdh={true} hideFlameconBanner>
+    <PageWrapper title="Countdown" fullWitdh={true}>
       <div className="flame-logo-wrapper">
         <div className="flame-logo-inner countdown">
           <FontAwesomeIcon icon={faFire}></FontAwesomeIcon>

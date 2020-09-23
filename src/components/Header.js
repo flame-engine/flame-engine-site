@@ -10,7 +10,7 @@ import { ButtonLink } from "./UI"
 
 const HeaderStyled = styled.header`
   position: ${props => (props.isHome ? "absolute" : "relative")};
-  top: 75px;
+  top: 0;
   left: 0;
   right: 0;
   font-size: 1.2rem;
