@@ -1,16 +1,20 @@
-library home;
+library flamecon;
+
+import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../common/common.dart';
 import '../common/bars.dart';
 import '../theme.dart';
 
-
 part 'content.dart';
+part 'data.dart';
 
-class Home extends StatelessWidget {
+class Flamecon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width <= 600;
@@ -37,5 +41,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-

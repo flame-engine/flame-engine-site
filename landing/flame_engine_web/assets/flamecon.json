@@ -1,0 +1,19 @@
+{
+  "name": "FLAMECON 2",
+  "subtitle": "The flame engine conference",
+  "datetime": "2020-12-09 20:00:00Z",
+  "talks": [
+    {
+      "name": "Introduction to the Effects API",
+      "authorName": "Lukas Klingsbo",
+      "authorLink": "https://lukas.fyi"
+    },
+    {
+      "name": "Pseudo-3D Dungeon Tiles in Flame",
+      "authorName": "David Donze",
+      "authorLink": "https://twitter.com/MissionCTRLGame"
+    }
+  ],
+  "actionLabel": "Save the date!",
+  "actionLink": "--"
+}

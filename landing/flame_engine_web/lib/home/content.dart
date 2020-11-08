@@ -142,7 +142,7 @@ class TaglineButtons extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           textColor: context.flameTheme.primaryAccent,
-          onPressed: LinkAction.opensSameTab.action("/flamecon"),
+          onPressed: () => Navigator.pushNamed(context, "flamecon"),
           padding: EdgeInsets.only(left: 40),
         ),
       ],

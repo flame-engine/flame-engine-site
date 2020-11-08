@@ -1,9 +1,10 @@
-part of home;
+import 'package:flutter/material.dart';
+import '../theme.dart';
+import 'common.dart';
 
 final double topbarHeight = 100.0;
 final double bottombarHeight = 60.0;
 final double footerHeight = 80.0;
-
 
 class TopBar extends StatelessWidget {
   @override
@@ -121,10 +122,9 @@ class Footer extends StatelessWidget {
               linkAction: LinkAction.opensNewTab,
               style: textStyle,
             ),
-            Link(
+            Link.internal(
               label: "FLAMECON",
-              url: "https://fireslime.xyz/",
-              linkAction: LinkAction.opensNewTab,
+              onPressed: () =>  Navigator.pushNamed(context, "flamecon"),
               style: textStyle,
             ),
             Link(

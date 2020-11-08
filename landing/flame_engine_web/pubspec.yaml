@@ -26,3 +26,8 @@ flutter:
 
   assets:
     - assets/
+
+  fonts:
+    - family: Firealistic
+      fonts:
+        - asset: assets/firealistic/firealistic-regular.otf

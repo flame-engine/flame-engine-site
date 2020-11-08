@@ -88,6 +88,7 @@ class Link extends StatelessWidget {
   final bool last;
   final TextStyle style;
   final EdgeInsets padding;
+  final VoidCallback onPressed;
 
   const Link({
     Key key,
@@ -98,7 +99,20 @@ class Link extends StatelessWidget {
     this.last = false,
     this.style,
     this.padding,
-  }) : super(key: key);
+  })  : onPressed = null,
+        super(key: key);
+
+  const Link.internal({
+    Key key,
+    @required this.label,
+    @required this.onPressed,
+    this.first = false,
+    this.last = false,
+    this.style,
+    this.padding,
+  })  : linkAction = null,
+        url = null,
+        super(key: key);
 
   LinkAction get action => linkAction ?? LinkAction.opensSameTab;
 
@@ -115,7 +129,7 @@ class Link extends StatelessWidget {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: action.action(url),
+        onTap: onPressed ?? action.action(url),
         child: Padding(
           padding: finalPadding,
           child: Text(
