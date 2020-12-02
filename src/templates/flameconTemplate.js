@@ -16,7 +16,7 @@ export default function Template() {
   const [localTime, setLocalTime] = useState(null)
 
   useEffect(() => {
-    const theDate = new Date(Date.UTC(2020, 8, 16, 20, 0))
+    const theDate = new Date(Date.UTC(2020, 11, 9, 20, 0))
     const formatter = new Intl.DateTimeFormat(navigator.language, {
       hour: "numeric",
       minute: "numeric",
@@ -55,52 +55,48 @@ export default function Template() {
     >
       <div className="flame-logo-wrapper">
         <div className="flame-logo-inner">
-          <h1 className="flamecon-title">FLAMECON</h1>
+          <h1 className="flamecon-title">FLAMECON II</h1>
           <div className="flamecon-tagline">Flutter game engine conference</div>
           <div className="flamecon-lineup">
             <p className="flamecon-datetime">
-              <b>16 Sept</b> at {time}:
+              <b>9 Dec</b> at {time}:
             </p>
             <div className="flamecon-talk">
-              Building RPG games with&nbsp;
+              Introduction to the&nbsp;
               <a
                 className="flamecon-boom"
-                title="Bonfire"
-                target="_blank"
-                href="https://bonfire-engine.github.io/"
+                title="Effects API"
               >
-                Bonfire
+                Effects API
               </a>
-              <a href="https://github.com/RafaelBarbosatec/bonfire">
+              <a href="https://github.com/spydon">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
               <a
                 className="flamecon-author"
-                href="https://twitter.com/RafaBarbosaTec"
+                href="https://lukas.fyi/"
                 target="_blank"
               >
-                Rafael Barbosa
+                Lukas Klingsbo
               </a>
             </div>
             <div className="flamecon-talk">
-              Optimizing sprite usage with&nbsp;
+              Pseudo-3D&nbsp;
               <a
                 className="flamecon-boom"
                 title="Fire Atlas"
                 target="_blank"
                 href="https://fire-atlas.flame-engine.org/"
               >
-                Fire Atlas
+                Dungeon Tiles&nbsp;
               </a>
-              <a href="https://github.com/flame-engine/fire-atlas">
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
+              in Flame
               <a
                 className="flamecon-author"
-                href="https://twitter.com/CptPixel"
+                href="https://twitter.com/MissionCTRLGame"
                 target="_blank"
               >
-                Erick Zanardo
+                David Donze
               </a>
             </div>
           </div>
