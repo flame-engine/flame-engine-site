@@ -86,9 +86,9 @@ export default function Template() {
                 className="flamecon-boom"
                 title="Dungeon Tiles"
               >
-                Dungeon Tiles&nbsp;
+                Dungeon Tiles
               </a>
-              in Flame
+              &nbsp;in Flame
               <a
                 className="flamecon-author"
                 href="https://twitter.com/MissionCTRLGame"
