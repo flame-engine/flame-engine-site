@@ -114,7 +114,7 @@ export default function Template() {
           <a
             className="flamecon-cta"
             target="_blank"
-            href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20201209T200000Z%2F20200916T220000Z&text=Flamecon%20II&location=&details=Second%20iteration%20of%20FlameCon%2C%20an%20open%2C%20online%20community%20event%20to%20gather%20people%20that%20use%20and%20love%20Flame%2C%20the%20Flutter%20game%20engine.%0A%0AMore%20details%3A%20http%3A%2F%2Fflame-engine.org%2Fflamecon"
+            href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20201209T200000Z%2F20201209T220000Z&text=Flamecon%20II&location=&details=Second%20iteration%20of%20FlameCon%2C%20an%20open%2C%20online%20community%20event%20to%20gather%20people%20that%20use%20and%20love%20Flame%2C%20the%20Flutter%20game%20engine.%0A%0AMore%20details%3A%20http%3A%2F%2Fflame-engine.org%2Fflamecon"
           >
             Save the date
           </a>
