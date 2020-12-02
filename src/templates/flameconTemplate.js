@@ -16,7 +16,7 @@ export default function Template() {
   const [localTime, setLocalTime] = useState(null)
 
   useEffect(() => {
-    const theDate = new Date(Date.UTC(2020, 8, 16, 20, 0))
+    const theDate = new Date(Date.UTC(2020, 11, 9, 20, 0))
     const formatter = new Intl.DateTimeFormat(navigator.language, {
       hour: "numeric",
       minute: "numeric",
@@ -55,52 +55,46 @@ export default function Template() {
     >
       <div className="flame-logo-wrapper">
         <div className="flame-logo-inner">
-          <h1 className="flamecon-title">FLAMECON</h1>
+          <h1 className="flamecon-title">FLAMECON II</h1>
           <div className="flamecon-tagline">Flutter game engine conference</div>
           <div className="flamecon-lineup">
             <p className="flamecon-datetime">
-              <b>16 Sept</b> at {time}:
+              <b>9 Dec</b> at {time}:
             </p>
             <div className="flamecon-talk">
-              Building RPG games with&nbsp;
+              Introduction to the&nbsp;
               <a
                 className="flamecon-boom"
-                title="Bonfire"
-                target="_blank"
-                href="https://bonfire-engine.github.io/"
+                title="Effects API"
               >
-                Bonfire
+                Effects API
               </a>
-              <a href="https://github.com/RafaelBarbosatec/bonfire">
+              <a href="https://github.com/spydon">
                 <FontAwesomeIcon icon={faGithub} />
               </a>
               <a
                 className="flamecon-author"
-                href="https://twitter.com/RafaBarbosaTec"
+                href="https://lukas.fyi/"
                 target="_blank"
               >
-                Rafael Barbosa
+                Lukas Klingsbo
               </a>
             </div>
             <div className="flamecon-talk">
-              Optimizing sprite usage with&nbsp;
+              Pseudo-3D&nbsp;
               <a
                 className="flamecon-boom"
-                title="Fire Atlas"
-                target="_blank"
-                href="https://fire-atlas.flame-engine.org/"
+                title="Dungeon Tiles"
               >
-                Fire Atlas
+                Dungeon Tiles&nbsp;
               </a>
-              <a href="https://github.com/flame-engine/fire-atlas">
-                <FontAwesomeIcon icon={faGithub} />
-              </a>
+              in Flame
               <a
                 className="flamecon-author"
-                href="https://twitter.com/CptPixel"
+                href="https://twitter.com/MissionCTRLGame"
                 target="_blank"
               >
-                Erick Zanardo
+                David Donze
               </a>
             </div>
           </div>
@@ -120,7 +114,7 @@ export default function Template() {
           <a
             className="flamecon-cta"
             target="_blank"
-            href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20200916T200000Z%2F20200916T220000Z&text=Flamecon&location=&details=First%20iteration%20of%20FlameCon%2C%20an%20open%2C%20online%20community%20event%20to%20gather%20people%20that%20use%20and%20love%20Flame%2C%20the%20Flutter%20game%20engine.%0A%0AMore%20details%3A%20http%3A%2F%2Fflame-engine.org%2Fflamecon"
+            href="http://www.google.com/calendar/event?action=TEMPLATE&dates=20201209T200000Z%2F20201209T220000Z&text=Flamecon%20II&location=&details=Second%20iteration%20of%20FlameCon%2C%20an%20open%2C%20online%20community%20event%20to%20gather%20people%20that%20use%20and%20love%20Flame%2C%20the%20Flutter%20game%20engine.%0A%0AMore%20details%3A%20http%3A%2F%2Fflame-engine.org%2Fflamecon"
           >
             Save the date
           </a>
