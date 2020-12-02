@@ -84,9 +84,7 @@ export default function Template() {
               Pseudo-3D&nbsp;
               <a
                 className="flamecon-boom"
-                title="Fire Atlas"
-                target="_blank"
-                href="https://fire-atlas.flame-engine.org/"
+                title="Dungeon Tiles"
               >
                 Dungeon Tiles&nbsp;
               </a>
