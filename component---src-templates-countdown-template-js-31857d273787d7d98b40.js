@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{"cu+B":function(e,n,a){},qpxY:function(e,n,a){"use strict";a.r(n),a.d(n,"default",(function(){return o}));var t=a("q1tI"),c=a.n(t),i=a("uVCN");a("cu+B");function o(){return c.a.createElement(i.b,{title:"Countdown",fullWitdh:!0,hideFlameconBanner:!0},c.a.createElement("div",{className:"flame-logo-wrapper"},c.a.createElement("div",{className:"flame-logo-inner"},"FLAME - 8 min remains")))}}}]);
-//# sourceMappingURL=component---src-templates-countdown-template-js-31857d273787d7d98b40.js.map
