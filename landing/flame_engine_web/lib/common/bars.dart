@@ -11,7 +11,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cornerLogo = Image.asset("assets/cornerlogo.png");
     return ConditionalRendering(
-          (size) => size.width > 600,
+      (size) => size.width > 600,
       child: Positioned(
         top: 0,
         left: 0,
@@ -25,7 +25,12 @@ class TopBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                cornerLogo,
+                ClickableRegion(
+                  child: cornerLogo,
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/");
+                  },
+                ),
                 HorzMenu(),
               ],
             ),
@@ -36,13 +41,11 @@ class TopBar extends StatelessWidget {
   }
 }
 
-
-
 class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConditionalRendering(
-          (size) => size.width <= 600,
+      (size) => size.width <= 600,
       child: Positioned(
         bottom: 0,
         left: 0,
@@ -68,7 +71,7 @@ class HorzMenu extends StatelessWidget {
           url: "https://flame-engine.org/docs",
           first: true,
         ),
-        Link(label: "API", url: "https://flame-engine.org/api"),
+        Link(label: "API", url: "https://pub.dev/documentation/flame/latest/"),
         Link(
           label: "Github",
           url: "https://github.com/flame-engine/flame",
@@ -89,10 +92,10 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-      fontSize: 12,
-      fontWeight: FontWeight.normal,
-      color: context.flameTheme.textColor,
-    );
+          fontSize: 12,
+          fontWeight: FontWeight.normal,
+          color: context.flameTheme.textColor,
+        );
 
     return Container(
       height: footerHeight,
@@ -103,16 +106,15 @@ class Footer extends StatelessWidget {
           shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 26, vertical: 32),
           children: [
-            Link(
-              label: "MEDIA",
-              url: "https://github.com/flame-engine/brand",
-              linkAction: LinkAction.opensNewTab,
+            Link.internal(
+              label: "FLAMECON",
+              onPressed: () => Navigator.pushNamed(context, "/flamecon"),
               style: textStyle,
               first: true,
             ),
             Link(
-              label: "CONTACT",
-              url: "https://fireslime.xyz/about.html",
+              label: "AWESOME FLAME",
+              url: "https://github.com/flame-engine/awesome-flame",
               linkAction: LinkAction.opensNewTab,
               style: textStyle,
             ),
@@ -122,14 +124,15 @@ class Footer extends StatelessWidget {
               linkAction: LinkAction.opensNewTab,
               style: textStyle,
             ),
-            Link.internal(
-              label: "FLAMECON",
-              onPressed: () =>  Navigator.pushNamed(context, "flamecon"),
+            Link(
+              label: "MEDIA",
+              url: "https://github.com/flame-engine/brand",
+              linkAction: LinkAction.opensNewTab,
               style: textStyle,
             ),
             Link(
-              label: "AWESOME FLAME",
-              url: "https://github.com/flame-engine/awesome-flame",
+              label: "CONTACT",
+              url: "https://fireslime.xyz/about.html",
               linkAction: LinkAction.opensNewTab,
               style: textStyle,
               last: true,

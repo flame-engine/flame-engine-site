@@ -126,17 +126,42 @@ class Link extends StatelessWidget {
     if (last) {
       finalPadding = finalPadding.copyWith(right: 0);
     }
+    return ClickableRegion(
+      onPressed: onPressed,
+      action: action,
+      url: url,
+      child: Padding(
+        padding: finalPadding,
+        child: Text(
+          label,
+          style: style,
+        ),
+      ),
+    );
+  }
+}
+
+class ClickableRegion extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onPressed;
+  final LinkAction action;
+  final String url;
+
+  const ClickableRegion({
+    Key key,
+    this.onPressed,
+    this.action,
+    this.child,
+    this.url,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: onPressed ?? action.action(url),
-        child: Padding(
-          padding: finalPadding,
-          child: Text(
-            label,
-            style: style,
-          ),
-        ),
+        child: child,
       ),
     );
   }

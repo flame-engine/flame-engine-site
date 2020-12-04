@@ -41,7 +41,7 @@ class FlamingLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flamingLogo = Image.asset(
-      "assets/flaming_logo.png",
+      "assets/mainlogo.png",
     );
 
     final width = MediaQuery.of(context).size.width.clamp(0, 420.0);
@@ -142,7 +142,7 @@ class TaglineButtons extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           textColor: context.flameTheme.primaryAccent,
-          onPressed: () => Navigator.pushNamed(context, "flamecon"),
+          onPressed: () => Navigator.pushNamed(context, "/flamecon"),
           padding: EdgeInsets.only(left: 40),
         ),
       ],

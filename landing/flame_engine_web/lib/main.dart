@@ -1,4 +1,3 @@
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -8,8 +7,11 @@ import 'package:flameengineweb/theme.dart';
 import 'flamecon/flamecon.dart';
 import 'home/home.dart';
 
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+
+
 void main() {
-  //setUrlStrategy(PathUrlStrategy());
+  configureApp();
   runApp(Provider<FlameTheme>(
     create: (_) => FlameTheme.theme,
     child: MyApp(),
@@ -34,8 +36,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: <String, WidgetBuilder>{
-        "home": (ctx) => Home(),
-        "flamecon": (ctx) => Flamecon(),
+        "/": (ctx) => Home(),
+        "/flamecon": (ctx) => Flamecon(),
       },
       initialRoute: "home",
     );
