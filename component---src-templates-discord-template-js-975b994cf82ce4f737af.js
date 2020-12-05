@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{DdpA:function(n,t,c){"use strict";c.r(t);var e=c("UJyY");t.default=Object(e.a)("https://discord.gg/pxrBmy4")},UJyY:function(n,t,c){"use strict";var e=c("q1tI");t.a=function(n){return function(){return Object(e.useEffect)((function(){window.location.replace(n)})),null}}}}]);
-//# sourceMappingURL=component---src-templates-discord-template-js-975b994cf82ce4f737af.js.map
