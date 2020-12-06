@@ -1,0 +1,7 @@
+web/
+ios/
+android/
+test/
+macos/
+
+generated_plugin_registrant.dart

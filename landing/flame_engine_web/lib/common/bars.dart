@@ -27,9 +27,7 @@ class TopBar extends StatelessWidget {
               children: [
                 ClickableRegion(
                   child: cornerLogo,
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/");
-                  },
+                  onPressed: LinkAction.opensSameTab.action("/"),
                 ),
                 HorzMenu(),
               ],
@@ -106,12 +104,6 @@ class Footer extends StatelessWidget {
           shrinkWrap: true,
           padding: EdgeInsets.symmetric(horizontal: 26, vertical: 32),
           children: [
-            Link.internal(
-              label: "FLAMECON",
-              onPressed: () => Navigator.pushNamed(context, "/flamecon"),
-              style: textStyle,
-              first: true,
-            ),
             Link(
               label: "AWESOME FLAME",
               url: "https://github.com/flame-engine/awesome-flame",

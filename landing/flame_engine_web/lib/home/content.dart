@@ -129,20 +129,11 @@ class TaglineButtons extends StatelessWidget {
         ),
         FlatButton(
           child: Text(
-            "GITHUB",
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          textColor: context.flameTheme.primaryAccent,
-          onPressed: LinkAction.opensNewTab.action("https://github.com/flame-engine/flame"),
-          padding: EdgeInsets.only(left: 40),
-        ),
-        FlatButton(
-          child: Text(
             "FLAMECON",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           textColor: context.flameTheme.primaryAccent,
-          onPressed: () => Navigator.pushNamed(context, "/flamecon"),
+          onPressed: LinkAction.opensSameTab.action("/flamecon"),
           padding: EdgeInsets.only(left: 40),
         ),
       ],
