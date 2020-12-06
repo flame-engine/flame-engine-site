@@ -12,15 +12,16 @@
   <div id="app"></div>
   <script type="module">
     import { HeaderPlugin } from  "./_media/header_plugin.js"
+    import { HidePlugin } from  "./_media/hide_plugin.js"
     window.$docsify = {
       search: 'auto',
-      loadSidebar: true,
+      loadSidebar: 'docs/summary.md',
       name: 'Flame',
       maxLevel: 4,
       logo: '/_media/icon.png',
       variablesFile : 'variables.json',
       variablesFileType : 'json',
-      plugins: [HeaderPlugin]
+      plugins: [HidePlugin, HeaderPlugin]
     }
   </script>
   <style>
@@ -30,6 +31,6 @@
   </style>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1.22.0/components/prism-dart.js"></script>
-  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script defer src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+{
+  "name": "flame-engine-docs",
+  "version": "1.0.0",
+  "description": "This is the overall documentation of the Flame engine. You can find a more in depth doc regarding each element in the [API docs](https://flame-engine.org/API)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "docsify start ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "docsify": "^4.11.6"
+  }
+}

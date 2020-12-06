@@ -56,7 +56,7 @@ body {
 body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    color: #c8c8c8;
+    color: #eeeeee;
     font-family: 'Exo 2', 'Helvetica Neue', Arial, sans-serif;
     font-size: 18px;
     letter-spacing: 0;
@@ -275,13 +275,14 @@ main.hidden {
     outline: none;
     padding: 10px;
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     text-align: center;
     transition: opacity 0.3s;
     width: 284px;
     z-index: 30;
     cursor: pointer;
+    display: none;
 }
 .sidebar-toggle:hover .sidebar-toggle-button {
     opacity: 0.4;
@@ -477,6 +478,7 @@ body.close .content {
         background-color: transparent;
         width: auto;
         padding: 30px 30px 10px 10px;
+        display: block;
     }
     body.close .sidebar {
         transform: translateX(300px);
@@ -627,7 +629,7 @@ body {
 }
 /* sidebar */
 .sidebar {
-    background-color: #272727;
+    background-color: #101010;
     color: #c8c8c8;
 }
 .sidebar li {
@@ -653,19 +655,24 @@ body {
 }
 /* markdown content found on pages */
 .markdown-section h1,
+.markdown-section h1 span,
 .markdown-section h2,
+.markdown-section h2 span,
 .markdown-section h3,
+.markdown-section h3 span,
 .markdown-section h4,
+.markdown-section h4 span,
 .markdown-section strong {
     color: #FFF;
     font-weight: 600;
 }
+
 .markdown-section a {
     color: var(--theme-color, #ea6f5a);
     font-weight: 600;
 }
 .markdown-section h1 {
-    font-size: 2rem;
+    font-size: 3rem;
     margin: 0 0 1rem;
 }
 .markdown-section h2 {
@@ -720,19 +727,20 @@ body {
     font-weight: normal;
 }
 .markdown-section code {
-    background-color: #484848ad;
+    background-color: #000000;
     border-radius: 2px;
     color: #d60606;
     font-family: 'Roboto Mono', Monaco, courier, monospace;
     font-size: 0.8rem;
     margin: 0 2px;
-    padding: 3px 5px;
+    padding: 2px 5px;
     white-space: pre-wrap;
+    border: #800000 solid 1px
 }
 .markdown-section pre {
     -moz-osx-font-smoothing: initial;
     -webkit-font-smoothing: initial;
-    background-color: #282828;
+    background-color: #0f0f0f;
     font-family: 'Roboto Mono', Monaco, courier, monospace;
     line-height: 1.5rem;
     margin: 1.2em 0;
@@ -740,6 +748,7 @@ body {
     padding: 0 1.4rem;
     position: relative;
     word-wrap: normal;
+    border: #d60606 solid 1px;
 }
 /* code highlight */
 .token.comment,
@@ -820,9 +829,9 @@ body {
 .markdown-section pre > code {
     -moz-osx-font-smoothing: initial;
     -webkit-font-smoothing: initial;
-    background-color: #282828;
+    background-color: transparent;
     border-radius: 2px;
-    color: #c3c3c3;
+    color: #dfdfdf;
     display: block;
     font-family: 'Roboto Mono', Monaco, courier, monospace;
     font-size: 0.8rem;
@@ -832,6 +841,7 @@ body {
     overflow: inherit;
     padding: 2.2em 5px;
     white-space: inherit;
+    border: none;
 }
 .markdown-section code::after,
 .markdown-section code::before {
@@ -845,9 +855,9 @@ code .token {
     left: auto;
 }
 pre::after {
-    color: #ccc;
+    color: #313131;
     content: attr(data-lang);
-    font-size: 0.6rem;
+    font-size: 2rem;
     font-weight: 600;
     height: 15px;
     line-height: 15px;
@@ -856,6 +866,7 @@ pre::after {
     right: 0;
     text-align: right;
     top: 0;
+    pointer-events: none;
 }
 .markdown-section p.tip {
     background-color: #282828;
