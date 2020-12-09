@@ -19,3 +19,4 @@ cd $MY_PATH
 cp ../permanent-files/CNAME ../docs
 cp ../permanent-files/.nojekyll ../docs
 cp ../permanent-files/404.html ../docs
+cp -r ../permanent-files/merch ../docs
