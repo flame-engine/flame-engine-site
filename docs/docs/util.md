@@ -1,49 +1,52 @@
 # Util
 
-Some stuff just doesn't fit anywhere else.
+On this page you can find documentation for some utility classes and methods.
 
-## Util Class
+## Device Class
 
-This class, accessible via `Flame.util`, has some sparse functions that are independent and good to have.
+This class can be accessed from `Flame.device` and it has some methods that can be used to control
+the state of the device, for instance you can change the screen orientation and set whether the
+application should be fullscreen or not.
 
-It is recommended that the functions in this class be called via the `Flame.util` getter to utilize a single instance prepared by the Flame engine.
-
-### `Flame.util.fullScreen()`
+### `Flame.device.fullScreen()`
 
 When called, this disables all `SystemUiOverlay` making the app full screen.
-When called in the main method, makes your app full screen (no top nor bottom bars)
+When called in the main method, it makes your app full screen (no top nor bottom bars).
 
-### `Flame.util.setLandscape()`
+**Note:** It has no effect when called on the web.
 
-This method sets the orientation of the whole application (effectively, also the game) to landscape and depending on operating system and device setting, should allow both left and right landscape orientations. To set the app orientation to landscape on a specific direction, use either `Flame.util.setLandscapeLeftOnly` or `Flame.util.setLandscapeRightOnly`.
+### `Flame.device.setLandscape()`
 
-### `Flame.util.setPortrait()`
+This method sets the orientation of the whole application (effectively, also the game) to landscape
+and depending on operating system and device setting, should allow both left and right landscape
+orientations. To set the app orientation to landscape on a specific direction, use either
+`Flame.device.setLandscapeLeftOnly` or `Flame.device.setLandscapeRightOnly`.
 
-This method sets the orientation of the whole application (effectively, also the game) to portrait and depending on operating system and device setting, should allow both up and down landscape orientations. To set the app orientation to portrait on a specific direction, use either `Flame.util.setPortraitUpOnly` or `Flame.util.setPortraitDownOnly`.
+**Note:** It has no effect when called on the web.
 
-### `Flame.util.setOrientation()` and `Flame.util.setOrientations()`
+### `Flame.device.setPortrait()`
 
-If a finer control of the allowed orientations is required (without having to deal with `SystemChrome` directly), `setOrientation` (accepts a single `DeviceOrientation` as a parameter) and `setOrientations` (accepts a `List<DeviceOrientation>` for possible orientations) can be used.
+This method sets the orientation of the whole application (effectively, also the game) to portrait
+and depending on operating system and device setting, it should allow for both up and down portrait
+orientations. To set the app orientation to portrait for a specific direction, use either
+`Flame.device.setPortraitUpOnly` or `Flame.device.setPortraitDownOnly`.
 
-### `Flame.util.initialDimensions()`
+**Note:** It has no effect when called on the web.
 
-Returns a `Future` with the dimension (`Size`) of the screen. This has to be done in a hacky way because of the reasons described in the code. If you are using `BaseGame`, you probably won't need to use these, as every `Component` will receive this information.
+### `Flame.device.setOrientation()` and `Flame.device.setOrientations()`
 
-**Note**: Call this function first thing in an `async`hronous `main` and `await` its value to avoid the "size bug" that affects certain devices when building for production.
+If a finer control of the allowed orientations is required (without having to deal with
+`SystemChrome` directly), `setOrientation` (accepts a single `DeviceOrientation` as a parameter) and
+`setOrientations` (accepts a `List<DeviceOrientation>` for possible orientations) can be used.
 
-### `Flame.util.addGestureRecognizer()` and `Flame.util.removeGestureRecognizer()`
+**Note:** It has no effect when called on the web.
 
-These two functions help with registering (and de-registering) gesture recognizers so that the game can accept input. More about these two functions [here](input.md#Input).
-
-### Other functions
-
-* `renderWhereAt` and `renderRotated`: if you are directly rendering to the `Canvas`, you can use these functions to easily manipulate coordinates to render things on the correct places. They change the `Canvas` transformation matrix but reset afterwards.
- 
 ## Timer
 
-Flame provides a simple utility class to help you handle countdowns and event like events.
+Flame provides a simple utility class to help you handle countdowns and timer state changes like
+events.
 
-__Countdown example:__
+Countdown example:
 
 ```dart
 import 'dart:ui';
@@ -81,7 +84,7 @@ class MyGame extends Game {
 
 ```
 
-__Interval example:__
+Interval example:
 
 ```dart
 import 'dart:ui';
@@ -119,9 +122,9 @@ class MyGame extends Game {
 
 ```
 
-Timer instances can also be used inside a `BaseGame` game by using the `TimerComponent` class.
+`Timer` instances can also be used inside a `BaseGame` game by using the `TimerComponent` class.
 
-__Timer Component__
+`TimerComponent` example:
 
 ```dart
 import 'package:flame/timer.dart';
@@ -146,12 +149,85 @@ class MyBaseGame extends BaseGame {
 
 ## Extensions
 
-Flame bundles a collection of utility extensions, these extensions are meant to help the developer with shortcuts and converion methods, here you can find the summary of those extensions
+Flame bundles a collection of utility extensions, these extensions are meant to help the developer
+with shortcuts and conversion methods, here you can find the summary of those extensions.
 
-They can all be imported on `package:flame/extensions/...`
+They can all be imported from `package:flame/extensions.dart`
 
 ### Canvas
 
 Methods:
  - `scaleVector`: Just like `canvas scale` method, but takes a `Vector2` as an argument.
  - `translateVector`: Just like `canvas translate` method, but takes a `Vector2` as an argument.
+ - `renderPoint`: renders a single point on the canvas (mostly for debugging purposes).
+ - `renderAt` and `renderRotated`: if you are directly rendering to the `Canvas`, you can use these
+  functions to easily manipulate coordinates to render things on the correct places. They change the
+  `Canvas` transformation matrix but reset afterwards.
+
+### Color
+
+Methods:
+ - `darken`: Darken the shade of the color by an amount between 0 to 1.
+ - `brighten`: Brighten the shade of the color by an amount between 0 to 1.
+
+### Image
+
+Methods:
+ - `pixelsInUint8`: Retrieves the pixel data as a `Uint8List`, in the `ImageByteFormat.rawRgba`
+ pixel format, for the image.
+ - `getBoundingRect`: Get the bounding rectangle of the `Image` as a `Rect`.
+ - `size`: The size of an `Image` as `Vector2`.
+ - `darken`: Darken each pixel of the `Image` by an amount between 0 to 1.
+ - `brighten`: Brighten each pixel of the `Image` by an amount between 0 to 1.
+
+### Offset
+
+Methods;
+ - `toVector2`; Creates an `Vector2` from the `Offset`.
+ - `toSize`: Creates a `Size` from the `Offset`.
+ - `toPoint`: Creates a `Point` from the `Offset`.
+ - `toRect`: Creates a `Rect` starting in (0,0) and its bottom right corner is the [Offset].
+
+### Rect
+
+Methods:
+ - `toOffset`: Creates an `Offset` from the `Rect`.
+ - `toVector2`: Creates a `Vector2` starting in (0,0) and goes to the size of the `Rect`.
+ - `containsPoint` Whether this `Rect` contains a `Vector2` point or not.
+ - `intersectsSegment`; Whether the segment formed by two `Vector2`s intersects this `Rect`.
+ - `intersectsLineSegment`: Whether the `LineSegmet` intersects the `Rect`.
+ - `toVertices`: Turns the four corners of the `Rect` into a list of `Vector2`,
+
+### Size
+
+Methods:
+ - `toVector2`; Creates an `Vector2` from the `Size`.
+ - `toOffset`: Creates a `Offset` from the `Size`.
+ - `toPoint`: Creates a `Point` from the `Size`.
+ - `toRect`: Creates a `Rect` starting in (0,0) with the size of `Size`.
+
+### Vector2
+
+This class comes from the `vector_math` package and we have some useful extension methods on top of
+what is offered by that package.
+
+Methods:
+ - `toOffset`: Creates a `Offset` from the `Vector2`.
+ - `toPoint`: Creates a `Point` from the `Vector2`.
+ - `toRect`: Creates a `Rect` starting in (0,0) with the size of `Vector2`.
+ - `toPositionedRect`: Creates a `Rect` starting from [x, y] in the `Vector2` and has the size of
+  the `Vector2` argument.
+ - `lerp`: Linearly interpolates the `Vector2` towards another Vector2.
+ - `rotate`: Rotates the `Vector2` with an angle specified in radians, it rotates around the
+  optionally defined `Vector2`, otherwise around the center.
+ - `scaleTo`: Changes the length of the `Vector2` to the length provided, without changing
+  direction.
+ - `moveToTarget`: Smoothly moves a Vector2 in the target direction by a given distance.
+
+Factories:
+ - `fromInts`: Create a `Vector2` with ints as input.
+
+Operators:
+ - `&`: Combines two `Vector2`s to form a Rect, the origin should be on the left and the size on the
+  right.
+ - `%`: Modulo/Remainder of x and y separately of two `Vector2`s.
