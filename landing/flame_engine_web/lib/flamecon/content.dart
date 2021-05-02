@@ -6,23 +6,15 @@ class Content extends StatefulWidget {
 }
 
 class _ContentState extends State<Content> {
-  Future<FlameconInfo> loadFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    loadFuture = FlameconInfo.load();
-  }
+  late Future<FlameconInfo> loadFuture = FlameconInfo.load();
 
   @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width <= 600;
     final contentRetract =
         mobile ? bottombarHeight : footerHeight + topbarHeight;
-    final height = (MediaQuery.of(context).size.height - contentRetract).clamp(
-      200.0,
-      double.infinity,
-    );
+    final height = (MediaQuery.of(context).size.height - contentRetract)
+        .clamp(200.0, double.infinity);
 
     return CentralizedContainer(
       height: height,
@@ -35,11 +27,25 @@ class _ContentState extends State<Content> {
               child: Text(
                 "Error loading config",
                 style: TextStyle(
-                    fontSize: 20, color: context.flameTheme.primaryAccent),
+                  fontSize: 20,
+                  color: context.flameTheme.primaryAccent,
+                ),
               ),
             );
+
+          if (!snapshot.hasData)
+            return Center(
+              child: Text(
+                "Loading",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: context.flameTheme.textColor,
+                ),
+              ),
+            );
+
           return FlameconDisplay(
-            info: snapshot.data,
+            info: snapshot.data!,
           );
         },
       ),
@@ -47,91 +53,105 @@ class _ContentState extends State<Content> {
   }
 }
 
-enum FlameconDisplayMode { noevent, hasevent, happening }
+enum FlameconDisplayMode { no_event, has_event, happening }
 
 class FlameconDisplay extends StatelessWidget {
   final FlameconInfo info;
 
-  const FlameconDisplay({Key key, this.info}) : super(key: key);
+  const FlameconDisplay({
+    Key? key,
+    required this.info,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final today = DateTime.now();
     final difference = today.difference(info.datetime);
 
-    FlameconDisplayMode mode = FlameconDisplayMode.noevent;
+    FlameconDisplayMode mode = FlameconDisplayMode.no_event;
 
     if (difference.inDays <= 5) {
       mode = difference.inDays >= 0
           ? FlameconDisplayMode.happening
-          : FlameconDisplayMode.hasevent;
+          : FlameconDisplayMode.has_event;
     }
     final mobile = MediaQuery.of(context).size.width <= 600;
 
-    return Padding(
-      padding: EdgeInsets.only(top: mobile ? 40 : 0),
-      child: Column(
-        children: [
-          Text(
-            info.name,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: "Firealistic",
-              fontSize: mobile ? 40 : 60,
-              fontWeight: FontWeight.w300,
-              color: context.flameTheme.secondaryAccent,
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: mobile ? 6 : 13),
-            child: Text(
-              info.subtitle,
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
-                    fontSize: mobile ? 14 : 19,
-                    fontWeight: FontWeight.normal,
-                    color: context.flameTheme.textColor,
-                    fontStyle: FontStyle.italic,
-                  ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(
-                  top: mobile ? 40 : 60,
-                  bottom: mobile ? 30 : 50,
-                  left: 14,
-                  right: 14),
+    return LayoutBuilder(builder: (context, constraints) {
+      return Padding(
+          padding: EdgeInsets.only(top: mobile ? 40 : 0),
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: constraints.copyWith(
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FlameconDisplayContent(
-                    info: info,
-                    mode: mode,
+                  Text(
+                    info.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: "Firealistic",
+                      fontSize: mobile ? 40 : 60,
+                      fontWeight: FontWeight.w300,
+                      color: context.flameTheme.secondaryAccent,
+                    ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Link(
-                        label: "Watch previous editions",
-                        url:
-                            "https://www.youtube.com/playlist?list=PL1sAA7o4TIZoAAea6FluJbqE9U6IeA7w9",
-                        linkAction: LinkAction.opensNewTab,
-                        style: Theme.of(context).textTheme.bodyText1.copyWith(
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              color: context.flameTheme.textColor,
-                              decoration: TextDecoration.underline,
-                            ),
-                      )
-                    ],
+                  Padding(
+                    padding: EdgeInsets.only(top: mobile ? 6 : 13),
+                    child: Text(
+                      info.subtitle,
+                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: mobile ? 14 : 19,
+                            fontWeight: FontWeight.normal,
+                            color: context.flameTheme.textColor,
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: mobile ? 40 : 60,
+                          bottom: mobile ? 30 : 50,
+                          left: 14,
+                          right: 14),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FlameconDisplayContent(
+                            info: info,
+                            mode: mode,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Link(
+                                label: "Watch previous editions",
+                                url:
+                                    "https://www.youtube.com/playlist?list=PL1sAA7o4TIZoAAea6FluJbqE9U6IeA7w9",
+                                linkAction: LinkAction.opensNewTab,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText1!
+                                    .copyWith(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal,
+                                      color: context.flameTheme.textColor,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
-          )
-        ],
-      ),
-    );
+          ));
+    });
   }
 }
 
@@ -142,14 +162,14 @@ class FlameconDisplayContent extends StatelessWidget {
   final FlameconDisplayMode mode;
 
   const FlameconDisplayContent({
-    Key key,
-    this.info,
-    this.mode,
+    Key? key,
+    required this.info,
+    required this.mode,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (mode == FlameconDisplayMode.noevent) {
+    if (mode == FlameconDisplayMode.no_event) {
       return Padding(
         padding: const EdgeInsets.only(bottom: 50),
         child: SizedBox(
@@ -195,11 +215,19 @@ class FlameconDisplayContent extends StatelessWidget {
           ...talksWidgets,
           SizedBox(
             width: 200,
-            child: RaisedButton(
+            child: ElevatedButton(
               child: Text(info.actionLabel),
-              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              color: context.flameTheme.secondaryAccent,
-              textColor: context.flameTheme.textColor,
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(
+                  EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                ),
+                backgroundColor: MaterialStateProperty.all(
+                  context.flameTheme.secondaryAccent,
+                ),
+                foregroundColor: MaterialStateProperty.all(
+                  context.flameTheme.textColor,
+                ),
+              ),
               onPressed: LinkAction.opensNewTab.action(info.actionLink),
             ),
           ),
@@ -212,7 +240,10 @@ class FlameconDisplayContent extends StatelessWidget {
 class TalkDescription extends StatelessWidget {
   final FlameconTalk talk;
 
-  const TalkDescription({Key key, this.talk}) : super(key: key);
+  const TalkDescription({
+    Key? key,
+    required this.talk,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -232,7 +263,7 @@ class TalkDescription extends StatelessWidget {
               height: 1.8,
             ),
           ),
-          ClickableRegion(
+          ClickableRegion.link(
             child: Text(
               "- ${talk.authorName}",
               style: TextStyle(

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:universal_html/html.dart';
 import '../common/common.dart';
 import '../common/bars.dart';
 import '../theme.dart';

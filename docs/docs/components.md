@@ -166,6 +166,39 @@ this.player = SpriteAnimationComponent.fromFrameData(
 If you are not using `BaseGame`, don't forget this component needs to be updated, because the
 animation object needs to be ticked to move the frames.
 
+## SpriteAnimationGroup
+
+`SpriteAnimationGroupComponent` is a simple wrapper around `SpriteAnimationComponent` which enables
+your component to hold several animations and change the current playing animation in runtime.
+
+Its use is very similar to the `SpriteAnimationComponent` but instead of being initialized with a
+single animation, this component receives a Map of a generic type `T` as key and a
+`SpriteAnimation` as value, and the current animation.
+
+Example:
+
+```dart
+enum RobotState {
+  idle,
+  running,
+}
+
+final running = await loadSpriteAnimation(/* omited */);
+final idle = await loadSpriteAnimation(/* omited */);
+
+final robot = SpriteAnimationGroupComponent<RobotState>(
+  animations: {
+    RobotState.running: running,
+    RobotState.idle: idle,
+  },
+  current: RobotState.idle,
+);
+
+// Changes current animation to "running"
+robot.current = RobotState.running;
+```
+
+
 ## SvgComponent
 
 **Note**: To use SVG with Flame, use the [`flame_svg`](https://github.com/flame-engine/flame_svg)
@@ -379,11 +412,21 @@ add(IsometricTileMapComponent(tileset, matrix));
 It also provides methods for converting coordinates so you can handle clicks, hovers, render
 entities on top of tiles, add a selector, etc.
 
-A more in-depth example can be found
-[here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart).
+You can also specify the `tileHeight`, which is the vertical distance between the bottom and top
+planes of each cuboid in your tile. Basically, it's the height of the front-most edge of your
+cuboid; normally it's half (default) or a quarter of the tile size. On the image below you can see
+the height colored in the darker tone:
+
+![An example of how to determine the tileHeight](images/tile-height-example.png)
+
+This is an example of how a quarter-length map looks like:
 
 ![An example of a isometric map with selector](images/isometric.png)
 
+Flame's Example app contains a more in-depth example, featuring how to parse coordinates to make a
+selector. The code can be found
+[here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart),
+and a live version can be seen [here](https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map).
 ## NineTileBoxComponent
 
 A Nine Tile Box is a rectangle drawn using a grid sprite.

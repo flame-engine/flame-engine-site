@@ -1,19 +1,24 @@
 {
-  "name": "FLAMECON 2",
+  "name": "FLAMECON 3",
   "subtitle": "The flame engine conference",
-  "datetime": "2020-12-09 20:00:00Z",
+  "datetime": "2021-05-19 20:00:00Z",
   "talks": [
     {
-      "name": "Introduction to the Effects API",
-      "authorName": "Lukas Klingsbo",
-      "authorLink": "https://lukas.fyi"
+      "name": "Flame on Raspberry Pi",
+      "authorName": " Christopher Fujino",
+      "authorLink": "https://twitter.com/chrisfujino"
     },
     {
-      "name": "Pseudo-3D Dungeon Tiles in Flame",
-      "authorName": "David Donze",
-      "authorLink": "https://twitter.com/MissionCTRLGame"
+      "name": "Flame v1 news",
+      "authorName": "Luan nico",
+      "authorLink": "https://luan.xyz/"
+    },
+    {
+      "name": "New collision detection system ",
+      "authorName": "Lukas Klingsbo",
+      "authorLink": "https://lukas.fyi/"
     }
   ],
   "actionLabel": "Save the date!",
-  "actionLink": "http://www.google.com/calendar/event?action=TEMPLATE&dates=20201209T200000Z%2FT010000Z&text=Flamecon%202%20-%20Introduction%20to%20the%20Effects%20API&location=Live%20pon%20youtube&details=Here%20is%20the%20link%20for%20the%20live%3A%20https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DcBXKArpTw04"
+  "actionLink": "https://www.youtube.com/channel/UCinjCGNThGXbUYFgfgsI0bA"
 }

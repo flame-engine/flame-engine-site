@@ -25,7 +25,7 @@ class TopBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ClickableRegion(
+                ClickableRegion.button(
                   child: cornerLogo,
                   onPressed: LinkAction.opensSameTab.action("/"),
                 ),
@@ -89,7 +89,7 @@ class HorzMenu extends StatelessWidget {
 class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    final textStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontSize: 12,
           fontWeight: FontWeight.normal,
           color: context.flameTheme.textColor,

@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 
 class FlameTheme {
   const FlameTheme({
-    this.background,
-    this.backgroundSurface,
-    this.primaryAccent,
-    this.secondaryAccent,
-    this.textColor,
+    required this.background,
+    required this.backgroundSurface,
+    required this.primaryAccent,
+    required this.secondaryAccent,
+    required this.textColor,
   });
 
   final Color background;
