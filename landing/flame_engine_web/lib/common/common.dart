@@ -9,12 +9,12 @@ final emptyList = List.empty();
 /// Background color and scrollable widgets
 class BackgroundStuff extends StatelessWidget {
   final Widget child;
-  final List<Widget> stackableChildren;
+  final List<Widget>? stackableChildren;
 
   BackgroundStuff({
-    Key key,
-    this.child,
-    this.stackableChildren,
+    Key? key,
+    required this.child,
+    required this.stackableChildren,
   }) : super(key: key);
 
   @override
@@ -31,7 +31,7 @@ class BackgroundStuff extends StatelessWidget {
         : Stack(
             children: [
               scrollView,
-              ...stackableChildren,
+              ...stackableChildren!,
             ],
           );
 
@@ -46,11 +46,11 @@ class BackgroundStuff extends StatelessWidget {
 class CentralizedContainer extends StatelessWidget {
   final Widget child;
   final BoxConstraints constraints;
-  final double height;
+  final double? height;
 
   CentralizedContainer({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
     double maxWidth = 1200,
     double minWidth = 200,
     this.height,
@@ -81,19 +81,19 @@ class CentralizedContainer extends StatelessWidget {
 
 /// Basic text link
 class Link extends StatelessWidget {
-  final LinkAction linkAction;
+  final LinkAction? linkAction;
   final String label;
-  final String url;
+  final String? url;
   final bool first;
   final bool last;
-  final TextStyle style;
-  final EdgeInsets padding;
-  final VoidCallback onPressed;
+  final TextStyle? style;
+  final EdgeInsets? padding;
+  final VoidCallback? onPressed;
 
   const Link({
-    Key key,
-    @required this.label,
-    @required this.url,
+    Key? key,
+    required this.label,
+    required this.url,
     this.linkAction,
     this.first = false,
     this.last = false,
@@ -103,12 +103,12 @@ class Link extends StatelessWidget {
         super(key: key);
 
   const Link.internal({
-    Key key,
-    @required this.label,
-    @required this.onPressed,
+    Key? key,
+    required this.label,
+    required this.onPressed,
     this.first = false,
     this.last = false,
-    this.style,
+    required this.style,
     this.padding,
   })  : linkAction = null,
         url = null,
@@ -126,41 +126,55 @@ class Link extends StatelessWidget {
     if (last) {
       finalPadding = finalPadding.copyWith(right: 0);
     }
-    return ClickableRegion(
-      onPressed: onPressed,
+
+    final child = Padding(
+      padding: finalPadding,
+      child: Text(
+        label,
+        style: style,
+      ),
+    );
+
+    if(onPressed!=null) {
+      return ClickableRegion.button(onPressed: onPressed, child: child,);
+    }
+
+    return ClickableRegion.link(
       action: action,
       url: url,
-      child: Padding(
-        padding: finalPadding,
-        child: Text(
-          label,
-          style: style,
-        ),
-      ),
+      child: child,
     );
   }
 }
 
 class ClickableRegion extends StatelessWidget {
   final Widget child;
-  final VoidCallback onPressed;
-  final LinkAction action;
-  final String url;
+  final VoidCallback? onPressed;
+  final LinkAction? action;
+  final String? url;
 
-  const ClickableRegion({
-    Key key,
-    this.onPressed,
-    this.action,
-    this.child,
+  const ClickableRegion.button({
+    Key? key,
+    required this.onPressed,
+    required this.child,
+  })  : this.action = null,
+        this.url = null,
+        super(key: key);
+
+  const ClickableRegion.link({
+    Key? key,
+    required this.child,
+    required this.action,
     this.url,
-  }) : super(key: key);
+  })  : this.onPressed = null,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
-        onTap: onPressed ?? action.action(url),
+        onTap: onPressed ?? (url != null ? action!.action(url!) : null),
         child: child,
       ),
     );
@@ -189,8 +203,8 @@ class ConditionalRendering extends StatelessWidget {
 
   const ConditionalRendering(
     this.condition, {
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   @override

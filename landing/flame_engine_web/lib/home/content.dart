@@ -36,7 +36,10 @@ class Content extends StatelessWidget {
 class FlamingLogo extends StatelessWidget {
   final bool compact;
 
-  const FlamingLogo({Key key, this.compact}) : super(key: key);
+  const FlamingLogo({
+    Key? key,
+    required this.compact,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +47,7 @@ class FlamingLogo extends StatelessWidget {
       "assets/mainlogo.png",
     );
 
-    final width = MediaQuery.of(context).size.width.clamp(0, 420.0);
+    final width = MediaQuery.of(context).size.width.clamp(0.0, 420.0);
     final height = compact ? 350.0 : null;
 
     return Padding(
@@ -63,14 +66,14 @@ class Tagline extends StatelessWidget {
   final bool mobile;
 
   const Tagline({
-    Key key,
-    this.compact,
-    this.mobile,
+    Key? key,
+    required this.compact,
+    required this.mobile,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width.clamp(0, 440.0);
+    final width = MediaQuery.of(context).size.width.clamp(0.0, 440.0);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -112,7 +115,10 @@ class Tagline extends StatelessWidget {
 class TaglineButtons extends StatelessWidget {
   final bool compact;
 
-  const TaglineButtons({Key key, this.compact}) : super(key: key);
+  const TaglineButtons({
+    Key? key,
+    required this.compact,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -120,21 +126,33 @@ class TaglineButtons extends StatelessWidget {
       mainAxisAlignment:
           compact ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
-        RaisedButton(
+        ElevatedButton(
           child: Text("GET STARTED"),
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          color: context.flameTheme.primaryAccent,
-          textColor: context.flameTheme.textColor,
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            ),
+            backgroundColor: MaterialStateProperty.all(
+              context.flameTheme.primaryAccent,
+            ),
+            foregroundColor: MaterialStateProperty.all(
+              context.flameTheme.textColor,
+            ),
+          ),
           onPressed: LinkAction.opensSameTab.action("/docs"),
         ),
-        FlatButton(
+        TextButton(
           child: Text(
             "FLAMECON",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          textColor: context.flameTheme.primaryAccent,
+          style: ButtonStyle(
+            padding: MaterialStateProperty.all(EdgeInsets.only(left: 40)),
+            foregroundColor: MaterialStateProperty.all(
+              context.flameTheme.primaryAccent,
+            ),
+          ),
           onPressed: LinkAction.opensSameTab.action("/flamecon"),
-          padding: EdgeInsets.only(left: 40),
         ),
       ],
     );
