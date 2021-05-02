@@ -702,7 +702,7 @@ body {
 .markdown-section p,
 .markdown-section ul,
 .markdown-section ol {
-    line-height: 1.6rem;
+    line-height: 1.5;
     word-spacing: 0.05rem;
 }
 .markdown-section ul,
@@ -727,15 +727,15 @@ body {
     font-weight: normal;
 }
 .markdown-section code {
-    background-color: #000000;
+    background-color: #390000;
     border-radius: 2px;
-    color: #d60606;
+    color: #fff2f2;
     font-family: 'Roboto Mono', Monaco, courier, monospace;
     font-size: 0.8rem;
     margin: 0 2px;
     padding: 2px 5px;
     white-space: pre-wrap;
-    border: #800000 solid 1px
+    border: #ca0000 solid 1px
 }
 .markdown-section pre {
     -moz-osx-font-smoothing: initial;
