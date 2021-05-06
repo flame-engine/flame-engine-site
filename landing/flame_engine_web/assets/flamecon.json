@@ -4,9 +4,9 @@
   "datetime": "2021-05-19 20:00:00Z",
   "talks": [
     {
-      "name": "Flame on Raspberry Pi",
-      "authorName": " Christopher Fujino",
-      "authorLink": "https://twitter.com/chrisfujino"
+      "name": "New collision detection system ",
+      "authorName": "Lukas Klingsbo",
+      "authorLink": "https://lukas.fyi/"
     },
     {
       "name": "Flame v1 News",
@@ -14,9 +14,9 @@
       "authorLink": "https://luan.xyz/"
     },
     {
-      "name": "New collision detection system ",
-      "authorName": "Lukas Klingsbo",
-      "authorLink": "https://lukas.fyi/"
+      "name": "Flame on Raspberry Pi",
+      "authorName": " Christopher Fujino",
+      "authorLink": "https://twitter.com/chrisfujino"
     }
   ],
   "actionLabel": "Save the date!",
