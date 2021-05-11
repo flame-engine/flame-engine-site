@@ -22,7 +22,7 @@ class FlameTheme {
     background: Color(0xFF000000),
     backgroundSurface: Color(0xFF272727),
     primaryAccent: Color(0xFFEB1930),
-    secondaryAccent: Color(0xFFFFBC1F),
+    secondaryAccent: Color(0xFFF44C32),
     textColor: Color(0xFFFDFFFC),
   );
 }
