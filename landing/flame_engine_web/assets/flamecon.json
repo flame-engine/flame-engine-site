@@ -1,7 +1,7 @@
 {
   "name": "FLAMECON 3",
   "subtitle": "The flame engine conference",
-  "datetime": "2021-05-19 20:00:00Z",
+  "datetime": "2021-05-26 20:00:00Z",
   "talks": [
     {
       "name": "New collision detection system ",
@@ -20,5 +20,5 @@
     }
   ],
   "actionLabel": "Save the date!",
-  "actionLink": "https://www.youtube.com/channel/UCinjCGNThGXbUYFgfgsI0bA"
+  "actionLink": "https://www.meetup.com/pt-BR/FlameCon/events/278042124/"
 }

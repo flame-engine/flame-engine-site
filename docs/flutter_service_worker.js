@@ -4,9 +4,9 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "70a03c8e2c61b98314b2cacdf341cbfe",
-"index.html": "ccf2a2e815a54d2b5cce67bb75b55b33",
-"/": "ccf2a2e815a54d2b5cce67bb75b55b33",
-"main.dart.js": "6a9f96361a3caaac9084f915ca13d4ae",
+"index.html": "ebaa75d819d06daa6a5cad38cf8e47be",
+"/": "ebaa75d819d06daa6a5cad38cf8e47be",
+"main.dart.js": "803258c741cc02c25001bd753c4d7098",
 "favicon.png": "fb9ca0a74dafe9b4d5cea6c23d802529",
 "icons/Icon-192.png": "1877dff733f10f696f86f6cee3f2b971",
 "icons/Icon-512.png": "73f94049c2a9fa4891b478dd33b0f1e9",
@@ -18,7 +18,7 @@ const RESOURCES = {
 "assets/assets/cornerlogo.png": "316a7910e322be4c0bf6d74ac72bf797",
 "assets/assets/gradiented.png": "2fa6130f6638eb9c4a097e50054c67b0",
 "assets/assets/firealistic/firealistic-regular.otf": "c08761e2d70a0caa5a72498bcff80fd8",
-"assets/assets/flamecon.json": "61cb67ed9a4b907be847ef125e31d0b3",
+"assets/assets/flamecon.json": "c14c35c072a35a8e9ef9aaf8a4d13e73",
 "assets/assets/mainlogo.png": "8c3eb8306a355c0e988e15edf755b01f"
 };
 
