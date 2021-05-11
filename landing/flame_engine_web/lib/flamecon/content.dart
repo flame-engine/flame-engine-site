@@ -22,7 +22,7 @@ class _ContentState extends State<Content> {
       child: FutureBuilder<FlameconInfo>(
         future: loadFuture,
         builder: (context, snapshot) {
-          if (snapshot.hasError || !snapshot.hasData)
+          if (snapshot.hasError)
             return Center(
               child: Text(
                 "Error loading config",

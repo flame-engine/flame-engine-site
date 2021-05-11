@@ -27,7 +27,6 @@ class FlameTheme {
   );
 }
 
-
 extension ThemeOnContext on BuildContext {
   FlameTheme get flameTheme {
     return this.watch<FlameTheme>();

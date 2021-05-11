@@ -9,7 +9,6 @@ import 'home/home.dart';
 
 import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 
-
 void main() {
   configureApp();
   runApp(Provider<FlameTheme>(

@@ -33510,7 +33510,7 @@ if(s==null)s=this.d=D.Pv()
 return R.a56(new B.mQ(s,new D.a_l(),null,t.pZ),q,600)}}
 D.a_l.prototype={
 $2:function(a,b){var s,r=null
-if(b.c!=null||b.b==null){Y.da(a,t.T)
+if(b.c!=null){Y.da(a,t.T)
 return T.mm(L.es("Error loading config",A.dF(r,r,C.eo,r,r,r,r,r,r,r,r,20,r,r,r,r,!0,r,r,r,r,r,r,r,r),r,r),r,r)}s=b.b
 if(s==null){Y.da(a,t.T)
 return T.mm(L.es("Loading",A.dF(r,r,C.aG,r,r,r,r,r,r,r,r,20,r,r,r,r,!0,r,r,r,r,r,r,r,r),r,r),r,r)}return new D.zQ(s,r)},

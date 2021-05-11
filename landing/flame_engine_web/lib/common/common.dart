@@ -135,8 +135,11 @@ class Link extends StatelessWidget {
       ),
     );
 
-    if(onPressed!=null) {
-      return ClickableRegion.button(onPressed: onPressed, child: child,);
+    if (onPressed != null) {
+      return ClickableRegion.button(
+        onPressed: onPressed,
+        child: child,
+      );
     }
 
     return ClickableRegion.link(

@@ -7,7 +7,6 @@ import '../common/common.dart';
 import '../common/bars.dart';
 import '../theme.dart';
 
-
 part 'content.dart';
 
 class Home extends StatelessWidget {
@@ -37,5 +36,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
