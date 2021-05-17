@@ -83,6 +83,12 @@ export const Header = ({ isHome, hideHeader }) => {
             >
               API
             </NavLink>
+            <NavLink
+              as="a"
+              href="https://examples.flame-engine.org"
+            >
+              Examples
+            </NavLink>
             <NavLink as="a" href="https://discord.gg/pxrBmy4">
               Discord
             </NavLink>

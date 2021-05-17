@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Flame engine`,
+    title: `Flame Engine`,
     description: `2D game engine made on top of Flutter`,
     author: `@Fireslime4`,
   },

@@ -49,7 +49,7 @@ export default function Template() {
 
   return (
     <PageWrapper
-      title="Flamecon - Flame engine online conference"
+      title="Flamecon - Flame Engine online conference"
       fullWitdh={true}
       hideFlameconBanner
     >
