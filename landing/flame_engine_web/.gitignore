@@ -43,3 +43,4 @@ app.*.map.json
 macos/
 android/
 ios/
+test/
