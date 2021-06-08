@@ -1,15 +1,15 @@
 #!/bin/bash -x
-echo $0
+
 MY_PATH="`dirname \"$0\"`"
 MY_PATH="`( cd \"$MY_PATH\" && pwd )`"
 cd $MY_PATH
 rm -rf ../docs/*
 
-../landing/scripts/generate-build.sh
+./generate-landing.sh
 cd $MY_PATH
 cp -r ../landing/build/* ../docs
 
-../scripts/update-docs.sh
+./update-docs.sh
 
 cd $MY_PATH
 cp ../permanent-files/CNAME ../docs

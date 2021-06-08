@@ -4,9 +4,9 @@ MY_PATH="`( cd \"$MY_PATH\" && pwd )`"
 
 cd $MY_PATH
 rm -rf ../build
-cd ../flame_engine_web
+cd ../landing/flame_engine_web
 flutter pub get
-flutter build web
+flutter build web --release
 cd ..
 cp -r flame_engine_web/build/web ./
 mv ./web ./build
