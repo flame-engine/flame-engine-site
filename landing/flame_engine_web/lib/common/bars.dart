@@ -106,6 +106,13 @@ class Footer extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 26, vertical: 32),
           children: [
             Link(
+              label: "TUTORIALS",
+              url:
+                  "https://github.com/flame-engine/flame/blob/main/tutorials/README.md",
+              linkAction: LinkAction.opensNewTab,
+              style: textStyle,
+            ),
+            Link(
               label: "MERCH",
               url: "https://flame-engine.org/merch",
               linkAction: LinkAction.opensNewTab,

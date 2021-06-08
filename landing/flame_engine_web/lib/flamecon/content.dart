@@ -22,7 +22,7 @@ class _ContentState extends State<Content> {
       child: FutureBuilder<FlameconInfo>(
         future: loadFuture,
         builder: (context, snapshot) {
-          if (snapshot.hasError)
+          if (snapshot.hasError) {
             return Center(
               child: Text(
                 "Error loading config",
@@ -32,6 +32,7 @@ class _ContentState extends State<Content> {
                 ),
               ),
             );
+          }
 
           if (!snapshot.hasData)
             return Center(
@@ -78,76 +79,72 @@ class FlameconDisplay extends StatelessWidget {
     final mobile = MediaQuery.of(context).size.width <= 600;
 
     return LayoutBuilder(builder: (context, constraints) {
+      final innerConstraints = constraints.copyWith(
+        maxHeight: MediaQuery.of(context).size.height,
+      );
       return Padding(
           padding: EdgeInsets.only(top: mobile ? 40 : 0),
-          child: SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: constraints.copyWith(
-                maxHeight: MediaQuery.of(context).size.height,
-              ),
-              child: Column(
-                children: [
-                  Text(
-                    info.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: "Firealistic",
-                      fontSize: mobile ? 40 : 60,
-                      fontWeight: FontWeight.w300,
-                      color: context.flameTheme.secondaryAccent,
+          child: ConstrainedBox(
+            constraints: innerConstraints,
+            child: Center(
+              child: SingleChildScrollView(
+                child: ListBody(
+                  mainAxis: Axis.vertical,
+                  children: [
+                    Text(
+                      info.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: "Firealistic",
+                        fontSize: mobile ? 40 : 60,
+                        fontWeight: FontWeight.w300,
+                        color: context.flameTheme.secondaryAccent,
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: mobile ? 6 : 13),
-                    child: Text(
-                      info.subtitle,
-                      style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                            fontSize: mobile ? 14 : 19,
-                            fontWeight: FontWeight.normal,
-                            color: context.flameTheme.textColor,
-                            fontStyle: FontStyle.italic,
-                          ),
+                    Padding(
+                      padding: EdgeInsets.only(top: mobile ? 6 : 13),
+                      child: Text(
+                        info.subtitle,
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                              fontSize: mobile ? 14 : 19,
+                              fontWeight: FontWeight.normal,
+                              color: context.flameTheme.textColor,
+                              fontStyle: FontStyle.italic,
+                            ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
+                    FlameconDisplayContent(
+                      info: info,
+                      mode: mode,
+                    ),
+                    Padding(
                       padding: EdgeInsets.only(
                           top: mobile ? 40 : 60,
                           bottom: mobile ? 30 : 50,
                           left: 14,
                           right: 14),
-                      child: Column(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          FlameconDisplayContent(
-                            info: info,
-                            mode: mode,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Link(
-                                label: "Watch previous editions",
-                                url:
-                                    "https://www.youtube.com/playlist?list=PL1sAA7o4TIZoAAea6FluJbqE9U6IeA7w9",
-                                linkAction: LinkAction.opensNewTab,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
+                          Link(
+                            label: "Watch previous editions",
+                            url:
+                                "https://www.youtube.com/playlist?list=PL1sAA7o4TIZoAAea6FluJbqE9U6IeA7w9",
+                            linkAction: LinkAction.opensNewTab,
+                            style:
+                                Theme.of(context).textTheme.bodyText1!.copyWith(
                                       fontSize: 12,
                                       fontWeight: FontWeight.normal,
                                       color: context.flameTheme.textColor,
                                       decoration: TextDecoration.underline,
                                     ),
-                              )
-                            ],
                           )
                         ],
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
           ));
@@ -194,45 +191,43 @@ class FlameconDisplayContent extends StatelessWidget {
     }).toList(growable: false);
     final mobile = MediaQuery.of(context).size.width <= 600;
 
-    return Expanded(
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: mobile ? 20 : 30,
-              horizontal: mobile ? 10 : 20,
-            ),
-            color: context.flameTheme.secondaryAccent,
-            child: Center(
-              child: Text(
-                "${formatter.format(info.datetime)} UTC",
-                style: TextStyle(
-                  fontSize: mobile ? 20 : 30,
-                ),
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(
+            vertical: mobile ? 20 : 30,
+            horizontal: mobile ? 10 : 20,
+          ),
+          color: context.flameTheme.secondaryAccent,
+          child: Center(
+            child: Text(
+              "${formatter.format(info.datetime)} UTC",
+              style: TextStyle(
+                fontSize: mobile ? 20 : 30,
               ),
             ),
           ),
-          ...talksWidgets,
-          SizedBox(
-            width: 200,
-            child: ElevatedButton(
-              child: Text(info.actionLabel),
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                  EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-                ),
-                backgroundColor: MaterialStateProperty.all(
-                  context.flameTheme.secondaryAccent,
-                ),
-                foregroundColor: MaterialStateProperty.all(
-                  context.flameTheme.textColor,
-                ),
+        ),
+        ...talksWidgets,
+        SizedBox(
+          width: 200,
+          child: ElevatedButton(
+            child: Text(info.actionLabel),
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+                EdgeInsets.symmetric(horizontal: 30, vertical: 20),
               ),
-              onPressed: LinkAction.opensNewTab.action(info.actionLink),
+              backgroundColor: MaterialStateProperty.all(
+                context.flameTheme.secondaryAccent,
+              ),
+              foregroundColor: MaterialStateProperty.all(
+                context.flameTheme.textColor,
+              ),
             ),
+            onPressed: LinkAction.opensNewTab.action(info.actionLink),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

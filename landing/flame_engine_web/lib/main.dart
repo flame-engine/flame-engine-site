@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         "/": (ctx) => Home(),
         "/flamecon": (ctx) => Flamecon(),
       },
-      initialRoute: "home",
+      initialRoute: "/",
     );
   }
 }
