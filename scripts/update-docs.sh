@@ -4,7 +4,7 @@ MY_PATH="`( cd \"$MY_PATH\" && pwd )`"
 
 cd $MY_PATH
 cd ..
-git clone git@github.com:flame-engine/flame.git tempflame --depth 1 -b 1.0.0-rc10
+git clone git@github.com:flame-engine/flame.git tempflame --depth 1 -b main
 rm -rf ./docs/docs
 mv tempflame/doc ./docs
 mv ./docs/doc ./docs/docs
