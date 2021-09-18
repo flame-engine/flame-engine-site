@@ -17,17 +17,17 @@ The Viewport is an attempt to unify multiple screen (or, rather, game widget) si
 configuration for your game by translating and resizing the canvas.
 
 The `Viewport` interface has multiple implementations and can be used from scratch on your `Game`
-or, if you are using `BaseGame` instead, it's already built-in (with a default no-op viewport).
+or, if you are using `FlameGame` instead, it's already built-in (with a default no-op viewport).
 
 These are the viewports available to pick from (or you can implement the interface yourself to suit
 your needs):
 
- * `DefaultViewport`: this is the no-op viewport that is associated by default with any `BaseGame`.
+ * `DefaultViewport`: this is the no-op viewport that is associated by default with any `FlameGame`.
  * `FixedResolutionViewport`: this viewport transforms your Canvas so that, from the game
    perspective, the dimensions are always set to a fixed pre-defined value. This means it will scale
    the game as much as possible and add black bars if needed.
 
-When using `BaseGame`, the operations performed by the viewport are done automatically to every
+When using `FlameGame`, the operations performed by the viewport are done automatically to every
 render operation, and the `size` property in the game, instead of the logical widget size, becomes
 the size as seen through the viewport together with the zoom of the camera. If for some reason you
 need to access the original real logical pixel size, you can use `canvasSize`. For a more in depth
@@ -43,7 +43,7 @@ dependent on:
  * User controlled zooming in and out.
 
 There is only one Camera implementation but it allows for many different configurations. Again, you
-can use it standalone on your `Game` but it's already included and wired into `BaseGame`.
+can use it standalone on your `Game` but it's already included and wired into `FlameGame`.
 
 One important thing to note about the Camera is that since (unlike the Viewport) it's intended to be
 dynamic, most camera movements won't immediately happen. Instead, the camera has a configurable
@@ -84,3 +84,86 @@ you when changing. The `zoom` variable is immediately applied.
 When dealing with input events, it is imperative to convert screen coordinates to world coordinates
 (or, for some reasons, you might want to do the reverse). The Camera provides two functions,
 `screenToWorld` and `worldToScreen` to easily convert between these coordinate spaces.
+
+### Using the camera with the Game class
+
+If you are not using `FlameGame`, but instead are using the `Game` class, then you need to manage
+calling certain camera methods yourself. Let's say we have the following game structure, and we 
+want to add the camera functionality:
+
+```dart
+class YourGame extends Game {
+  Camera? camera;
+
+  Future<void> onLoad() async {}
+
+  void render(Canvas canvas) {}
+
+  void update(double dt) {}
+}
+```
+
+We first create a new camera instance on load and assign our game as the reference:
+
+```dart
+  // ...
+  
+  Future<void> onLoad() async {
+    camera = Camera();
+
+    // This is required for the camera to work.
+    camera?.gameRef = this;
+
+    // Not required but recommend to set it now or when you set the follow target.
+    camera?.worldBounds = yourWorldBounds;
+
+    // Rest of your on load code.
+  }
+
+  // ...
+```
+
+The camera can also be made aware of which position to follow, this is an optional feature as you 
+can also use the camare for just moving,snapping or shaking.
+
+To do this the `Camera` class provides multiple methods for it but let's showcase the simplest one 
+and that is the `followVector2`:
+
+```dart
+  // Somewhere in your code.
+
+  camera?.followVector2(
+    yourPositionToFollow,
+    worldBounds: yourWorldBounds, // Optional to pass, it will overwrite the previous bounds.
+  );
+```
+
+Now that the camera is created and it is aware of both the world bounds and the position it should 
+follow, it can be used to translate the canvas in the render method:
+
+```dart
+  // ...
+
+  void render(Canvas canvas) {
+    camera?.apply(canvas); // This will apply the camera transformation.
+
+    // Rest of your rendering code.
+  }
+
+  // ...
+```
+
+The only thing left to do is to call the `update` method on the `Camera` so it can smoothly follow 
+your given position:
+
+```dart
+  // ...
+
+  void update(double dt) {
+    camera?.update(dt);
+
+    // Rest of your update code.
+  }
+
+  // ...
+```

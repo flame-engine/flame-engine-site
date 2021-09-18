@@ -1,6 +1,13 @@
-# Input
+# Gesture Input
 
-## Gestures
+This includes documentation for gesture inputs, which is, mouse and touch pointers.
+
+For other input documents, see also:
+
+- [Keyboard Input](keyboard-input.md): for keystrokes
+- [Other Inputs](other-inputs.md): For joysticks, game pads, etc.
+
+## Intro
 
 Inside `package:flame/gestures.dart` you can find a whole set of `mixin`s which can be included on
 your game class instance to be able to receive touch input events. Below you can see the full list
@@ -95,6 +102,22 @@ and [MouseRegion widget](https://api.flutter.dev/flutter/widgets/MouseRegion-cla
 also read more about Flutter's gestures
 [here](https://api.flutter.dev/flutter/gestures/gestures-library.html).
 
+It is also possible to change the current mouse cursor displayed on the `GameWidget` region. To do
+so the following code can be used inside the `Game` class
+
+```dart
+mouseCursor.value = SystemMouseCursors.move;
+```
+
+To already initialize the `GameWidget` with a custom cursor, the `mouseCursor` property can be used
+
+```dart
+GameWidget(
+  game: MouseCursorGame(),
+  mouseCursor: SystemMouseCursors.move,
+);
+```
+
 ## Event coordinate system
 
 On events that have positions, like for example `Tap*` or `Drag`, you will notice that the `eventPosition`
@@ -124,13 +147,15 @@ class MyGame extends Game with TapDetector {
   // Other methods omitted
 
   @override
-  void onTapDown(TapDownInfo event) {
+  bool onTapDown(TapDownInfo event) {
     print("Player tap down on ${event.eventPosition.game}");
+    return true;
   }
 
   @override
-  void onTapUp(TapUpInfo event) {
+  bool onTapUp(TapUpInfo event) {
     print("Player tap up on ${event.eventPosition.game}");
+    return true;
   }
 }
 ```
@@ -158,9 +183,9 @@ By adding the `HasTappableComponents` mixin to your game, and using the mixin `T
 components, you can override the following methods on your components:
 
 ```dart
-void onTapCancel() {}
-void onTapDown(TapDownInfo event) {}
-void onTapUp(TapUpInfo event) {}
+bool onTapCancel();
+bool onTapDown(TapDownInfo event);
+bool onTapUp(TapUpInfo event);
 ```
 
 Minimal component example:
@@ -173,22 +198,25 @@ class TappableComponent extends PositionComponent with Tappable {
   // update and render omitted
 
   @override
-  void onTapUp(TapUpInfo event) {
+  bool onTapUp(TapUpInfo event) {
     print("tap up");
+    return true;
   }
 
   @override
-  void onTapDown(TapDownInfo event) {
+  bool onTapDown(TapDownInfo event) {
     print("tap down");
+    return true;
   }
 
   @override
-  void onTapCancel() {
+  bool onTapCancel() {
     print("tap cancel");
+    return true;
   }
 }
 
-class MyGame extends BaseGame with HasTappableComponents {
+class MyGame extends FlameGame with HasTappableComponents {
   MyGame() {
     add(TappableComponent());
   }
@@ -207,10 +235,10 @@ your components, they can override the simple methods that enable an easy to use
 components.
 
 ```dart
-  void onDragStart(int pointerId, Vector2 startPosition) {}
-  void onDragUpdate(int pointerId, DragUpdateInfo event) {}
-  void onDragEnd(int pointerId, DragEndInfo event) {}
-  void onDragCancel(int pointerId) {}
+  bool onDragStart(int pointerId, Vector2 startPosition);
+  bool onDragUpdate(int pointerId, DragUpdateInfo event);
+  bool onDragEnd(int pointerId, DragEndInfo event);
+  bool onDragCancel(int pointerId);
 ```
 
 Note that all events take a uniquely generated pointer id so you can, if desired, distinguish
@@ -263,7 +291,7 @@ class DraggableComponent extends PositionComponent with Draggable {
   }
 }
 
-class MyGame extends BaseGame with HasDraggableComponents {
+class MyGame extends FlameGame with HasDraggableComponents {
   MyGame() {
     add(DraggableComponent());
   }
@@ -302,150 +330,4 @@ for the event to be counted on your component.
 An example of you to use it can be seen
 [here](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/).
 
-## Keyboard
 
-Flame provides a simple way to access Flutter's features regarding accessing Keyboard input events.
-
-To use it, just add the `KeyboardEvents` mixin to your game class.
-When doing this you will need to implement the `onKeyEvent` method, this method is called every time
-a keyboard event happens, and it receives an instance of the Flutter class `RawKeyEvent`.
-This event can be used to get information about what occurred, such as if it was a key down or key
-up event, and which key was pressed etc.
-
-Minimal example:
-
-```dart
-import 'package:flame/game.dart';
-import 'package:flame/input.dart';
-import 'package:flutter/services.dart';
-
-class MyGame extends Game with KeyboardEvents {
-  // update and render omitted
-
-  @override
-  void onKeyEvent(e) {
-    final bool isKeyDown = e is RawKeyDownEvent;
-    print(" Key: ${e.data.keyLabel} - isKeyDown: $isKeyDown");
-  }
-}
-```
-
-You can also check a more complete example
-[here](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/keyboard.dart).
-
-## Joystick
-
-Flame provides a component capable of creating a virtual joystick for taking input for your game.
-To use this feature you need to create a `JoystickComponent`, configure it the way you want, and
-add it to your game.
-
-To receive the inputs from the joystick component, pass your `JoystickComponent` to the component
-that you want it to control, or simply act upon input from it in the update-loop of your game.
-
-Check this example to get a better understanding:
-
-```dart
-class MyGame extends BaseGame with HasDraggableComponents {
-
-  MyGame() {
-    joystick.addObserver(player);
-    add(player);
-    add(joystick);
-  }
-
-  @override
-  Future<void> onLoad() async {
-    super.onLoad();
-    final image = await images.load('joystick.png');
-    final sheet = SpriteSheet.fromColumnsAndRows(
-      image: image,
-      columns: 6,
-      rows: 1,
-    );
-    final joystick = JoystickComponent(
-      knob: SpriteComponent(
-        sprite: sheet.getSpriteById(1),
-        size: Vector2.all(100),
-      ),
-      background: SpriteComponent(
-        sprite: sheet.getSpriteById(0),
-        size: Vector2.all(150),
-      ),
-      margin: const EdgeInsets.only(left: 40, bottom: 40),
-    );
-
-    final player = Player(joystick);
-    add(player);
-    add(joystick);
-  }
-}
-
-class JoystickPlayer extends SpriteComponent with HasGameRef {
-  /// Pixels/s
-  double maxSpeed = 300.0;
-
-  final JoystickComponent joystick;
-
-  JoystickPlayer(this.joystick)
-      : super(
-          size: Vector2.all(100.0),
-        ) {
-    anchor = Anchor.center;
-  }
-
-  @override
-  Future<void> onLoad() async {
-    super.onLoad();
-    sprite = await gameRef.loadSprite('layers/player.png');
-    position = gameRef.size / 2;
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    if (joystick.direction != JoystickDirection.idle) {
-      position.add(joystick.velocity * maxSpeed * dt);
-      angle = joystick.delta.screenAngle();
-    }
-  }
-}
-```
-
-So in this example we create the classes `MyGame` and `Player`. `MyGame` creates a joystick which is
-passed to the `Player` when it is created. In the `Player` class we act upon the current state of
-the joystick.
-
-The joystick has a few fields that change depending on what state it is in.
-These are the fields that should be used to know the state of the joystick:
- - `intensity`: The percentage [0.0, 1.0] that the knob is dragged from the epicenter to the edge of
-  the joystick (or `knobRadius` if that is set).
- - `delta`: The absolute amount (defined as a `Vector2`) that the knob is dragged from its epicenter.
- - `velocity`: The percentage, presented as a `Vector2`, and direction that the knob is currently
-  pulled from its base position to a edge of the joystick.
-
-If you want to create buttons to go with your joystick, check out
-[`MarginButtonComponent`](#HudButtonComponent).
-
-A full examples of how to use it can be found
-[here](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/joystick.dart).
-And it can be seen running [here](https://examples.flame-engine.org/#/Controls_Joystick).
-
-## HudButtonComponent
-A `HudButtonComponent` is a button that can be defined with margins to the edge of the `Viewport`
-instead of with a position. It takes two `PositionComponent`s. `button` and `buttonDown`, the first
-is used for when the button is idle and the second is shown when the button is being pressed. The
-second one is optional if you don't want to change the look of the button when it is pressed, or if
-you handle this through the `button` component.
-
-As the name suggests this button is a hud by default, which means that it will be static on your
-screen even if the camera for the game moves around. You can also use this component as a non-hud by
-setting `hudButtonComponent.isHud = false;`.
-
-If you want to act upon the button being pressed (which I guess that you do) you can either pass in
-a callback function as the `onPressed` argument, or you extend the component and override
-`onTapDown`, `onTapUp` and/or `onTapCancel` and implement your logic in there.
-
-## Gamepad
-
-Flame has a separate plugin for gamepad support, you can checkout the plugin
-[here](https://github.com/flame-engine/flame_gamepad) for more information.

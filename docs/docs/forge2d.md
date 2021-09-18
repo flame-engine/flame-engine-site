@@ -13,10 +13,10 @@ in the
 [Forge2D example](https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example)
 and in the pub.dev [installation instructions](https://pub.dev/packages/flame_forge2d).
 
-## Forge2DGame (BaseGame extension)
+## Forge2DGame (FlameGame extension)
 
 If you are going to use Forge2D in your project it can be a good idea to use the Forge2D specific
-extension of the `BaseGame` class.
+extension of the `FlameGame` class.
 
 It is called `Forge2DGame` and it will control the adding and removal of Forge2D's `BodyComponents`
 as well as your normal components.
@@ -36,7 +36,7 @@ component list along with your physical entities. When the update is called, it 
 physics engine to properly update every child.
 
 A simple `Forge2DGame` implementation examples can be seen in the
-[examples folder](https://github.com/flame-engine/flame_box2d/blob/main/examples/).
+[examples folder](https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example).
 
 ## BodyComponent
 
