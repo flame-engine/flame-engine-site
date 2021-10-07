@@ -139,7 +139,7 @@ class TaglineButtons extends StatelessWidget {
               context.flameTheme.textColor,
             ),
           ),
-          onPressed: LinkAction.opensSameTab.action("/docs"),
+          onPressed: LinkAction.opensSameTab.action("https://docs.flame-engine.org"),
         ),
         TextButton(
           child: Text(
