@@ -1,0 +1,24 @@
+{
+  "name": "FLAMECON 3",
+  "subtitle": "The flame engine conference",
+  "datetime": "2021-05-26 20:00:00Z",
+  "talks": [
+    {
+      "name": "New collision detection system ",
+      "authorName": "Lukas Klingsbo",
+      "authorLink": "https://lukas.fyi/"
+    },
+    {
+      "name": "Flame v1 News",
+      "authorName": "Luan Nico",
+      "authorLink": "https://luan.xyz/"
+    },
+    {
+      "name": "Flame on Raspberry Pi",
+      "authorName": " Christopher Fujino",
+      "authorLink": "https://twitter.com/chrisfujino"
+    }
+  ],
+  "actionLabel": "Save the date!",
+  "actionLink": "https://www.meetup.com/pt-BR/FlameCon/events/278042124/"
+}

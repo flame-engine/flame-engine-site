@@ -66,7 +66,7 @@ class HorzMenu extends StatelessWidget {
       children: [
         Link(
           label: "Docs",
-          url: "https://docs.flame-engine.org/",
+          url: "https://flame-engine.org/docs",
           first: true,
         ),
         Link(label: "API", url: "https://pub.dev/documentation/flame/latest/"),
