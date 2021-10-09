@@ -1,24 +1,19 @@
 {
-  "name": "FLAMECON 3",
-  "subtitle": "The flame engine conference",
-  "datetime": "2021-05-26 20:00:00Z",
+  "name": "FLAMECON 4",
+  "subtitle": "The Flame engine conference",
+  "datetime": "2021-10-13 20:00:00Z",
   "talks": [
     {
-      "name": "New collision detection system ",
-      "authorName": "Lukas Klingsbo",
-      "authorLink": "https://lukas.fyi/"
+      "name": "Orbit, gravity puzzle game",
+      "authorName": "Oleksii Halahan and Christian Mühle ",
+      "authorLink": "https://devowl.de/"
     },
     {
-      "name": "Flame v1 News",
-      "authorName": "Luan Nico",
-      "authorLink": "https://luan.xyz/"
-    },
-    {
-      "name": "Flame on Raspberry Pi",
-      "authorName": " Christopher Fujino",
-      "authorLink": "https://twitter.com/chrisfujino"
+      "name": "Adding Rive animations to Flame",
+      "authorName": "Renan Araújo",
+      "authorLink": "https://caraujo.me/"
     }
   ],
   "actionLabel": "Save the date!",
-  "actionLink": "https://www.meetup.com/pt-BR/FlameCon/events/278042124/"
+  "actionLink": "https://www.meetup.com/pt-BR/FlameCon/events/281050513/"
 }
