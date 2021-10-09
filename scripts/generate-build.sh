@@ -9,9 +9,8 @@ rm -rf ../docs/*
 cd $MY_PATH
 cp -r ../landing/build/* ../docs
 
-./update-docs.sh
-
 cd $MY_PATH
 cp ../permanent-files/CNAME ../docs
 cp ../permanent-files/404.html ../docs
 cp -r ../permanent-files/merch ../docs
+cp -r ../permanent-files/docs ../docs
