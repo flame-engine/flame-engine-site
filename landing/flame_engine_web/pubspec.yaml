@@ -9,13 +9,12 @@ environment:
 dependencies:
   intl: ^0.17.0
   provider: ^5.0.0
-  google_fonts: ^2.0.0
+  google_fonts: ^2.1.0
   universal_html: ^2.0.8
   flutter_web_plugins:
     sdk: flutter
   flutter:
     sdk: flutter
-
 
 dev_dependencies:
   flutter_test:
