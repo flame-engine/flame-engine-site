@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../theme.dart';
 import 'common.dart';
 
@@ -11,7 +12,7 @@ class TopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final cornerLogo = Image.asset("assets/cornerlogo.png");
     return ConditionalRendering(
-      (size) => size.width > 600,
+      (size) => size.width > 800,
       child: Positioned(
         top: 0,
         left: 0,
@@ -43,7 +44,7 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConditionalRendering(
-      (size) => size.width <= 600,
+      (size) => size.width <= 800,
       child: Positioned(
         bottom: 0,
         left: 0,
@@ -71,6 +72,7 @@ class HorzMenu extends StatelessWidget {
         ),
         Link(label: "API", url: "https://pub.dev/documentation/flame/latest/"),
         Link(label: "Examples", url: "https://examples.flame-engine.org/"),
+        Link(label: "Tutorials", url: "https://tutorials.flame-engine.org/"),
         Link(
           label: "Github",
           url: "https://github.com/flame-engine/flame",
