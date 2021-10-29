@@ -4,11 +4,10 @@ This is the main landing page of the Flame Engine website; it is deployed [here]
 
 ## Deploy
 
-In order to deploy, just run the following scripts:
+In order to deploy, just run the following script:
 
 ```bash
-./scripts/generate-build.sh
-./scripts/generate-landing.sh
+./scripts/publish.sh
 ```
 
-And commit the changes to the main branch.
+Or, instead, use the available GitHub Action.
