@@ -1,4 +1,4 @@
-#!/bin/bash -xe
+#!/bin/bash -e
 
 function generate() {
   ./scripts/generate-build.sh
@@ -14,8 +14,8 @@ function git_push() {
 }
 
 function main() {
-  generate()
-  git_push()
+  generate
+  git_push
 }
 
 main
