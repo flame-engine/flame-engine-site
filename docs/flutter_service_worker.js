@@ -4,22 +4,22 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "70a03c8e2c61b98314b2cacdf341cbfe",
+"manifest.json": "6cf70ed78f4e5dd99135cf795c6dbec6",
+"icons/Icon-512.png": "73f94049c2a9fa4891b478dd33b0f1e9",
+"icons/Icon-192.png": "1877dff733f10f696f86f6cee3f2b971",
+"main.dart.js": "5a47954222eda00b0cb7c315a39c2657",
 "favicon.png": "fb9ca0a74dafe9b4d5cea6c23d802529",
+"index.html": "28f677e80e4434f691c364f4952795f8",
+"/": "28f677e80e4434f691c364f4952795f8",
+"assets/FontManifest.json": "a7b5a0ba0be15e3f21a229d20693ed70",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"assets/NOTICES": "9ed0889e179f361306873a3fda0705ea",
+"assets/AssetManifest.json": "9b175d271a1da94cc9f45ec0ae9d2427",
 "assets/assets/mainlogo.png": "8c3eb8306a355c0e988e15edf755b01f",
-"assets/assets/gradiented.png": "2fa6130f6638eb9c4a097e50054c67b0",
-"assets/assets/firealistic/firealistic-regular.otf": "c08761e2d70a0caa5a72498bcff80fd8",
 "assets/assets/cornerlogo.png": "316a7910e322be4c0bf6d74ac72bf797",
 "assets/assets/flamecon.json": "fe4bc989b5f9a42bd57cc784289325a8",
-"assets/FontManifest.json": "a7b5a0ba0be15e3f21a229d20693ed70",
-"assets/AssetManifest.json": "9b175d271a1da94cc9f45ec0ae9d2427",
-"icons/Icon-192.png": "1877dff733f10f696f86f6cee3f2b971",
-"icons/Icon-512.png": "73f94049c2a9fa4891b478dd33b0f1e9",
-"main.dart.js": "5a47954222eda00b0cb7c315a39c2657",
-"manifest.json": "6cf70ed78f4e5dd99135cf795c6dbec6",
-"index.html": "b04d787a455257fbafeba1abe1b8b2c7",
-"/": "b04d787a455257fbafeba1abe1b8b2c7"
+"assets/assets/gradiented.png": "2fa6130f6638eb9c4a097e50054c67b0",
+"assets/assets/firealistic/firealistic-regular.otf": "c08761e2d70a0caa5a72498bcff80fd8",
+"assets/NOTICES": "9ed0889e179f361306873a3fda0705ea"
 };
 
 // The application shell files that are downloaded before a service worker can
