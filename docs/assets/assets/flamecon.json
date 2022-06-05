@@ -1,19 +1,24 @@
 {
-  "name": "FLAMECON 4",
-  "subtitle": "The Flame engine conference",
-  "datetime": "2021-10-13 20:00:00Z",
+  "name": "FLAMECON 5",
+  "subtitle": "The Flame Engine Conference",
+  "datetime": "2022-06-14 20:00:00Z",
   "talks": [
     {
-      "name": "Orbit, gravity puzzle game",
-      "authorName": "Oleksii Halahan and Christian Mühle ",
-      "authorLink": "https://devowl.de/"
+      "name": "The new FlameBloc",
+      "authorName": "Erick Zanardo",
+      "authorLink": "https://twitter.com/CptPixel"
     },
     {
-      "name": "Adding Rive animations to Flame",
-      "authorName": "Renan Araújo",
-      "authorLink": "https://caraujo.me/"
+      "name": "What is new on Flame",
+      "authorName": "Luan Nico",
+      "authorLink": "https://luan.xyz/"
+    },
+    {
+      "name": "Introduction to Flame Behaviors ",
+      "authorName": "Felix Angelov & Jochum van der Ploeg\n",
+      "authorLink": "https://verygood.ventures/open-source"
     }
   ],
-  "actionLabel": "Save the date!",
-  "actionLink": "https://www.youtube.com/watch?v=5vLKZ3xJUfs"
+  "actionLabel": "Watch it on YouTube",
+  "actionLink": "https://www.youtube.com/channel/UCinjCGNThGXbUYFgfgsI0bA"
 }

@@ -114,6 +114,7 @@ class FlameconDisplay extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    SizedBox(height: mobile ? 10 : 20),
                     FlameconDisplayContent(
                       info: info,
                       mode: mode,
