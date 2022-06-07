@@ -20,7 +20,6 @@ class Content extends StatelessWidget {
       child: Flex(
         direction: direction,
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           FlamingLogo(compact: compact),
           Tagline(
@@ -44,7 +43,7 @@ class FlamingLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flamingLogo = Image.asset(
-      "assets/mainlogo.png",
+      'assets/mainlogo.png',
     );
 
     final width = MediaQuery.of(context).size.width.clamp(0.0, 420.0);
@@ -89,11 +88,11 @@ class Tagline extends StatelessWidget {
               width: mobile ? 220 : null,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 30,
               ),
               child: Text(
-                "2D game engine made on top of Flutter",
+                '2D game engine made on top of Flutter',
                 textAlign: compact ? TextAlign.center : TextAlign.start,
                 style: GoogleFonts.exo2(
                   fontWeight: FontWeight.w100,
@@ -127,10 +126,10 @@ class TaglineButtons extends StatelessWidget {
           compact ? MainAxisAlignment.center : MainAxisAlignment.start,
       children: [
         ElevatedButton(
-          child: Text("GET STARTED"),
+          child: const Text('GET STARTED'),
           style: ButtonStyle(
             padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             ),
             backgroundColor: MaterialStateProperty.all(
               context.flameTheme.primaryAccent,
@@ -139,20 +138,20 @@ class TaglineButtons extends StatelessWidget {
               context.flameTheme.textColor,
             ),
           ),
-          onPressed: LinkAction.opensSameTab.action("/docs"),
+          onPressed: LinkAction.opensSameTab.action('/docs'),
         ),
         TextButton(
-          child: Text(
-            "FLAMECON",
+          child: const Text(
+            'FLAMECON',
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(EdgeInsets.only(left: 40)),
+            padding: MaterialStateProperty.all(const EdgeInsets.only(left: 40)),
             foregroundColor: MaterialStateProperty.all(
               context.flameTheme.primaryAccent,
             ),
           ),
-          onPressed: LinkAction.opensSameTab.action("/flamecon"),
+          onPressed: LinkAction.opensSameTab.action('/flamecon'),
         ),
       ],
     );

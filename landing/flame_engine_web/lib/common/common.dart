@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:universal_html/html.dart' as html;
 import '../theme.dart';
-
-final emptyList = List.empty();
 
 /// Background color and scrollable widgets
 class BackgroundStuff extends StatelessWidget {
   final Widget child;
   final List<Widget>? stackableChildren;
 
-  BackgroundStuff({
+  const BackgroundStuff({
     Key? key,
     required this.child,
     required this.stackableChildren,
@@ -22,7 +19,7 @@ class BackgroundStuff extends StatelessWidget {
     final theme = context.flameTheme;
 
     final scrollView = SingleChildScrollView(
-      physics: ClampingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: child,
     );
 
@@ -37,7 +34,7 @@ class BackgroundStuff extends StatelessWidget {
 
     return Container(
       color: theme.background,
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       child: bg,
     );
   }
@@ -54,7 +51,7 @@ class CentralizedContainer extends StatelessWidget {
     double maxWidth = 1200,
     double minWidth = 200,
     this.height,
-  })  : this.constraints = BoxConstraints(
+  })  : constraints = BoxConstraints(
           maxWidth: maxWidth,
           minWidth: minWidth,
         ),
@@ -118,8 +115,7 @@ class Link extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    EdgeInsets finalPadding =
-        padding ?? EdgeInsets.symmetric(horizontal: 30, vertical: 0);
+    var finalPadding = padding ?? const EdgeInsets.symmetric(horizontal: 30);
     if (first) {
       finalPadding = finalPadding.copyWith(left: 0);
     }
@@ -160,8 +156,8 @@ class ClickableRegion extends StatelessWidget {
     Key? key,
     required this.onPressed,
     required this.child,
-  })  : this.action = null,
-        this.url = null,
+  })  : action = null,
+        url = null,
         super(key: key);
 
   const ClickableRegion.link({
@@ -169,7 +165,7 @@ class ClickableRegion extends StatelessWidget {
     required this.child,
     required this.action,
     this.url,
-  })  : this.onPressed = null,
+  })  : onPressed = null,
         super(key: key);
 
   @override
@@ -191,13 +187,18 @@ class LinkAction {
 
   LinkAction._(this.action);
 
-  static final opensSameTab = LinkAction._((url) => () {
-        html.window.location.assign(url);
-      });
+  static final opensSameTab = LinkAction._(
+    (url) => () {
+      html.window.location.assign(url);
+    },
+  );
 
-  static final opensNewTab = LinkAction._((url) => () {
-        html.window.open(url, '_blank');
-      });
+  static final opensNewTab = LinkAction._(
+    (url) => () {
+      // ignore: unsafe_html
+      html.window.open(url, '_blank');
+    },
+  );
 }
 
 class ConditionalRendering extends StatelessWidget {
