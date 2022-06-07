@@ -13,28 +13,29 @@ class ErrorMeu extends Error {
 
 class FlameconInfo {
   static Future<FlameconInfo> load() async {
-    final content = await rootBundle.loadString("assets/flamecon.json");
-    final Map<String, dynamic> rootMap = jsonDecode(content);
+    final content = await rootBundle.loadString('assets/flamecon.json');
+    final rootMap = jsonDecode(content) as Map<String, dynamic>;
 
     final dateTimeString = rootMap['datetime'] as String;
     final dateTime = DateTime.parse(dateTimeString);
 
     final talksMapList = rootMap['talks'] as List<dynamic>;
-    final talks = talksMapList.map<FlameconTalk>((talkMap) {
+    final talks = talksMapList.map<FlameconTalk>((dynamic talk) {
+      final talkMap = talk as Map<String, dynamic>;
       return FlameconTalk(
-        talkMap['name'],
-        talkMap['authorName'],
-        talkMap['authorLink'],
+        talkMap['name'] as String,
+        talkMap['authorName'] as String,
+        talkMap['authorLink'] as String,
       );
     }).toList();
 
     return FlameconInfo(
-      rootMap['name'],
-      rootMap['subtitle'],
+      rootMap['name'] as String,
+      rootMap['subtitle'] as String,
       dateTime,
       talks,
-      rootMap['actionLabel'],
-      rootMap['actionLink'],
+      rootMap['actionLabel'] as String,
+      rootMap['actionLink'] as String,
     );
   }
 

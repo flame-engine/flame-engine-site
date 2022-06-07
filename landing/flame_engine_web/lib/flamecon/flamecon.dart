@@ -4,11 +4,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import '../common/common.dart';
+
 import '../common/bars.dart';
+import '../common/common.dart';
 import '../theme.dart';
 
 part 'content.dart';
@@ -19,8 +19,8 @@ class Flamecon extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width <= 600;
     final padding = mobile
-        ? EdgeInsets.only(bottom: bottombarHeight)
-        : EdgeInsets.only(top: topbarHeight);
+        ? const EdgeInsets.only(bottom: bottombarHeight)
+        : const EdgeInsets.only(top: topbarHeight);
 
     return Scaffold(
       body: BackgroundStuff(

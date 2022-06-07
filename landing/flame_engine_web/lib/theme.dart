@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/painting.dart';
 
 import 'package:provider/provider.dart';
 
@@ -18,7 +17,7 @@ class FlameTheme {
   final Color secondaryAccent;
   final Color textColor;
 
-  static final theme = const FlameTheme(
+  static const theme = FlameTheme(
     background: Color(0xFF000000),
     backgroundSurface: Color(0xFF272727),
     primaryAccent: Color(0xFFEB1930),
@@ -29,6 +28,6 @@ class FlameTheme {
 
 extension ThemeOnContext on BuildContext {
   FlameTheme get flameTheme {
-    return this.watch<FlameTheme>();
+    return watch<FlameTheme>();
   }
 }

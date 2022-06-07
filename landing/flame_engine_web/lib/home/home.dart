@@ -1,7 +1,6 @@
 library home;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../common/bars.dart';
@@ -15,8 +14,8 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width <= 800;
     final padding = mobile
-        ? EdgeInsets.only(bottom: bottombarHeight)
-        : EdgeInsets.only(top: topbarHeight);
+        ? const EdgeInsets.only(bottom: bottombarHeight)
+        : const EdgeInsets.only(top: topbarHeight);
 
     return Scaffold(
       body: BackgroundStuff(

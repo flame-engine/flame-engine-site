@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flameengineweb/theme.dart';
+import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
 import 'flamecon/flamecon.dart';
 import 'home/home.dart';
-
-import 'configure_nonweb.dart' if (dart.library.html) 'configure_web.dart';
+import 'theme.dart';
 
 void main() {
   configureApp();
-  runApp(Provider<FlameTheme>(
-    create: (_) => FlameTheme.theme,
-    child: MyApp(),
-  ));
+  runApp(
+    Provider<FlameTheme>(
+      create: (_) => FlameTheme.theme,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -35,10 +35,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       routes: <String, WidgetBuilder>{
-        "/": (ctx) => Home(),
-        "/flamecon": (ctx) => Flamecon(),
+        '/': (ctx) => Home(),
+        '/flamecon': (ctx) => Flamecon(),
       },
-      initialRoute: "/",
+      initialRoute: '/',
     );
   }
 }
