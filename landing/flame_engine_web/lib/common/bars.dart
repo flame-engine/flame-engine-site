@@ -70,11 +70,13 @@ class HorzMenu extends StatelessWidget {
           first: true,
         ),
         const Link(
-            label: 'API', url: 'https://pub.dev/documentation/flame/latest/'),
+          label: 'API',
+          url: 'https://pub.dev/documentation/flame/latest/',
+        ),
         const Link(
-            label: 'Examples', url: 'https://examples.flame-engine.org/'),
-        const Link(
-            label: 'Tutorials', url: 'https://tutorials.flame-engine.org/'),
+          label: 'Examples',
+          url: 'https://examples.flame-engine.org/',
+        ),
         Link(
           label: 'Github',
           url: 'https://github.com/flame-engine/flame',
@@ -85,6 +87,11 @@ class HorzMenu extends StatelessWidget {
           url: 'https://discord.com/invite/pxrBmy4',
           linkAction: LinkAction.opensNewTab,
           last: true,
+        ),
+        Link(
+          label: 'Ignite program 🔥',
+          url: 'https://forms.gle/WWv5txaG3Av6t9jB9',
+          linkAction: LinkAction.opensNewTab,
         ),
       ],
     );

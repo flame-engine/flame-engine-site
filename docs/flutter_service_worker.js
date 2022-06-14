@@ -4,17 +4,18 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "6b17106ca6b9f08ef05d8731d6707b8f",
-"index.html": "54092c81926e87e4213467c1b69d11ac",
-"/": "54092c81926e87e4213467c1b69d11ac",
-"main.dart.js": "3be4d52a26b08213673097583cc7d1a8",
-"flutter.js": "0816e65a103ba8ba51b174eeeeb2cb67",
+"index.html": "c29251f95f42f0a247f7440ba6e06b3a",
+"/": "c29251f95f42f0a247f7440ba6e06b3a",
+"main.dart.js": "f559d1839a56c4514c448d2e1cdc847f",
+"flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
 "favicon.png": "fb9ca0a74dafe9b4d5cea6c23d802529",
 "icons/Icon-192.png": "1877dff733f10f696f86f6cee3f2b971",
 "icons/Icon-512.png": "73f94049c2a9fa4891b478dd33b0f1e9",
 "manifest.json": "6cf70ed78f4e5dd99135cf795c6dbec6",
 "assets/AssetManifest.json": "9b175d271a1da94cc9f45ec0ae9d2427",
-"assets/NOTICES": "ff647569bc8d0de4ea3fc4e1c5699ffa",
+"assets/NOTICES": "43233da3e7dfbb79e513850bed9922e7",
 "assets/FontManifest.json": "a7b5a0ba0be15e3f21a229d20693ed70",
+"assets/shaders/ink_sparkle.frag": "87e64ec10997dd19e2dd8435ae338efd",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/assets/cornerlogo.png": "316a7910e322be4c0bf6d74ac72bf797",
 "assets/assets/gradiented.png": "2fa6130f6638eb9c4a097e50054c67b0",
@@ -32,7 +33,6 @@ const RESOURCES = {
 const CORE = [
   "main.dart.js",
 "index.html",
-"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
@@ -131,9 +131,11 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache.
+        // lazily populate the cache only if the resource was successfully fetched.
         return response || fetch(event.request).then((response) => {
-          cache.put(event.request, response.clone());
+          if (response && Boolean(response.ok)) {
+            cache.put(event.request, response.clone());
+          }
           return response;
         });
       })
