@@ -15,3 +15,4 @@ cp ../permanent-files/CNAME ../docs
 cp ../permanent-files/404.html ../docs
 cp -r ../permanent-files/merch ../docs
 cp -r ../permanent-files/docs ../docs
+cp -r ../permanent-files/ignite ../docs
