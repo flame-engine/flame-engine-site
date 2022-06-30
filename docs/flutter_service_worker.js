@@ -4,24 +4,25 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "6b17106ca6b9f08ef05d8731d6707b8f",
-"index.html": "25b31a84be2927f9b381c39ac3a0d2af",
-"/": "25b31a84be2927f9b381c39ac3a0d2af",
-"main.dart.js": "f559d1839a56c4514c448d2e1cdc847f",
+"index.html": "b33589ac22d33471bc94e502a9dacbde",
+"/": "b33589ac22d33471bc94e502a9dacbde",
+"main.dart.js": "bae77a14e4ceafdb75b1297585968116",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
 "favicon.png": "fb9ca0a74dafe9b4d5cea6c23d802529",
 "icons/Icon-192.png": "1877dff733f10f696f86f6cee3f2b971",
 "icons/Icon-512.png": "73f94049c2a9fa4891b478dd33b0f1e9",
 "manifest.json": "6cf70ed78f4e5dd99135cf795c6dbec6",
-"assets/AssetManifest.json": "9b175d271a1da94cc9f45ec0ae9d2427",
-"assets/NOTICES": "43233da3e7dfbb79e513850bed9922e7",
+"assets/AssetManifest.json": "714c6da8d20bcf2b3e6ee786c5d43966",
+"assets/NOTICES": "ff647569bc8d0de4ea3fc4e1c5699ffa",
 "assets/FontManifest.json": "a7b5a0ba0be15e3f21a229d20693ed70",
-"assets/shaders/ink_sparkle.frag": "87e64ec10997dd19e2dd8435ae338efd",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/assets/cornerlogo.png": "316a7910e322be4c0bf6d74ac72bf797",
+"assets/assets/cornerlogo.jpg": "0a4ec8d710695c10d9061212616087c3",
 "assets/assets/gradiented.png": "2fa6130f6638eb9c4a097e50054c67b0",
 "assets/assets/firealistic/firealistic-regular.otf": "c08761e2d70a0caa5a72498bcff80fd8",
 "assets/assets/flamecon.json": "ea94a36e4ea4833e9f87d470ebd9c704",
 "assets/assets/mainlogo.png": "8c3eb8306a355c0e988e15edf755b01f",
+"assets/assets/mainlogo.jpg": "41bd420be4871afa878d380414926ab1",
 "canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
 "canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
 "canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
@@ -33,6 +34,7 @@ const RESOURCES = {
 const CORE = [
   "main.dart.js",
 "index.html",
+"assets/NOTICES",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
@@ -131,11 +133,9 @@ self.addEventListener("fetch", (event) => {
     .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
-        // lazily populate the cache only if the resource was successfully fetched.
+        // lazily populate the cache.
         return response || fetch(event.request).then((response) => {
-          if (response && Boolean(response.ok)) {
-            cache.put(event.request, response.clone());
-          }
+          cache.put(event.request, response.clone());
           return response;
         });
       })

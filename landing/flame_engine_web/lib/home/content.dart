@@ -43,7 +43,7 @@ class FlamingLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final flamingLogo = Image.asset(
-      'assets/mainlogo.png',
+      'assets/mainlogo.jpg',
     );
 
     final width = MediaQuery.of(context).size.width.clamp(0.0, 420.0);

@@ -10,7 +10,7 @@ const footerHeight = 80.0;
 class TopBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final cornerLogo = Image.asset('assets/cornerlogo.png');
+    final cornerLogo = Image.asset('assets/cornerlogo.jpg');
     return ConditionalRendering(
       (size) => size.width > 800,
       child: Positioned(
