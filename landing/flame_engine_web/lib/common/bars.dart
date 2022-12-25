@@ -88,11 +88,6 @@ class HorzMenu extends StatelessWidget {
           linkAction: LinkAction.opensNewTab,
           last: true,
         ),
-        Link(
-          label: 'Ignite program 🔥',
-          url: 'https://forms.gle/WWv5txaG3Av6t9jB9',
-          linkAction: LinkAction.opensNewTab,
-        ),
       ],
     );
   }
