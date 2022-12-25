@@ -140,13 +140,15 @@ class TaglineButtons extends StatelessWidget {
           ),
           onPressed: LinkAction.opensSameTab.action('/docs'),
         ),
+        const SizedBox(width: 40),
         TextButton(
           child: const Text(
             'FLAMECON',
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.only(left: 40)),
+            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            splashFactory: NoSplash.splashFactory,
             foregroundColor: MaterialStateProperty.all(
               context.flameTheme.primaryAccent,
             ),
