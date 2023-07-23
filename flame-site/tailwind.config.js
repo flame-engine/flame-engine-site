@@ -27,7 +27,7 @@ module.exports = {
 
     },
     fontFamily: {
-      sans: ['Exo 2', 'sans-serif'],
+      sans: ['"Exo 2"', 'sans-serif'],
       serif: ['Firealistic', 'sans-serif'],
     },
     extend: {},
