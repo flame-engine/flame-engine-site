@@ -30,7 +30,11 @@ module.exports = {
       sans: ['"Exo 2"', 'sans-serif'],
       serif: ['Firealistic', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      colors: {
+        'footer-gray': '#272727',
+      },
+    },
   },
 
   plugins: []
