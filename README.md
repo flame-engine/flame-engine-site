@@ -2,12 +2,11 @@
 
 This is the main landing page of the Flame Engine website; it is deployed [here](https://flame-engine.org) via GitHub Pages.
 
-## Deploy
+This was built using [Jekyll](https://jekyllrb.com/)! Please send them some 💙 from us.
 
-In order to deploy, just run the following script:
+## Where do things come from?
 
-```bash
-./scripts/publish.sh
-```
+We also have some special subdomains; they are deployed independently via other repos.
 
-Or, instead, use the available GitHub Action.
+* docs.flame-engine.com is deployed from [flame-docs-site](https://github.com/flame-engine/flame-docs-site)
+* examples.flame-engine.com is deployed from [flame](https://github.com/flame-engine/flame)
