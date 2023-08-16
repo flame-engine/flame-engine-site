@@ -1,18 +1,25 @@
 {
-  "name": "flame-engine-docs",
-  "version": "1.0.0",
-  "description": "This is the overall documentation of the Flame engine. You can find a more in depth doc regarding each element in the [API docs](https://flame-engine.org/API)",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "name": "flame-site",
+  "version": "0.0.0",
+  "description": "The flutter game engine website",
+  "main": "postcss.config.js",
   "scripts": {
-    "start": "docsify start .",
-    "update-docs": "./scripts/update-docs.sh"
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flame-engine/flame-engine-site.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flame-engine/flame-engine-site/issues"
+  },
+  "homepage": "https://github.com/flame-engine/flame-engine-site#readme",
   "devDependencies": {
-    "docsify": "^4.11.6"
+    "autoprefixer": "^10.4.13",
+    "cssnano": "^5.1.14",
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4"
   }
 }
