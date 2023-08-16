@@ -16,9 +16,17 @@ jobs:
       - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: 3.2.2
 
-      - name: Install dependencies & Build
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.8.1
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build Jekyll
         uses: limjh16/jekyll-action-ts@v2
         with:
           enable_cache: true
