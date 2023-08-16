@@ -27,6 +27,7 @@ url: "https://flame-engine.org" # the base hostname & protocol for your site, e.
 
 plugins:
   - jekyll-postcss
+  - jekyll-redirect-from
 
 postcss:
   cache: false
