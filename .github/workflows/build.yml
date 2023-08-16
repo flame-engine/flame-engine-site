@@ -1,10 +1,11 @@
-name: gh-pages
+name: build
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
 
 jobs:
   jekyll:
@@ -32,9 +33,3 @@ jobs:
           enable_cache: true
           format_output: true
           prettier_opts: '{ "useTabs": true }'
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
