@@ -15,3 +15,24 @@ We also have some special subdomains; they are deployed independently via other 
 
 * docs.flame-engine.com is deployed from [flame-docs-site](https://github.com/flame-engine/flame-docs-site)
 * examples.flame-engine.com is deployed from [flame](https://github.com/flame-engine/flame)
+
+## Running locally
+
+To run locally, you must first install node, npm, Ruby (we recommend RVM), ruby-gems, and the bundler.
+
+Then, run:
+
+```bash
+npm instal
+bundle install
+```
+
+To download all the dependencies.
+
+Then, run:
+
+```bash
+bundle exec jekyll serve
+```
+
+To start the local server.
