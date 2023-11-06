@@ -32,7 +32,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        'footer-gray': '#272727',
+        'text': '#FF8835',
+        'bg': '#140003',
+        'footer': '#431C01',
       },
     },
   },
