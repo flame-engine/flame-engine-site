@@ -13,3 +13,78 @@
     box-shadow: -2px 2px 0px #960D1C;
     color: white;
 }
+
+:root {
+    --main-border-color: #FF8835;
+    --main-border-thickness: 2px;
+    --main-border-indentation: 16px;
+    --main-border-square-size: 10px;
+}
+
+.main-border {
+    position: relative;
+}
+
+.main-border > .main-border-inner {
+    position: relative;
+    border: var(--main-border-thickness) solid var(--main-border-color);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--main-border-indentation)) 0,
+      100% var(--main-border-indentation),
+      100% 100%,
+      var(--main-border-indentation) 100%,
+      0 calc(100% - var(--main-border-indentation))
+    );
+}
+
+.main-border > .main-border-inner::before,
+.main-border > .main-border-inner::after {
+    content: '';
+    position: absolute;
+    width: var(--main-border-indentation);
+    height: var(--main-border-indentation);
+    background: transparent;
+    border: var(--main-border-thickness) solid var(--main-border-color);
+}
+
+.main-border > .main-border-inner::before {
+    top: calc(-1 * var(--main-border-thickness));
+    right: calc(-1 * var(--main-border-thickness));
+}
+
+.main-border > .main-border-inner::after {
+    bottom: calc(-1 * var(--main-border-thickness));
+    left: calc(-1 * var(--main-border-thickness));
+}
+
+.main-border::before,
+.main-border::after {
+    content: '';
+    position: absolute;
+    width: var(--main-border-square-size);
+    height: var(--main-border-square-size);
+    background: var(--main-border-color);
+}
+
+.main-border::before {
+    top: 0px;
+    right: 0px;
+}
+
+.main-border::after {
+    bottom: 0px;
+    left: 0px;
+}
+
+.main-border .main-border-triangle {
+    position: absolute;
+    bottom: -20px;
+    right: 8px;
+    width: 0;
+    height: 0;
+
+    border-top: 0px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 26px solid var(--main-border-color);
+}
