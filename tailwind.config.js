@@ -32,7 +32,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        'text': '#FF8835',
+        'accent': '#FF8835',
         'bg': '#140003',
         'footer': '#431C01',
       },
