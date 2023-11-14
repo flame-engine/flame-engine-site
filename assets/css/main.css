@@ -12,17 +12,46 @@
     display: inline-block;
     box-shadow: -2px 2px 0px #960D1C;
     color: white;
+    text-align: center;
 }
+
+nav {
+    font-size: 14px;
+}
+
+nav a {
+    text-align: right;
+   }
+
+.pt {
+   font-family: 'PT sans', sans-serif;
+ }
+
+.flame-demo {
+    background-image: url('/assets/images/t-rex.png');
+    background-position: center left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+ 
+
 
 :root {
     --main-border-color: #FF8835;
-    --main-border-thickness: 2px;
-    --main-border-indentation: 16px;
-    --main-border-square-size: 10px;
+    --main-border-thickness: 4px;
+    --main-border-indentation: 13px;
+    --main-border-square-size: 7px;
+    --main-border-square-displacement: 2px;
+    --main-border-indentation-sub: 9px; /* indentation - thickness */
 }
 
 .main-border {
     position: relative;
+}
+
+.gamecard {
+    flex: 1;
 }
 
 .main-border > .main-border-inner {
@@ -30,11 +59,13 @@
     border: var(--main-border-thickness) solid var(--main-border-color);
     clip-path: polygon(
       0 0,
-      calc(100% - var(--main-border-indentation)) 0,
-      100% var(--main-border-indentation),
+      calc(100% - var(--main-border-indentation-sub)) 0,
+      calc(100% - var(--main-border-indentation-sub)) var(--main-border-indentation-sub),
+      100% var(--main-border-indentation-sub),
       100% 100%,
-      var(--main-border-indentation) 100%,
-      0 calc(100% - var(--main-border-indentation))
+      var(--main-border-indentation-sub) 100%,
+      var(--main-border-indentation-sub) calc(100% - var(--main-border-indentation-sub)),
+      0 calc(100% - var(--main-border-indentation-sub))
     );
 }
 
@@ -44,7 +75,8 @@
     position: absolute;
     width: var(--main-border-indentation);
     height: var(--main-border-indentation);
-    background: transparent;
+    background-color:#140603;
+    z-index: -1;
     border: var(--main-border-thickness) solid var(--main-border-color);
 }
 
@@ -68,13 +100,14 @@
 }
 
 .main-border::before {
-    top: 0px;
-    right: 0px;
+    top: calc(-1 * var(--main-border-square-displacement));
+    right: calc(-1 * var(--main-border-square-displacement));
+    z-index: 1;
 }
 
 .main-border::after {
-    bottom: 0px;
-    left: 0px;
+    bottom: calc(-1 * var(--main-border-square-displacement));
+    left: calc(-1 * var(--main-border-square-displacement));
 }
 
 .main-border .main-border-triangle {

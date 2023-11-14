@@ -3,70 +3,59 @@ permalink: /
 layout: master
 ---
 
-<div class="flex flex-col items-center space-y-32 text-white pt-16">
-  <div class="flex flex-col items-center space-y-8">
-    <img src="assets/images/t-rex.png" />
-    <p class="font-bold text-4xl center">
+<div class="flex flex-col items-stretch  text-white pt-4 md:pt-6 lg:pt-4 space-y-16 md:space-y-24 lg:space-y-32">
+  <div class="flex flex-col items-center space-y-8 hero py-16 md:py-18 lg:py-28">
+
+    <div class="flame-demo h-40" ></div>
+
+    <p class="font-bold  center pt text-center text-2xl md:text-5xl lg:text-5xl">
       Versatile, Open Source & Runs Everywhere
     </p>
-    <p>
+    <p class="text-center text-sm md:text-sm lg:text-base">
       Flame is a game engine built on top of Flutter. It runs on mobile, desktop, and web.
     </p>
-    <div class="space-y-8 flex flex-col md:space-y-0 md:space-x-8 md:flex-row">
-      <a class="main-button" href="https://docs.flame-engine.org/latest/">Get Started</a>
-      <a class="main-button" href="https://github.com/flame-engine/flame">GitHub</a>
+    <div class="space-y-4 flex flex-col sm:space-y-0 sm:space-x-8 sm:flex-row">
+      <a class="main-button text-sm md:text-sm lg:text-bas" href="https://docs.flame-engine.org/latest/">Get Started</a>
+      <a class="main-button text-sm md:text-sm lg:text-bas" href="https://github.com/flame-engine/flame">GitHub</a>
     </div>
   </div>
 
-  <div class="my-8">
-    <img src="assets/images/separator.png" />
-  </div>
+  {% include separator.html %}
 
-  <div class="flex flex-col items-center space-y-8">
-    <h2 class="text-accent text-2xl font-bold">Made with Flame</h2>
-    <p>Games and app made with the Flame Engine</p>
-    <div class="flex flex-row space-x-16">
-      <div class="flex flex-col items-center space-y-1">
-        <div class="main-border">
-          <div class="main-border-inner">
-            <img src="assets/icons/favicon.png" width="150" />
-          </div>
-        </div>
-        <p class="text-accent text-xl">Game 1</p>
-        <p>Game 1 description</p>
-      </div>
-      <div class="flex flex-col items-center space-y-1">
-        <div class="main-border">
-          <div class="main-border-inner">
-            <img src="assets/icons/favicon.png" width="150" />
-          </div>
-        </div>
-        <p class="text-accent text-xl">Game 2</p>
-        <p>Game 2 description</p>
-      </div>
-      <div class="flex flex-col items-center space-y-1">
-        <div class="main-border">
-          <div class="main-border-inner">
-            <img src="assets/icons/favicon.png" width="150" />
-          </div>
-        </div>
-        <p class="text-accent text-xl">Game 3</p>
-        <p>Game 3 description</p>
-      </div>
+  <div class="flex flex-col items-center  space-y-1 lg:space-y-8 ">
+    <h2 class="text-accent font-bold pt text-center text-3xl md:text-4xl lg:text-4xl">Made with Flame</h2>
+    <p class="max-w-sm text-center">Games and apps made with the help of Flame</p>
+    <div class="flex flex-col md:flex-row lg:flex-row space-y-20 md:space-y-0 lg:space-x-16 py-24">
+      {% include gamecard.html
+        title="Watchsteroids" 
+        description="A Code challenge t build a Flame game in 17 days, By the Flutter team" 
+        icon="assets/icons/favicon.png"
+        link="/" %}
+
+      {% include gamecard.html
+        title="Watchsteroids" 
+        description="A Code challenge t build a Flame game in 17 days, By the Flutter team" 
+        icon="assets/icons/favicon.png"
+        link="/" %}
+
+      {% include gamecard.html
+        title="Watchsteroids" 
+        description="A Code challenge t build a Flame game in 17 days, By the Flutter team" 
+        icon="assets/icons/favicon.png"
+        link="/" %}
     </div>
 
-    <div class="h-8"></div>
+ 
 
     <div class="flex flex-col items-center">
-      <p>Millions of people have played countless Flame games.</p>
-      <p>Check out some of them on the Awesome Flame list.</p>
+      <p class="text-center w-8/12 leading-tight font-medium mb-8">Millions of people have played countless Flame games. <br />
+      Check out some of them on the Awesome Flame list.</p>
+      <a class="main-button text-sm md:text-base" href="https://github.com/flame-engine/awesome-flame">View Awesome Flame</a>
     </div>
-    <a class="main-button" href="https://github.com/flame-engine/awesome-flame">View Awesome Flame</a>
+   
   </div>
 
-  <div class="my-8">
-    <img src="assets/images/separator.png" />
-  </div>
+  {% include separator.html %}
 
   <div class="flex flex-row space-x-16">
     <div class="flex flex-col items-end space-y-8 w-[420px]">

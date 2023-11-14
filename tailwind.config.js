@@ -27,10 +27,13 @@ module.exports = {
 
     },
     fontFamily: {
-      sans: ['"Exo 2"', 'sans-serif'],
+      sans: ['"IBM Plex Mono"', 'sans-serif'],
       serif: ['Firealistic', 'sans-serif'],
     },
     extend: {
+      maxWidth: {
+        'noice': '300px',
+      },
       colors: {
         'accent': '#FF8835',
         'bg': '#140003',
