@@ -29,10 +29,13 @@ module.exports = {
     fontFamily: {
       sans: ['"IBM Plex Mono"', 'sans-serif'],
       serif: ['Firealistic', 'sans-serif'],
+      accent: ['PT sans', 'sans-serif'],
     },
     extend: {
       maxWidth: {
+        'testimonial-sm': '220px',
         'noice': '300px',
+        'testimonial': '340px',
       },
       colors: {
         'accent': '#FF8835',

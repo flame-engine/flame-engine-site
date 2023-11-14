@@ -21,11 +21,7 @@ nav {
 
 nav a {
     text-align: right;
-   }
-
-.pt {
-   font-family: 'PT sans', sans-serif;
- }
+}
 
 .flame-demo {
     background-image: url('/assets/images/t-rex.png');
@@ -34,8 +30,6 @@ nav a {
     background-repeat: no-repeat;
     width: 100%;
 }
- 
-
 
 :root {
     --main-border-color: #FF8835;
@@ -119,5 +113,16 @@ nav a {
 
     border-top: 0px solid transparent;
     border-bottom: 20px solid transparent;
-    border-right: 26px solid var(--main-border-color);
+    border-right: 21px solid var(--main-border-color);
+}
+
+.author-photo {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.author-photo-min {
+    background-repeat: no-repeat;
+    background-position: bottom right;
 }
