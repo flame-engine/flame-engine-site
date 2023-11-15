@@ -1,0 +1,20 @@
+<a
+  href="{{ include.link }}"
+  class="flex flex-col items-center gamecard"
+  title="{{ include.title }}"
+>
+  <div class="main-border max-w-full">
+    <div
+      class="main-border-inner max-w-full w-36 md:w-44 lg:w-56 h-36 md:h-44 lg:h-56 bg-no-repeat bg-center bg-cover"
+      style="background-image: url('{{ include.icon }}');"
+    ></div>
+  </div>
+  <p class="text-accent font-bold text-base md: lg:text-[20px] py-5">
+    {{ include.title }}
+  </p>
+  <p
+    class="text-center w-8/12 leading-tight font-medium max-w-noice md:max-w-none lg:max-w-none"
+  >
+    {{ include.description }}
+  </p>
+</a>
