@@ -6,85 +6,140 @@
 @tailwind utilities;
 
 .main-button {
-    background-color: #EB1930;
-    padding: 8px 16px;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: -2px 2px 0px #960D1C;
-    color: white;
+  background-color: #eb1930;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: -2px 2px 0px #960d1c;
+  color: white;
+  text-align: center;
+}
+
+nav {
+  font-size: 14px;
+}
+
+nav a {
+  text-align: right;
+}
+
+.flame-demo {
+  background-image: url("/assets/images/t-rex.png");
+  background-position: center left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 700px;
 }
 
 :root {
-    --main-border-color: #FF8835;
-    --main-border-thickness: 2px;
-    --main-border-indentation: 16px;
-    --main-border-square-size: 10px;
+  --main-border-color: #ff8835;
+  --main-border-thickness: 4px;
+  --main-border-indentation: 13px;
+  --main-border-square-size: 7px;
+  --main-border-square-displacement: 2px;
+  --main-border-indentation-sub: 9px; /* indentation - thickness */
 }
 
 .main-border {
-    position: relative;
+  position: relative;
+}
+
+.gamecard {
+  flex: 1;
 }
 
 .main-border > .main-border-inner {
-    position: relative;
-    border: var(--main-border-thickness) solid var(--main-border-color);
-    clip-path: polygon(
-      0 0,
-      calc(100% - var(--main-border-indentation)) 0,
-      100% var(--main-border-indentation),
-      100% 100%,
-      var(--main-border-indentation) 100%,
-      0 calc(100% - var(--main-border-indentation))
-    );
+  position: relative;
+  border: var(--main-border-thickness) solid var(--main-border-color);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--main-border-indentation-sub)) 0,
+    calc(100% - var(--main-border-indentation-sub))
+      var(--main-border-indentation-sub),
+    100% var(--main-border-indentation-sub),
+    100% 100%,
+    var(--main-border-indentation-sub) 100%,
+    var(--main-border-indentation-sub)
+      calc(100% - var(--main-border-indentation-sub)),
+    0 calc(100% - var(--main-border-indentation-sub))
+  );
 }
 
 .main-border > .main-border-inner::before,
 .main-border > .main-border-inner::after {
-    content: '';
-    position: absolute;
-    width: var(--main-border-indentation);
-    height: var(--main-border-indentation);
-    background: transparent;
-    border: var(--main-border-thickness) solid var(--main-border-color);
+  content: "";
+  position: absolute;
+  width: var(--main-border-indentation);
+  height: var(--main-border-indentation);
+  background-color: #140603;
+  z-index: -1;
+  border: var(--main-border-thickness) solid var(--main-border-color);
 }
 
 .main-border > .main-border-inner::before {
-    top: calc(-1 * var(--main-border-thickness));
-    right: calc(-1 * var(--main-border-thickness));
+  top: calc(-1 * var(--main-border-thickness));
+  right: calc(-1 * var(--main-border-thickness));
 }
 
 .main-border > .main-border-inner::after {
-    bottom: calc(-1 * var(--main-border-thickness));
-    left: calc(-1 * var(--main-border-thickness));
+  bottom: calc(-1 * var(--main-border-thickness));
+  left: calc(-1 * var(--main-border-thickness));
 }
 
 .main-border::before,
 .main-border::after {
-    content: '';
-    position: absolute;
-    width: var(--main-border-square-size);
-    height: var(--main-border-square-size);
-    background: var(--main-border-color);
+  content: "";
+  position: absolute;
+  width: var(--main-border-square-size);
+  height: var(--main-border-square-size);
+  background: var(--main-border-color);
 }
 
 .main-border::before {
-    top: 0px;
-    right: 0px;
+  top: calc(-1 * var(--main-border-square-displacement));
+  right: calc(-1 * var(--main-border-square-displacement));
+  z-index: 1;
 }
 
 .main-border::after {
-    bottom: 0px;
-    left: 0px;
+  bottom: calc(-1 * var(--main-border-square-displacement));
+  left: calc(-1 * var(--main-border-square-displacement));
 }
 
 .main-border .main-border-triangle {
-    position: absolute;
-    bottom: -20px;
-    right: 8px;
-    width: 0;
-    height: 0;
+  position: absolute;
+  bottom: -20px;
+  right: 8px;
+  width: 0;
+  height: 0;
 
-    border-top: 0px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-right: 26px solid var(--main-border-color);
+  border-top: 0px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 21px solid var(--main-border-color);
+}
+
+.author-photo {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.author-photo-min {
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
+
+footer {
+  position: relative;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  background-image: url("/assets/images/rectangle.png");
+  background-size: auto 100%;
+  top: -30px;
 }
