@@ -27,12 +27,20 @@ module.exports = {
 
     },
     fontFamily: {
-      sans: ['"Exo 2"', 'sans-serif'],
+      sans: ['"IBM Plex Mono"', 'sans-serif'],
       serif: ['Firealistic', 'sans-serif'],
+      accent: ['PT sans', 'sans-serif'],
     },
     extend: {
+      maxWidth: {
+        'testimonial-sm': '320px',
+        'noice': '300px',
+        'testimonial': '410px',
+      },
       colors: {
-        'footer-gray': '#272727',
+        'accent': '#FF8835',
+        'bg': '#140003',
+        'footer': '#431C01',
       },
     },
   },

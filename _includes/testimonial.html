@@ -1,0 +1,23 @@
+<div class="max-w-testimonial-sm md:max-w-testimonial testimonial">
+  <div class="main-border mb-8">
+    <div class="main-border-inner py-6 px-4 md:py-10 md:px-8">
+      <p class="text-center text-sm md:text-base">"{{ include.quote }}"</p>
+    </div>
+    <div class="main-border-triangle"></div>
+  </div>
+  <div class="flex flex-row justify-end items-end space-x-2">
+    <div class="flex flex-col items-end">
+      <a href="{{ include.link }}" target="_blank">
+        <p class="text-lg">{{ include.author }}</p>
+      </a>
+      <a href="{{ include.link }}" target="_blank">
+        <p class="text-accent text-xs font-bold">
+          {{ include.authorTagline }}
+        </p>
+      </a>
+    </div>
+    <a href="{{ include.link }}" target="_blank">
+      <div class="w-10 h-10 bg-white author-photo" style="background-image: url('{{ include.picture }}');"></div>
+    </a>
+  </div>
+</div>
