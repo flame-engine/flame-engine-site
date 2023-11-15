@@ -7,12 +7,17 @@
   </div>
   <div class="flex flex-row justify-end items-end space-x-2">
     <div class="flex flex-col items-end">
-      <p class="text-sm">{{ include.author }}</p>
-      <p class="text-accent text-xs font-bold">{{ include.authorTagline }}</p>
+      <a href="{{ include.link }}" target="_blank">
+        <p class="text-lg">{{ include.author }}</p>
+      </a>
+      <a href="{{ include.link }}" target="_blank">
+        <p class="text-accent text-xs font-bold">
+          {{ include.authorTagline }}
+        </p>
+      </a>
     </div>
-    <div
-      class="w-10 h-10 bg-white author-photo"
-      style="background-image: url('{{ include.picture }}');"
-    ></div>
+    <a href="{{ include.link }}" target="_blank">
+      <div class="w-10 h-10 bg-white author-photo" style="background-image: url('{{ include.picture }}');"></div>
+    </a>
   </div>
 </div>

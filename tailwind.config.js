@@ -33,9 +33,9 @@ module.exports = {
     },
     extend: {
       maxWidth: {
-        'testimonial-sm': '220px',
+        'testimonial-sm': '320px',
         'noice': '300px',
-        'testimonial': '340px',
+        'testimonial': '410px',
       },
       colors: {
         'accent': '#FF8835',

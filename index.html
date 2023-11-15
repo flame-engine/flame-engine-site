@@ -3,59 +3,55 @@ permalink: /
 layout: master
 ---
 
-<div
-  class="flex flex-col items-stretch text-white pt-4 md:pt-6 lg:pt-4 space-y-16 md:space-y-24 lg:space-y-32"
->
-  <div
-    class="hero flex flex-col items-center space-y-8 py-16 md:py-18 lg:py-28"
-  >
+<div class="flex flex-col items-stretch text-white pt-4 md:pt-6 lg:pt-4 space-y-16 md:space-y-24 lg:space-y-32">
+  <div class="hero flex flex-col items-center space-y-8 py-16 md:py-18 lg:py-28">
     <div class="flame-demo h-28 md:h-40"></div>
 
-    <p
-      class="font-bold center font-accent text-center text-3xl md:text-4xl lg:text-6xl"
-    >
+    <p class="font-bold center font-accent text-center text-3xl md:text-4xl lg:text-6xl">
       Flexible, Open Source & Runs Everywhere
     </p>
     <p class="text-center text-sm md:text-sm lg:text-base">
-      Flame is a game engine built on top of <a class="text-accent underline" href="https://flutter.dev/" target="_blank">Flutter</a>. It runs on mobile,
+      Flame is a game engine built on top of
+      <a class="text-accent underline font-semibold" href="https://flutter.dev/" target="_blank">Flutter</a>. It runs on
+      mobile,
       desktop, and web.
     </p>
     <div class="space-y-4 flex flex-col sm:space-y-0 sm:space-x-8 sm:flex-row">
-      <a
-        class="main-button text-sm md:text-sm lg:text-bas font-bold"
-        href="https://docs.flame-engine.org/latest/"
-        >Get Started</a
-      >
-      <a
-        class="main-button text-sm md:text-sm lg:text-bas font-bold"
-        href="https://github.com/flame-engine/flame"
-        >GitHub</a
-      >
+      <a class="main-button text-sm md:text-sm lg:text-bas font-bold" href="https://docs.flame-engine.org/latest/">Get
+        Started</a>
+      <a class="main-button text-sm md:text-sm lg:text-bas font-bold" href="https://github.com/flame-engine/flame"
+        target="_blank">GitHub</a>
     </div>
   </div>
 
   {% include separator.html %}
 
   <div class="flex flex-col items-center space-y-1 lg:space-y-8">
-    <h2
-      class="text-accent font-bold font-accent text-center text-3xl md:text-4xl lg:text-4xl"
-    >
+    <h2 class="text-accent font-bold font-accent text-center text-3xl md:text-4xl lg:text-4xl">
       Made with Flame
     </h2>
     <p class="max-w-sm text-center">
       Games and apps made with the help of Flame
     </p>
-    <div
-      class="flex flex-col md:flex-row lg:flex-row space-y-20 md:space-y-0 lg:space-x-16 py-24"
-    >
-      {% include gamecard.html title="Watchsteroids" description="A Code
-      challenge t build a Flame game in 17 days, By the Flutter team"
-      icon="assets/icons/favicon.png" link="/" %} {% include gamecard.html
-      title="Watchsteroids" description="A Code challenge to build a Flame game
-      in 17 days, By the Flutter team" icon="assets/icons/favicon.png" link="/"
-      %} {% include gamecard.html title="Watchsteroids" description="A Code
-      challenge t build a Flame game in 17 days, By the Flutter team"
-      icon="assets/icons/favicon.png" link="/" %}
+    <div class="flex flex-col md:flex-row lg:flex-row space-y-20 md:space-y-0 lg:space-x-16 py-24">
+      {% include gamecard.html
+      title="Orbit Guard"
+      description="As an Orbit Guard, you are tasked with a mission of cosmic proportions - defend the galaxy's planets against the enclosing magnetic storms. Quick reflexes and tactical taps are your primary weapons. With each planet you guard, you're one step closer to becoming the ultimate guardian of the galaxy!"
+      icon="/assets/images/game1.jpeg"
+      link="https://play.google.com/store/apps/details?id=com.raitissaripo.orbitguard&pcampaignid=web_share"
+      %}
+      {% include gamecard.html
+      title="Gunslinger"
+      description="A 2D shooter roguelike game with chaotic battles to test your survival skills for 10 intense minutes, Armed with unique weaponry that suits your playstyle."
+      icon="/assets/images/game2.png"
+      link="https://play.google.com/store/apps/details?id=dev.studiocloud.gunslinger"
+      %}
+      {% include gamecard.html
+      title="Watchsteroids"
+      description="An open source Asteroids-ish game made for WearOS using the Flame Engine, Flutter and watch controls."
+      icon="/assets/images/game3.png"
+      link="https://github.com/renancaraujo/watchsteroids"
+      %}
     </div>
 
     <div class="flex flex-col items-center">
@@ -63,44 +59,39 @@ layout: master
         Millions of people have played countless Flame games. <br />
         Check out some of them on the Awesome Flame list.
       </p>
-      <a
-        class="main-button text-sm md:text-base font-bold"
-        href="https://github.com/flame-engine/awesome-flame"
-        >View Awesome Flame</a
-      >
+      <a class="main-button text-sm md:text-base font-bold" href="https://github.com/flame-engine/awesome-flame"
+        target="_blank">View Awesome Flame</a>
     </div>
   </div>
 
   {% include separator.html %}
 
-  <div
-    class="flex flex-col md:flex-row-reverse lg:flex-row-reverse space-y-20 md:space-y-0 md:space-x-16"
-  >
-    <div
-      class="flex flex-col items-center justify-center flex-1 space-y-10 px-8"
-    >
-      <p
-        class="text-accent font-accent font-bold text-2xl md:text-3xl lg:text-4xl text-center leading-tight"
-      >
+  <div class="flex flex-col md:flex-row-reverse lg:flex-row-reverse space-y-20 md:space-y-0 md:space-x-16">
+    <div class="flex flex-col items-center justify-center flex-1 space-y-10 px-8">
+      <p class="text-accent font-accent font-bold text-2xl md:text-3xl lg:text-4xl text-center leading-tight">
         From the community, for the community
       </p>
       <p class="text-center max-w-testimonial font-medium text-sm md:text-base">
-        Flame was created and is maintained by independent members of the Flutter community. <br />
+        Flame was created and is maintained by independent members of the
+        Flutter community. <br />
         Today, thousands of developers use Flame to ship games every day.
       </p>
       <div>
-        <a
-          class="main-button font-bold text-sm md:text-base"
-          href="https://discord.gg/pxrBmy4"
-          >Join our Discord</a
-        >
+        <a class="main-button font-bold text-sm md:text-base" href="https://discord.gg/pxrBmy4" target="_blank">Join our
+          Discord</a>
       </div>
     </div>
     <div class="flex flex-col items-center justify-center flex-1">
-      {% include testimonial.html quote="This is a quote by someone in the
-      community. Flame is the best, I want to have Flame for dinner." author="Ms
-      Flame Mc User" authorTagline="Game Developer"
-      picture="https://pbs.twimg.com/profile_images/1428343958355292166/jMFX5zS3_400x400.jpg"
+      {% include testimonial.html
+      quote="Flame strikes a great balance for
+      developers like me, who are forever torn between the desire to build our
+      own game engines, and actually shipping games. With Flame, I can get as
+      low-level as I want, while also leaving the more boring and laborious
+      details in the capable hands of Flame's maintainers."
+      author="Filip Hracek"
+      authorTagline="Game Developer"
+      picture="/assets/images/filip.jpeg"
+      link="https://mastodon.social/@filiph"
       %}
     </div>
   </div>
