@@ -1,6 +1,6 @@
 <a
   href="{{ include.link }}"
-  class="flex flex-col items-center gamecard"
+  class="flex flex-col items-center game-card"
   title="{{ include.title }}"
   target="_blank"
 >
@@ -10,11 +10,11 @@
       style="background-image: url('{{ include.icon }}');"
     ></div>
   </div>
-  <p class="text-accent font-bold text-base md: lg:text-[20px] py-5">
+  <p class="accent-with-hover font-bold text-base md: lg:text-[20px] py-5">
     {{ include.title }}
   </p>
   <p
-    class="text-center w-10/12 leading-tight font-medium max-w-noice md:max-w-none lg:max-w-none"
+    class="text-with-hover text-center w-10/12 leading-tight font-medium max-w-noice md:max-w-none lg:max-w-none"
   >
     {{ include.description }}
   </p>

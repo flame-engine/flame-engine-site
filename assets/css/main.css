@@ -5,14 +5,50 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-button {
+:root {
+  --accent: #ff8835;
+  --accent-hover: #b35926;
+  --text: white;
+  --text-hover: #ccc;
+}
+
+a {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+a.main-button {
   background-color: #eb1930;
   padding: 8px 16px;
   cursor: pointer;
   display: inline-block;
   box-shadow: -2px 2px 0px #960d1c;
-  color: white;
+  color: var(--text);
   text-align: center;
+}
+
+a.main-button:hover {
+  color: var(--text-hover);
+}
+
+a > .accent-with-hover {
+  color: var(--accent);
+}
+
+a:hover > .accent-with-hover {
+  color: var(--accent-hover);
+}
+
+a > .text-with-hover {
+  color: var(--text);
+}
+
+a:hover > .text-with-hover {
+  color: var(--text-hover);
 }
 
 nav {
@@ -33,7 +69,8 @@ nav a {
 }
 
 :root {
-  --main-border-color: #ff8835;
+  --main-border-color: var(--accent);
+  --main-border-hover: var(--accent-hover);
   --main-border-thickness: 4px;
   --main-border-indentation: 13px;
   --main-border-square-size: 7px;
@@ -45,7 +82,7 @@ nav a {
   position: relative;
 }
 
-.gamecard {
+.game-card {
   flex: 1;
 }
 
@@ -66,6 +103,10 @@ nav a {
   );
 }
 
+a:hover > .main-border > .main-border-inner {
+  border-color: var(--main-border-hover);
+}
+
 .main-border > .main-border-inner::before,
 .main-border > .main-border-inner::after {
   content: "";
@@ -75,6 +116,11 @@ nav a {
   background-color: #140603;
   z-index: -1;
   border: var(--main-border-thickness) solid var(--main-border-color);
+}
+
+a:hover > .main-border > .main-border-inner::before,
+a:hover > .main-border > .main-border-inner::after {
+  border-color: var(--main-border-hover);
 }
 
 .main-border > .main-border-inner::before {
@@ -94,6 +140,11 @@ nav a {
   width: var(--main-border-square-size);
   height: var(--main-border-square-size);
   background: var(--main-border-color);
+}
+
+a:hover > .main-border::before,
+a:hover > .main-border::after {
+  background: var(--main-border-hover);
 }
 
 .main-border::before {
@@ -142,14 +193,4 @@ footer::before {
   background-image: url("/assets/images/rectangle.png");
   background-size: auto 100%;
   top: -30px;
-}
-
-.link {
-  color: #ff8835;
-  text-decoration: underline;
-  font-weight: 600;
-}
-
-.link:hover {
-  color: #b35926;
 }
