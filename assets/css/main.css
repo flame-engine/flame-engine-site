@@ -143,3 +143,13 @@ footer::before {
   background-size: auto 100%;
   top: -30px;
 }
+
+.link {
+  color: #ff8835;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.link:hover {
+  color: #b35926;
+}
