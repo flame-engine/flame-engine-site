@@ -23,7 +23,7 @@ To run locally, you must first install node, npm, Ruby (we recommend RVM), ruby-
 Then, run:
 
 ```bash
-npm instal
+npm install
 bundle install
 ```
 
