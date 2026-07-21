@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/flame-engine/flame-engine-site#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.13",
-    "cssnano": "^5.1.14",
-    "postcss": "^8.5.10",
-    "tailwindcss": "^3.2.4"
+    "autoprefixer": "^10.5.4",
+    "cssnano": "^7.1.9",
+    "postcss": "^8.5.20",
+    "tailwindcss": "^3.4.19"
   }
 }
