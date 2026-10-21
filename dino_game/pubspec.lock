@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.38.2"
+  flame_lint:
+    dependency: "direct dev"
+    description:
+      name: flame_lint
+      sha256: "4f2386b49fe70a735d190e230f075abbd0c121a0bc80671cc023dfe30eee5634"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.4.4"
   flame_test:
     dependency: "direct dev"
     description:
@@ -158,14 +166,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_lints:
-    dependency: "direct dev"
-    description:
-      name: flutter_lints
-      sha256: "3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

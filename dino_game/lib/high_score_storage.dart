@@ -8,7 +8,7 @@ class HighScoreStorage {
     try {
       final prefs = await SharedPreferences.getInstance();
       return prefs.getInt(_key) ?? 0;
-    } catch (_) {
+    } on Exception catch (_) {
       return 0;
     }
   }
@@ -17,7 +17,7 @@ class HighScoreStorage {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt(_key, score);
-    } catch (_) {
+    } on Exception catch (_) {
       // Storage can be unavailable (private mode), the game still works.
     }
   }
