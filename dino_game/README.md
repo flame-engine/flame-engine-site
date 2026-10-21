@@ -24,12 +24,12 @@ The page and the game talk with `postMessage` of
 `{source: 'flame-dino', type: <type>}`, between pages of the same origin only
 (see `lib/host_messages.dart`):
 
-| Direction | type | Meaning |
-| --- | --- | --- |
-| page → game | `start` | start a run (or a new one after a game over) |
-| page → game | `reset` | back to the waiting screen |
-| game → page | `ready` | loaded, waiting for `start` |
-| game → page | `closed` | the player pressed Escape, hide the iframe |
+| Direction   | type     | Meaning                                      |
+| ----------- | -------- | -------------------------------------------- |
+| page → game | `start`  | start a run (or a new one after a game over) |
+| page → game | `reset`  | back to the waiting screen                   |
+| game → page | `ready`  | loaded, waiting for `start`                  |
+| game → page | `closed` | the player pressed Escape, hide the iframe   |
 
 The iframe must be focused (`iframe.focus()`) for the keyboard to reach the game.
 
