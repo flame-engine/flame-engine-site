@@ -20,17 +20,23 @@ class Sprites {
   Sprites._();
 
   static final dinoIdle = SpriteAsset('dino_idle.png', Vector2(22, 23));
-  static final dinoRun =
-      SpriteAsset('dino_run.png', Vector2(22, 23), frames: 2);
+  static final dinoRun = SpriteAsset(
+    'dino_run.png',
+    Vector2(22, 23),
+    frames: 2,
+  );
   static final dinoDead = SpriteAsset('dino_dead.png', Vector2(22, 23));
-  static final dinoDuck =
-      SpriteAsset('dino_duck.png', Vector2(30, 14), frames: 2);
+  static final dinoDuck = SpriteAsset(
+    'dino_duck.png',
+    Vector2(30, 14),
+    frames: 2,
+  );
   static final bird = SpriteAsset('bird.png', Vector2(24, 12), frames: 2);
-  static final cactusSmall = SpriteAsset('cactus_small.png', Vector2(29, 35));
-  static final cactusLarge = SpriteAsset('cactus_large.png', Vector2(31, 50));
-  static final cactusGroup = SpriteAsset('cactus_group.png', Vector2(83, 35));
+  static final cactusSmall = SpriteAsset('cactus_small.png', Vector2(12, 18));
+  static final cactusLarge = SpriteAsset('cactus_large.png', Vector2(13, 25));
+  static final cactusGroup = SpriteAsset('cactus_group.png', Vector2(34, 18));
   static final cloud = SpriteAsset('cloud.png', Vector2(34, 8));
-  static final ground = SpriteAsset('ground.png', Vector2(600, 14));
+  static final ground = SpriteAsset('ground.png', Vector2(600, 8));
   static final restart = SpriteAsset('restart.png', Vector2(18, 10));
 
   static final all = [
