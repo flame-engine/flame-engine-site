@@ -2,9 +2,9 @@ import 'dart:ui';
 
 import 'package:dino_game/components/obstacle.dart';
 import 'package:dino_game/dino_game.dart';
-import 'package:dino_game/sprites.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/services.dart';
 
 enum DinoState { idle, running, jumping, ducking, dead }
@@ -13,7 +13,6 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
     with HasGameReference<DinoGame>, KeyboardHandler, CollisionCallbacks {
   Dino()
     : super(
-        size: Sprites.dinoIdle.frameSize.clone(),
         position: Vector2(8, DinoGame.groundY),
         anchor: Anchor.bottomLeft,
       );
@@ -38,15 +37,28 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
   @override
   Future<void> onLoad() async {
     animations = {
-      DinoState.idle: await Sprites.dinoIdle.loadAnimation(),
-      DinoState.running: await Sprites.dinoRun.loadAnimation(),
-      DinoState.jumping: await Sprites.dinoIdle.loadAnimation(),
-      DinoState.ducking: await Sprites.dinoDuck.loadAnimation(),
-      DinoState.dead: await Sprites.dinoDead.loadAnimation(),
+      DinoState.idle: await _loadAnimation('dino_idle.png'),
+      DinoState.running: await _loadAnimation('dino_run.png', frames: 2),
+      DinoState.jumping: await _loadAnimation('dino_idle.png'),
+      DinoState.ducking: await _loadAnimation('dino_duck.png', frames: 2),
+      DinoState.dead: await _loadAnimation('dino_dead.png'),
     };
     paint.filterQuality = FilterQuality.none;
     add(_hitbox);
     _setState(DinoState.idle);
+  }
+
+  /// Loads an image made of [frames] equal frames side by side.
+  Future<SpriteAnimation> _loadAnimation(
+    String fileName, {
+    int frames = 1,
+  }) async {
+    final sheet = SpriteSheet.fromColumnsAndRows(
+      image: await game.images.load(fileName),
+      columns: frames,
+      rows: 1,
+    );
+    return sheet.createAnimation(row: 0, stepTime: 0.1);
   }
 
   @override
@@ -100,13 +112,12 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
   /// Switches the animation, and resizes the sprite and its hitbox to match.
   void _setState(DinoState state) {
     current = state;
+    size = animations![state]!.frames.first.sprite.srcSize;
     if (state == DinoState.ducking) {
-      size = Sprites.dinoDuck.frameSize.clone();
       _hitbox
         ..position = Vector2(4, 3)
         ..size = Vector2(24, 10);
     } else {
-      size = Sprites.dinoIdle.frameSize.clone();
       _hitbox
         ..position = Vector2(4, 2)
         ..size = Vector2(14, 19);

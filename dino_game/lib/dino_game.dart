@@ -12,7 +12,6 @@ import 'package:dino_game/components/score_display.dart';
 import 'package:dino_game/high_score_storage.dart';
 import 'package:dino_game/host_bridge.dart';
 import 'package:dino_game/host_messages.dart';
-import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -93,7 +92,6 @@ class DinoGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    await Sprites.preload();
     highScore = await _storage.load();
     camera.viewfinder.anchor = Anchor.topLeft;
     dino = Dino();
@@ -140,10 +138,10 @@ class DinoGame extends FlameGame
       final roll = random.nextDouble();
       obstacle = Cactus(
         roll < 0.4
-            ? Sprites.cactusSmall
+            ? CactusKind.small
             : roll < 0.7
-            ? Sprites.cactusLarge
-            : Sprites.cactusGroup,
+            ? CactusKind.large
+            : CactusKind.group,
       );
     }
     obstacle.position.x = worldWidth;

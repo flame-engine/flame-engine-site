@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:dino_game/dino_game.dart';
-import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 
 /// The scrolling ground line, made of one tile repeated horizontally.
@@ -9,7 +8,7 @@ class Ground extends PositionComponent with HasGameReference<DinoGame> {
   Ground()
     : super(
         position: Vector2(0, DinoGame.groundY - 1),
-        size: Vector2(DinoGame.minWorldWidth, Sprites.ground.frameSize.y),
+        size: Vector2(DinoGame.minWorldWidth, 0),
       );
 
   final _paint = Paint()..filterQuality = FilterQuality.none;
@@ -18,7 +17,8 @@ class Ground extends PositionComponent with HasGameReference<DinoGame> {
 
   @override
   Future<void> onLoad() async {
-    _tile = await Sprites.ground.loadSprite();
+    _tile = await game.loadSprite('ground.png');
+    size.y = _tile.srcSize.y;
   }
 
   @override
@@ -27,12 +27,12 @@ class Ground extends PositionComponent with HasGameReference<DinoGame> {
     if (!game.isPlaying) {
       return;
     }
-    _offset = (_offset + game.speed * dt) % Sprites.ground.frameSize.x;
+    _offset = (_offset + game.speed * dt) % _tile.srcSize.x;
   }
 
   @override
   void render(Canvas canvas) {
-    final tileSize = Sprites.ground.frameSize;
+    final tileSize = _tile.srcSize;
     for (var x = -_offset; x < size.x; x += tileSize.x) {
       _tile.render(
         canvas,

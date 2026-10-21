@@ -1,10 +1,11 @@
 # Dino game sprites
 
-Every sprite is a plain PNG you can edit in any pixel-art editor. Keep the
-image size (and the frame size for animated sheets), the game reads them from
-the constants in `lib/sprites.dart`. The art is drawn at half resolution, the game
-world is 300x75 and is scaled up with no smoothing. Keep all sprites at the same
-pixel scale (a dino pixel is as big as a cactus pixel).
+Every sprite is a plain PNG you can edit in any pixel-art editor. The game reads
+the size of each image itself, so you can change it freely. An animated sheet is
+split into equal frames side by side, so keep the number of frames given in the
+table. The art is drawn at half resolution, the game world is 90 pixels high and
+is scaled up with no smoothing. Keep all sprites at the same pixel scale (a dino
+pixel is as big as a cactus pixel).
 
 | File             | Size  | Frames                                                         |
 | ---------------- | ----- | -------------------------------------------------------------- |

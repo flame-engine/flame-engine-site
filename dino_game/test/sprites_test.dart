@@ -1,25 +1,32 @@
-import 'package:dino_game/sprites.dart';
-import 'package:flame/flame.dart';
+import 'dart:io';
+
+import 'package:dino_game/dino_game.dart';
+import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Sprites', () {
-    for (final sprite in Sprites.all) {
-      test('${sprite.fileName} matches its declared size', () async {
-        final image = await Flame.images.load(sprite.fileName);
-        expect(image.width, sprite.imageSize.x.toInt());
-        expect(image.height, sprite.imageSize.y.toInt());
+  final sprites = Directory('assets/images')
+      .listSync()
+      .whereType<File>()
+      .where((file) => file.path.endsWith('.png'))
+      .map((file) => file.uri.pathSegments.last)
+      .toList();
+
+  group('sprites', () {
+    test('there are sprites to test', () {
+      expect(sprites, isNotEmpty);
+    });
+
+    for (final fileName in sprites) {
+      testWithGame<DinoGame>('$fileName can be loaded', DinoGame.new, (
+        game,
+      ) async {
+        final sprite = await game.loadSprite(fileName);
+        expect(sprite.srcSize.x, greaterThan(0));
+        expect(sprite.srcSize.y, greaterThan(0));
       });
     }
-
-    test('sprites and animations can be built', () async {
-      final sprite = await Sprites.dinoIdle.loadSprite();
-      expect(sprite.srcSize, Sprites.dinoIdle.frameSize);
-
-      final animation = await Sprites.dinoRun.loadAnimation();
-      expect(animation.frames.length, 2);
-    });
   });
 }

@@ -7,7 +7,6 @@ import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/obstacle.dart';
 import 'package:dino_game/dino_game.dart';
 import 'package:dino_game/host_messages.dart';
-import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -102,7 +101,7 @@ void main() {
       'the page can start a new run after a game over',
       newGame,
       (game) async {
-        await crashInto(game, Cactus(Sprites.cactusSmall)..position.x = 20);
+        await crashInto(game, Cactus(CactusKind.small)..position.x = 20);
         expect(game.isGameOver, isTrue);
         game.bridge.onCommand!(HostCommand.start);
         expect(game.isPlaying, isTrue);
@@ -230,7 +229,7 @@ void main() {
 
   group('collisions', () {
     testWithGame<DinoGame>('a cactus ends the game', newGame, (game) async {
-      await crashInto(game, Cactus(Sprites.cactusSmall)..position.x = 20);
+      await crashInto(game, Cactus(CactusKind.small)..position.x = 20);
       expect(game.state, GameState.gameOver);
       expect(game.dino.current, DinoState.dead);
     });
@@ -354,7 +353,7 @@ void main() {
       run(game, 1);
       final score = game.score;
       expect(score, greaterThan(0));
-      await crashInto(game, Cactus(Sprites.cactusSmall)..position.x = 20);
+      await crashInto(game, Cactus(CactusKind.small)..position.x = 20);
 
       expect(game.highScore, score);
       final prefs = await SharedPreferences.getInstance();
@@ -365,7 +364,7 @@ void main() {
       'an action restarts only after a short delay',
       newGame,
       (game) async {
-        await crashInto(game, Cactus(Sprites.cactusSmall)..position.x = 20);
+        await crashInto(game, Cactus(CactusKind.small)..position.x = 20);
         game.onAction();
         expect(game.isGameOver, isTrue);
 
