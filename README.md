@@ -18,7 +18,7 @@ We also have some special subdomains; they are deployed independently via other 
 
 ## Running locally
 
-To run locally, you must first install node, npm, Ruby (we recommend RVM), ruby-gems, and the bundler.
+To run locally, you must first install node, npm, Ruby (we recommend RVM), ruby-gems, the bundler, and [Flutter](https://flutter.dev) (for the dino game, see below).
 
 Then, run:
 
@@ -36,3 +36,21 @@ bundle exec jekyll serve
 ```
 
 To start the local server.
+
+Or run everything (npm, gems, dino game, Jekyll) with:
+
+```bash
+./scripts/build.sh --serve
+```
+
+## Dino game (easter egg)
+
+On the home page, pressing the up arrow (or tapping the dino on a touch screen) turns the little dino into a playable game, made with Flame. Press Escape to leave it.
+
+The game lives in [dino_game/](dino_game/), a Flutter web app that is not part of the Jekyll build. It is compiled into `assets/dino/` (ignored by git) and shown in an iframe by [assets/js/dino-easter-egg.js](assets/js/dino-easter-egg.js). To rebuild it after changing the game:
+
+```bash
+./scripts/build-dino.sh
+```
+
+The CI builds it before Jekyll, see the workflows in `.github/workflows`. See [dino_game/README.md](dino_game/README.md) for the details.

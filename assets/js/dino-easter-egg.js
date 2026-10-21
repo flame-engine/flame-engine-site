@@ -103,7 +103,17 @@
     }
   });
 
+  // While the game is shown, its keys must never scroll the page, even when the
+  // focus is back in the page (the keys inside the iframe are handled by it).
+  var GAME_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '];
+
   document.addEventListener('keydown', function (event) {
+    if (active && GAME_KEYS.indexOf(event.key) !== -1 && !isTyping(event.target)) {
+      event.preventDefault();
+      frame.focus();
+      frame.contentWindow.focus();
+      return;
+    }
     if (
       event.key !== 'ArrowUp' ||
       event.repeat ||

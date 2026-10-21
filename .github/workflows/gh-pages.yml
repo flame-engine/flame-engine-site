@@ -28,6 +28,16 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.5"
+          channel: stable
+          cache: true
+
+      - name: Build dino game
+        run: ./scripts/build-dino.sh
+
       - name: Build Jekyll
         uses: limjh16/jekyll-action-ts@v2
         with:
