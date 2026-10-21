@@ -8,27 +8,30 @@ import 'package:dino_game/components/obstacle.dart';
 import 'package:dino_game/components/obstacle_spawner.dart';
 import 'package:dino_game/components/score_display.dart';
 import 'package:dino_game/high_score_storage.dart';
+import 'package:dino_game/host_bridge.dart';
+import 'package:dino_game/host_messages.dart';
 import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 
-enum GameState { playing, gameOver }
+/// [idle] is the waiting screen: nothing moves until the game is started.
+enum GameState { idle, playing, gameOver }
 
 class DinoGame extends FlameGame
     with HasCollisionDetection, HasKeyboardHandlerComponents, TapCallbacks {
-  DinoGame({Random? random, HighScoreStorage? storage})
+  DinoGame({Random? random, HighScoreStorage? storage, HostBridge? bridge})
     : random = random ?? Random(),
       _storage = storage ?? HighScoreStorage(),
-      super(
-        camera: CameraComponent.withFixedResolution(
-          width: worldSize.x,
-          height: worldSize.y,
-        ),
-      );
+      bridge = bridge ?? HostBridge();
 
-  /// Size of the visible world, in sprite pixels (the art is half resolution).
-  static final worldSize = Vector2(300, 75);
+  /// Height of the visible world, in sprite pixels (the art is half
+  /// resolution). The game is always scaled to show exactly this height.
+  static const worldHeight = 75.0;
+
+  /// The world is at least this wide, so that obstacles always show up early
+  /// enough, even in a narrow window.
+  static const minWorldWidth = 300.0;
 
   /// Y coordinate of the line the dino and the obstacles run on.
   static const groundY = 63.0;
@@ -49,10 +52,13 @@ class DinoGame extends FlameGame
   final Random random;
   final HighScoreStorage _storage;
 
+  /// Link with the page embedding the game.
+  final HostBridge bridge;
+
   /// Horizontal scrolling speed, in world units per second.
   double speed = initialSpeed;
 
-  GameState state = GameState.playing;
+  GameState state = GameState.idle;
 
   int highScore = 0;
   double _distance = 0;
@@ -62,7 +68,12 @@ class DinoGame extends FlameGame
   late final ObstacleSpawner _spawner;
   GameOverPanel? _gameOverPanel;
 
+  bool get isIdle => state == GameState.idle;
+  bool get isPlaying => state == GameState.playing;
   bool get isGameOver => state == GameState.gameOver;
+
+  /// Visible width of the world, which follows the shape of the window.
+  double get worldWidth => size.x / camera.viewfinder.zoom;
 
   int get score => _distance ~/ _distancePerPoint;
 
@@ -77,6 +88,38 @@ class DinoGame extends FlameGame
     dino = Dino();
     _spawner = ObstacleSpawner();
     await world.addAll([Ground(), dino, _spawner, ScoreDisplay()]);
+    _updateZoom();
+    bridge
+      ..onCommand = _onHostCommand
+      ..send(HostEvent.ready);
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    _updateZoom();
+  }
+
+  @override
+  void onRemove() {
+    bridge.dispose();
+    super.onRemove();
+  }
+
+  void _updateZoom() {
+    if (size.x <= 0 || size.y <= 0) {
+      return;
+    }
+    camera.viewfinder.zoom = min(size.y / worldHeight, size.x / minWorldWidth);
+  }
+
+  void _onHostCommand(String type) {
+    switch (type) {
+      case HostCommand.start:
+        start();
+      case HostCommand.reset:
+        reset();
+    }
   }
 
   @override
@@ -84,19 +127,48 @@ class DinoGame extends FlameGame
     super.update(dt);
     if (isGameOver) {
       _sinceGameOver += dt;
+    }
+    if (!isPlaying) {
       return;
     }
     speed = min(maxSpeed, speed + acceleration * dt);
     _distance += speed * dt;
   }
 
-  /// The main action of the game: jump, or restart once the game is over.
+  /// The main action of the game: start, jump, or restart once the game is
+  /// over.
   void onAction() {
-    if (!isGameOver) {
-      dino.jump();
-    } else if (_sinceGameOver >= restartDelay) {
-      restart();
+    switch (state) {
+      case GameState.idle:
+        start();
+      case GameState.playing:
+        dino.jump();
+      case GameState.gameOver:
+        if (_sinceGameOver >= restartDelay) {
+          restart();
+        }
     }
+  }
+
+  /// Starts a run from the waiting screen, or a new one after a game over.
+  void start() {
+    if (isPlaying) {
+      return;
+    }
+    restart();
+  }
+
+  /// Back to the waiting screen.
+  void reset() {
+    _clearRun();
+    dino.idle();
+    state = GameState.idle;
+  }
+
+  /// The player left the game: waits again and tells the page to hide it.
+  void exit() {
+    reset();
+    bridge.send(HostEvent.closed);
   }
 
   void gameOver() {
@@ -114,16 +186,20 @@ class DinoGame extends FlameGame
   }
 
   void restart() {
+    _clearRun();
+    dino.reset();
+    state = GameState.playing;
+  }
+
+  void _clearRun() {
     world.children.whereType<Obstacle>().forEach(
       (o) => (o as Component).removeFromParent(),
     );
     _gameOverPanel?.removeFromParent();
     _gameOverPanel = null;
     _spawner.reset();
-    dino.reset();
     speed = initialSpeed;
     _distance = 0;
-    state = GameState.playing;
   }
 
   @override

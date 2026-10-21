@@ -27,7 +27,7 @@ class Bird extends SpriteAnimationComponent
   Bird(BirdLevel level)
     : super(
         size: Sprites.bird.frameSize.clone(),
-        position: Vector2(DinoGame.worldSize.x, DinoGame.groundY - level.lift),
+        position: Vector2(0, DinoGame.groundY - level.lift),
         anchor: Anchor.bottomLeft,
       );
 

@@ -19,7 +19,7 @@ class ScoreDisplay extends TextComponent with HasGameReference<DinoGame> {
     : super(
         textRenderer: textPaint,
         anchor: Anchor.topRight,
-        position: Vector2(DinoGame.worldSize.x - 6, 4),
+        position: Vector2(DinoGame.minWorldWidth - 6, 4),
       );
 
   static String format(int score) => score.toString().padLeft(5, '0');
@@ -27,8 +27,11 @@ class ScoreDisplay extends TextComponent with HasGameReference<DinoGame> {
   @override
   void update(double dt) {
     super.update(dt);
+    position.x = game.worldWidth - 6;
     final best = game.highScore;
-    text = best > 0
+    text = game.isIdle
+        ? ''
+        : best > 0
         ? 'HI ${format(best)}  ${format(game.score)}'
         : format(game.score);
   }

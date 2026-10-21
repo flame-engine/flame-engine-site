@@ -8,7 +8,11 @@ mixin Obstacle on PositionComponent, HasGameReference<DinoGame> {
 
   @override
   void update(double dt) {
-    if (game.isGameOver) {
+    if (game.isIdle) {
+      removeFromParent(); // e.g. spawned in the frame where the game was reset
+      return;
+    }
+    if (!game.isPlaying) {
       return;
     }
     super.update(dt);

@@ -20,13 +20,13 @@ class ObstacleSpawner extends Component with HasGameReference<DinoGame> {
 
   @override
   void update(double dt) {
-    if (game.isGameOver) {
+    if (!game.isPlaying) {
       return;
     }
     final last = _last;
     if (last == null ||
         last.isRemoved ||
-        DinoGame.worldSize.x - (last.position.x + last.size.x) >= _gap) {
+        game.worldWidth - (last.position.x + last.size.x) >= _gap) {
       _spawn();
     }
   }
@@ -53,6 +53,7 @@ class ObstacleSpawner extends Component with HasGameReference<DinoGame> {
             : Sprites.cactusGroup,
       );
     }
+    obstacle.position.x = game.worldWidth;
     game.world.add(obstacle);
     _last = obstacle;
     _gap =

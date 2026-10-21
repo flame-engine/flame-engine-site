@@ -4,11 +4,12 @@ import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/painting.dart';
 
-class GameOverPanel extends PositionComponent {
-  GameOverPanel() : super(position: Vector2(DinoGame.worldSize.x / 2, 0));
+class GameOverPanel extends PositionComponent with HasGameReference<DinoGame> {
+  GameOverPanel() : super(position: Vector2(DinoGame.minWorldWidth / 2, 0));
 
   @override
   Future<void> onLoad() async {
+    position.x = game.worldWidth / 2;
     final restart = Sprites.restart.frameSize;
     await addAll([
       TextComponent(

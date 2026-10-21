@@ -10,7 +10,7 @@ class Cactus extends SpriteComponent with HasGameReference<DinoGame>, Obstacle {
   Cactus(this.asset)
     : super(
         size: asset.frameSize.clone(),
-        position: Vector2(DinoGame.worldSize.x, DinoGame.groundY),
+        position: Vector2(0, DinoGame.groundY),
         anchor: Anchor.bottomLeft,
       );
 

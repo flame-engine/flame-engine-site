@@ -5,13 +5,27 @@ import 'package:dino_game/components/cactus.dart';
 import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/obstacle.dart';
 import 'package:dino_game/dino_game.dart';
+import 'package:dino_game/host_messages.dart';
 import 'package:dino_game/sprites.dart';
 import 'package:flame/components.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-DinoGame newGame() => DinoGame(random: Random(1));
+/// A game that is already started, so that the tests can run without the
+/// waiting screen.
+class StartedGame extends DinoGame {
+  StartedGame() : super(random: Random(1));
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    start();
+  }
+}
+
+DinoGame newGame() => StartedGame();
+DinoGame newIdleGame() => DinoGame(random: Random(1));
 
 /// Runs the game with a fixed time step, for [seconds] of game time.
 void run(DinoGame game, double seconds) {
@@ -31,6 +45,103 @@ Future<void> crashInto(DinoGame game, Component obstacle) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  group('waiting screen', () {
+    testWithGame<DinoGame>('waits for the start, nothing moves', newIdleGame, (
+      game,
+    ) async {
+      expect(game.state, GameState.idle);
+      expect(game.dino.current, DinoState.idle);
+      run(game, 3);
+      await game.ready();
+      expect(game.speed, DinoGame.initialSpeed);
+      expect(game.score, 0);
+      expect(game.world.children.whereType<Obstacle>(), isEmpty);
+
+      game.dino.jump();
+      expect(game.dino.isOnGround, isTrue);
+    });
+
+    testWithGame<DinoGame>('tells the page when it is ready', newIdleGame, (
+      game,
+    ) async {
+      expect(game.bridge.sent, [HostEvent.ready]);
+    });
+
+    testWithGame<DinoGame>('an action starts the game', newIdleGame, (
+      game,
+    ) async {
+      game.onAction();
+      expect(game.state, GameState.playing);
+      expect(game.dino.current, DinoState.running);
+    });
+
+    testWithGame<DinoGame>('the page can start and reset it', newIdleGame, (
+      game,
+    ) async {
+      game.bridge.onCommand!(HostCommand.start);
+      expect(game.isPlaying, isTrue);
+
+      run(game, 1);
+      game.bridge.onCommand!(HostCommand.reset);
+      await game.ready();
+      game.update(0.02);
+      await game.ready();
+      expect(game.isIdle, isTrue);
+      expect(game.dino.current, DinoState.idle);
+      expect(game.speed, DinoGame.initialSpeed);
+      expect(game.score, 0);
+      expect(game.world.children.whereType<Obstacle>(), isEmpty);
+
+      game.bridge.onCommand!(HostCommand.start);
+      expect(game.isPlaying, isTrue);
+    });
+
+    testWithGame<DinoGame>(
+      'the page can start a new run after a game over',
+      newGame,
+      (game) async {
+        await crashInto(game, Cactus(Sprites.cactusSmall)..position.x = 20);
+        expect(game.isGameOver, isTrue);
+        game.bridge.onCommand!(HostCommand.start);
+        expect(game.isPlaying, isTrue);
+      },
+    );
+
+    testWithGame<DinoGame>(
+      'leaving the game tells the page to close it',
+      newGame,
+      (game) async {
+        game.exit();
+        expect(game.isIdle, isTrue);
+        expect(game.bridge.sent.last, HostEvent.closed);
+      },
+    );
+
+    testWithGame<DinoGame>('ignores unknown commands', newGame, (game) async {
+      game.bridge.onCommand!('nope');
+      expect(game.isPlaying, isTrue);
+    });
+  });
+
+  group('size', () {
+    testWithGame<DinoGame>('always shows the same height of world', newGame, (
+      game,
+    ) async {
+      game.onGameResize(Vector2(900, 150));
+      expect(game.size.y / game.camera.viewfinder.zoom, DinoGame.worldHeight);
+      expect(game.worldWidth, 450);
+    });
+
+    testWithGame<DinoGame>(
+      'keeps a minimum width in a narrow window',
+      newGame,
+      (game) async {
+        game.onGameResize(Vector2(300, 150));
+        expect(game.worldWidth, DinoGame.minWorldWidth);
+      },
+    );
+  });
 
   group('movement', () {
     testWithGame<DinoGame>('starts running on the ground', newGame, (
@@ -170,13 +281,23 @@ void main() {
           }
           if (previous != null) {
             final gap =
-                DinoGame.worldSize.x - (previous.position.x + previous.size.x);
+                game.worldWidth - (previous.position.x + previous.size.x);
             expect(gap, greaterThan(100));
           }
           previous = obstacle;
         }
       }
       expect(seen.length, greaterThan(3));
+    });
+  });
+
+  group('saved high score', () {
+    setUp(
+      () => SharedPreferences.setMockInitialValues({'dino_high_score': 321}),
+    );
+
+    testWithGame<DinoGame>('is loaded at start', newIdleGame, (game) async {
+      expect(game.highScore, 321);
     });
   });
 
@@ -192,13 +313,6 @@ void main() {
       expect(game.highScore, score);
       final prefs = await SharedPreferences.getInstance();
       expect(prefs.getInt('dino_high_score'), score);
-    });
-
-    test('loads the saved high score', () async {
-      SharedPreferences.setMockInitialValues({'dino_high_score': 321});
-      final game = newGame();
-      await game.onLoad();
-      expect(game.highScore, 321);
     });
 
     testWithGame<DinoGame>(

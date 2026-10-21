@@ -9,7 +9,7 @@ class Ground extends PositionComponent with HasGameReference<DinoGame> {
   Ground()
     : super(
         position: Vector2(0, DinoGame.groundY - 1),
-        size: Vector2(DinoGame.worldSize.x, Sprites.ground.frameSize.y),
+        size: Vector2(DinoGame.minWorldWidth, Sprites.ground.frameSize.y),
       );
 
   final _paint = Paint()..filterQuality = FilterQuality.none;
@@ -23,7 +23,8 @@ class Ground extends PositionComponent with HasGameReference<DinoGame> {
 
   @override
   void update(double dt) {
-    if (game.isGameOver) {
+    size.x = game.worldWidth;
+    if (!game.isPlaying) {
       return;
     }
     _offset = (_offset + game.speed * dt) % Sprites.ground.frameSize.x;

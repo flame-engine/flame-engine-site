@@ -7,7 +7,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
-enum DinoState { running, jumping, ducking, dead }
+enum DinoState { idle, running, jumping, ducking, dead }
 
 class Dino extends SpriteAnimationGroupComponent<DinoState>
     with HasGameReference<DinoGame>, KeyboardHandler, CollisionCallbacks {
@@ -34,6 +34,7 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
   @override
   Future<void> onLoad() async {
     animations = {
+      DinoState.idle: await Sprites.dinoIdle.loadAnimation(),
       DinoState.running: await Sprites.dinoRun.loadAnimation(),
       DinoState.jumping: await Sprites.dinoIdle.loadAnimation(),
       DinoState.ducking: await Sprites.dinoDuck.loadAnimation(),
@@ -41,13 +42,13 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
     };
     paint.filterQuality = FilterQuality.none;
     add(_hitbox);
-    _setState(DinoState.running);
+    _setState(DinoState.idle);
   }
 
   @override
   void update(double dt) {
     super.update(dt);
-    if (game.isGameOver || isOnGround && _velocityY == 0) {
+    if (!game.isPlaying || isOnGround && _velocityY == 0) {
       return;
     }
     _velocityY += gravity * (_duckHeld ? fastFallFactor : 1) * dt;
@@ -63,7 +64,7 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
       _duckHeld ? DinoState.ducking : DinoState.running;
 
   void jump() {
-    if (!isOnGround || game.isGameOver) {
+    if (!isOnGround || !game.isPlaying) {
       return;
     }
     _velocityY = jumpVelocity;
@@ -72,12 +73,19 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
 
   void duck({required bool pressed}) {
     _duckHeld = pressed;
-    if (isOnGround && !game.isGameOver) {
+    if (isOnGround && game.isPlaying) {
       _setState(_groundState);
     }
   }
 
   void die() => _setState(DinoState.dead);
+
+  /// Back on the ground, waiting for the game to start.
+  void idle() {
+    position.y = DinoGame.groundY;
+    _velocityY = 0;
+    _setState(DinoState.idle);
+  }
 
   void reset() {
     position.y = DinoGame.groundY;
@@ -110,6 +118,8 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
         game.onAction();
       } else if (key == LogicalKeyboardKey.arrowDown) {
         duck(pressed: true);
+      } else if (key == LogicalKeyboardKey.escape) {
+        game.exit();
       }
     } else if (event is KeyUpEvent && key == LogicalKeyboardKey.arrowDown) {
       duck(pressed: false);
