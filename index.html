@@ -10,7 +10,7 @@ layout: master
     {% include callout.html %}
     {% endcomment %}
 
-    <div class="flame-demo h-28 md:h-40"></div>
+    <div class="flame-demo h-28 md:h-40" data-dino-src="{{ '/assets/dino/index.html' | relative_url }}"></div>
 
     <p class="font-bold center font-accent text-center text-3xl md:text-4xl lg:text-6xl">
       Flexible, Open Source & Runs Everywhere
@@ -130,3 +130,5 @@ layout: master
 
   <div class="h-8"></div>
 </div>
+
+<script src="{{ '/assets/js/dino-easter-egg.js' | relative_url }}" defer></script>

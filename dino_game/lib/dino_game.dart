@@ -27,7 +27,7 @@ class DinoGame extends FlameGame
 
   /// Height of the visible world, in sprite pixels (the art is half
   /// resolution). The game is always scaled to show exactly this height.
-  static const worldHeight = 75.0;
+  static const worldHeight = 90.0;
 
   /// The world is at least this wide, so that obstacles always show up early
   /// enough, even in a narrow window.

@@ -14,7 +14,7 @@ Sprites are PNG files in `assets/images/`, see the README there.
 
 ## Embedding
 
-The game fills its iframe (transparent background) and always shows 75 world
+The game fills its iframe (transparent background) and always shows 90 world
 pixels in height, so give the iframe the size of the block it replaces.
 
 It waits on a still dino until it is started. Controls: up / space / tap to

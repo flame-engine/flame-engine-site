@@ -14,7 +14,7 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
   Dino()
     : super(
         size: Sprites.dinoIdle.frameSize.clone(),
-        position: Vector2(20, DinoGame.groundY),
+        position: Vector2(8, DinoGame.groundY),
         anchor: Anchor.bottomLeft,
       );
 
@@ -24,7 +24,11 @@ class Dino extends SpriteAnimationGroupComponent<DinoState>
   /// Holding down while in the air makes the dino fall faster.
   static const fastFallFactor = 3.0;
 
-  final _hitbox = RectangleHitbox();
+  // Given a size from the start, otherwise the hitbox would fill the sprite.
+  final _hitbox = RectangleHitbox(
+    position: Vector2(4, 2),
+    size: Vector2(14, 19),
+  );
 
   double _velocityY = 0;
   bool _duckHeld = false;

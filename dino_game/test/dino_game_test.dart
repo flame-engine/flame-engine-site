@@ -129,8 +129,11 @@ void main() {
       game,
     ) async {
       game.onGameResize(Vector2(900, 150));
-      expect(game.size.y / game.camera.viewfinder.zoom, DinoGame.worldHeight);
-      expect(game.worldWidth, 450);
+      expect(
+        game.size.y / game.camera.viewfinder.zoom,
+        closeTo(DinoGame.worldHeight, 0.001),
+      );
+      expect(game.worldWidth, closeTo(540, 0.001));
     });
 
     testWithGame<DinoGame>(
