@@ -15,6 +15,7 @@ echo "==> Building the dino game"
 (
   cd dino_game
   flutter pub get
+  rm -rf ../assets/dino
   flutter build web --release --pwa-strategy=none --base-href /assets/dino/ --output ../assets/dino
 )
 
