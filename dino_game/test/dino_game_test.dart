@@ -3,12 +3,14 @@ import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('DinoGame', () {
     testWithGame<DinoGame>(
-      'loads with an empty world',
+      'loads its sprites',
       DinoGame.new,
       (game) async {
-        expect(game.children, isNotNull);
+        expect(game.isLoaded, isTrue);
       },
     );
   });
