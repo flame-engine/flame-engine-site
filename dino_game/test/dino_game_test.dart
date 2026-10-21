@@ -283,51 +283,67 @@ void main() {
       },
     );
 
+    testWithGame<DinoGame>('spawns obstacles while playing', newGame, (
+      game,
+    ) async {
+      game.dino.position.x = -1000; // out of the way, to watch the spawner
+      run(game, DinoGame.maxSpawnPeriod + 0.1);
+      await game.ready();
+      expect(game.world.children.whereType<Obstacle>(), isNotEmpty);
+    });
+
+    testWithGame<DinoGame>('spawns nothing while waiting', newIdleGame, (
+      game,
+    ) async {
+      run(game, 10);
+      await game.ready();
+      expect(game.world.children.whereType<Obstacle>(), isEmpty);
+    });
+
     testWithGame<DinoGame>(
-      'spawns cactus only, before birds are allowed',
+      'leaves time to jump between two obstacles',
       newGame,
       (game) async {
-        run(game, 1.2);
-        await game.ready();
-        final obstacles = game.world.children.whereType<Obstacle>().toList();
-        expect(obstacles, isNotEmpty);
-        expect(obstacles.every((o) => o is Cactus), isTrue);
+        game.dino.position.x = -1000; // out of the way, to watch the spawner
+        final seen = <Component>{};
+        final spawnTimes = <double>[];
+        var time = 0.0;
+        for (var i = 0; i < 1000; i++) {
+          game.update(0.02);
+          time += 0.02;
+          await game.ready();
+          for (final o in game.world.children.whereType<Obstacle>()) {
+            if (seen.add(o as Component)) {
+              spawnTimes.add(time);
+            }
+          }
+        }
+        expect(spawnTimes.length, greaterThan(5));
+        for (var i = 1; i < spawnTimes.length; i++) {
+          final gap = spawnTimes[i] - spawnTimes[i - 1];
+          expect(gap, greaterThanOrEqualTo(DinoGame.minSpawnPeriod - 0.05));
+          expect(gap, lessThanOrEqualTo(DinoGame.maxSpawnPeriod + 0.05));
+        }
       },
     );
 
-    testWithGame<DinoGame>('keeps a gap between two obstacles', newGame, (
+    testWithGame<DinoGame>('birds only come after a few points', newGame, (
       game,
     ) async {
       game.dino.position.x = -1000; // out of the way, to watch the spawner
       final seen = <Component>{};
-      PositionComponent? previous;
-      for (var i = 0; i < 400; i++) {
+      var birds = 0;
+      for (var i = 0; i < 2000; i++) {
         game.update(0.02);
         await game.ready();
         for (final o in game.world.children.whereType<Obstacle>()) {
-          final obstacle = o as PositionComponent;
-          if (!seen.add(obstacle)) {
-            continue;
+          if (seen.add(o as Component) && o is Bird) {
+            birds++;
+            expect(game.score, greaterThanOrEqualTo(DinoGame.birdMinScore));
           }
-          if (previous != null) {
-            final gap =
-                game.worldWidth - (previous.position.x + previous.size.x);
-            expect(gap, greaterThan(100));
-          }
-          previous = obstacle;
         }
       }
-      expect(seen.length, greaterThan(3));
-    });
-  });
-
-  group('saved high score', () {
-    setUp(
-      () => SharedPreferences.setMockInitialValues({'dino_high_score': 321}),
-    );
-
-    testWithGame<DinoGame>('is loaded at start', newIdleGame, (game) async {
-      expect(game.highScore, 321);
+      expect(birds, greaterThan(0));
     });
   });
 

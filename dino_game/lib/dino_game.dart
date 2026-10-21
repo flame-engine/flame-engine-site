@@ -1,12 +1,13 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:dino_game/components/bird.dart';
+import 'package:dino_game/components/cactus.dart';
 import 'package:dino_game/components/cloud_spawner.dart';
 import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/game_over_panel.dart';
 import 'package:dino_game/components/ground.dart';
 import 'package:dino_game/components/obstacle.dart';
-import 'package:dino_game/components/obstacle_spawner.dart';
 import 'package:dino_game/components/score_display.dart';
 import 'package:dino_game/high_score_storage.dart';
 import 'package:dino_game/host_bridge.dart';
@@ -37,6 +38,15 @@ class DinoGame extends FlameGame
   /// Y coordinate of the line the dino and the obstacles run on.
   static const groundY = 63.0;
 
+  /// Obstacles spawn at a random interval between these two durations (in
+  /// seconds). The shortest one always leaves time to land and jump again.
+  static const minSpawnPeriod = 1.0;
+  static const maxSpawnPeriod = 2.2;
+
+  /// Score from which birds can appear, and how often they do.
+  static const birdMinScore = 80;
+  static const _birdChance = 0.3;
+
   static const initialSpeed = 180.0;
   static const maxSpeed = 400.0;
 
@@ -66,7 +76,7 @@ class DinoGame extends FlameGame
   double _sinceGameOver = 0;
 
   late final Dino dino;
-  late final ObstacleSpawner _spawner;
+  late final SpawnComponent _spawner;
   GameOverPanel? _gameOverPanel;
 
   bool get isIdle => state == GameState.idle;
@@ -87,7 +97,14 @@ class DinoGame extends FlameGame
     highScore = await _storage.load();
     camera.viewfinder.anchor = Anchor.topLeft;
     dino = Dino();
-    _spawner = ObstacleSpawner();
+    _spawner = SpawnComponent.periodRange(
+      minPeriod: minSpawnPeriod,
+      maxPeriod: maxSpawnPeriod,
+      factory: _createObstacle,
+      selfPositioning: true,
+      autoStart: false,
+      random: random,
+    );
     await world.addAll([
       Ground(),
       CloudSpawner(),
@@ -111,6 +128,26 @@ class DinoGame extends FlameGame
   void onRemove() {
     bridge.dispose();
     super.onRemove();
+  }
+
+  PositionComponent _createObstacle(int amount) {
+    final PositionComponent obstacle;
+    if (score >= birdMinScore && random.nextDouble() < _birdChance) {
+      obstacle = Bird(
+        BirdLevel.values[random.nextInt(BirdLevel.values.length)],
+      );
+    } else {
+      final roll = random.nextDouble();
+      obstacle = Cactus(
+        roll < 0.4
+            ? Sprites.cactusSmall
+            : roll < 0.7
+            ? Sprites.cactusLarge
+            : Sprites.cactusGroup,
+      );
+    }
+    obstacle.position.x = worldWidth;
+    return obstacle;
   }
 
   void _updateZoom() {
@@ -183,6 +220,7 @@ class DinoGame extends FlameGame
       return;
     }
     state = GameState.gameOver;
+    _spawner.timer.stop();
     _sinceGameOver = 0;
     dino.die();
     if (score > highScore) {
@@ -196,6 +234,7 @@ class DinoGame extends FlameGame
     _clearRun();
     dino.reset();
     state = GameState.playing;
+    _spawner.timer.start();
   }
 
   void _clearRun() {
@@ -204,7 +243,7 @@ class DinoGame extends FlameGame
     );
     _gameOverPanel?.removeFromParent();
     _gameOverPanel = null;
-    _spawner.reset();
+    _spawner.timer.stop();
     speed = initialSpeed;
     _distance = 0;
   }
