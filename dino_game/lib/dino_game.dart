@@ -39,18 +39,18 @@ class DinoGame extends FlameGame
 
   /// Obstacles spawn at a random interval between these two durations (in
   /// seconds). The shortest one always leaves time to land and jump again.
-  static const minSpawnPeriod = 1.0;
-  static const maxSpawnPeriod = 2.2;
+  static const minSpawnPeriod = 0.9;
+  static const maxSpawnPeriod = 2.0;
 
   /// Score from which birds can appear, and how often they do.
-  static const birdMinScore = 80;
+  static const birdMinScore = 60;
   static const _birdChance = 0.3;
 
-  static const initialSpeed = 180.0;
-  static const maxSpeed = 400.0;
+  static const initialSpeed = 200.0;
+  static const maxSpeed = 450.0;
 
   /// Speed gained per second.
-  static const acceleration = 4.0;
+  static const acceleration = 7.0;
 
   /// A score is one world unit travelled divided by this.
   static const _distancePerPoint = 20;
