@@ -51,3 +51,6 @@ postcss:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+exclude:
+  - dino_game/
