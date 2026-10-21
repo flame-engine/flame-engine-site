@@ -37,7 +37,7 @@ class Sprites {
   static final cactusGroup = SpriteAsset('cactus_group.png', Vector2(34, 18));
   static final cloud = SpriteAsset('cloud.png', Vector2(34, 8));
   static final ground = SpriteAsset('ground.png', Vector2(600, 8));
-  static final restart = SpriteAsset('restart.png', Vector2(18, 10));
+  static final restart = SpriteAsset('restart.png', Vector2(15, 15));
 
   static final all = [
     dinoIdle,

@@ -18,4 +18,4 @@ pixel scale (a dino pixel is as big as a cactus pixel).
 | cactus_group.png | 34x18 | 1 |
 | cloud.png | 34x8 | 1 |
 | ground.png | 600x8 | 1, tiles horizontally (keep the left and right edges seamless) |
-| restart.png | 18x10 | 1 |
+| restart.png | 15x15 | 1 |

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:dino_game/components/cloud_spawner.dart';
 import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/game_over_panel.dart';
 import 'package:dino_game/components/ground.dart';
@@ -87,7 +88,13 @@ class DinoGame extends FlameGame
     camera.viewfinder.anchor = Anchor.topLeft;
     dino = Dino();
     _spawner = ObstacleSpawner();
-    await world.addAll([Ground(), dino, _spawner, ScoreDisplay()]);
+    await world.addAll([
+      Ground(),
+      CloudSpawner(),
+      dino,
+      _spawner,
+      ScoreDisplay(),
+    ]);
     _updateZoom();
     bridge
       ..onCommand = _onHostCommand

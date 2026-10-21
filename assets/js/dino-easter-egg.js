@@ -51,6 +51,15 @@
     window.focus();
   }
 
+  // Back to the static dino, the game waits again for the next start.
+  function close() {
+    if (!active) {
+      return;
+    }
+    send('reset');
+    hide();
+  }
+
   // Drops the game if it never loads, so that the static dino stays.
   function abandon() {
     hide();
@@ -129,6 +138,23 @@
     event.preventDefault();
     open();
   });
+
+  // Clicking or tapping anywhere else on the page leaves the game, which is how
+  // a touch screen (no Escape key) gets out of it and gets its scrolling back.
+  document.addEventListener('pointerdown', function (event) {
+    if (active && !demo.contains(event.target)) {
+      close();
+    }
+  });
+
+  // No need to keep playing once the dino is out of sight.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) {
+        close();
+      }
+    }).observe(demo);
+  }
 
   // No up arrow on a touch screen: tapping the dino starts the game instead.
   demo.addEventListener('pointerdown', function (event) {

@@ -32,3 +32,8 @@ The page and the game talk with `postMessage` of
 | game → page | `closed` | the player pressed Escape, hide the iframe |
 
 The iframe must be focused (`iframe.focus()`) for the keyboard to reach the game.
+
+On the site ([assets/js/dino-easter-egg.js](../assets/js/dino-easter-egg.js)),
+the page also sends `reset` when the player clicks or taps anywhere else, or
+scrolls the dino out of view, so that the game does not run in the background
+and the page gets its keys back.

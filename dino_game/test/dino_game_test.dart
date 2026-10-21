@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:dino_game/components/bird.dart';
 import 'package:dino_game/components/cactus.dart';
+import 'package:dino_game/components/cloud.dart';
 import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/obstacle.dart';
 import 'package:dino_game/dino_game.dart';
@@ -121,6 +122,32 @@ void main() {
     testWithGame<DinoGame>('ignores unknown commands', newGame, (game) async {
       game.bridge.onCommand!('nope');
       expect(game.isPlaying, isTrue);
+    });
+  });
+
+  group('clouds', () {
+    testWithGame<DinoGame>('are already in the sky', newIdleGame, (game) async {
+      await game.ready();
+      expect(game.world.children.whereType<Cloud>(), isNotEmpty);
+    });
+
+    testWithGame<DinoGame>('drift slowly while playing', newGame, (game) async {
+      await game.ready();
+      final cloud = game.world.children.whereType<Cloud>().first;
+      final x = cloud.position.x;
+      game.update(0.5);
+      expect(cloud.position.x, lessThan(x));
+      expect(x - cloud.position.x, lessThan(game.speed * 0.5 * 0.5));
+    });
+
+    testWithGame<DinoGame>('stand still while waiting', newIdleGame, (
+      game,
+    ) async {
+      await game.ready();
+      final cloud = game.world.children.whereType<Cloud>().first;
+      final x = cloud.position.x;
+      game.update(0.5);
+      expect(cloud.position.x, x);
     });
   });
 
