@@ -3,12 +3,12 @@
 
 @import "tailwindcss" source(none);
 
-@source "../../_drafts/**/*.html";
-@source "../../_includes/**/*.html";
-@source "../../_layouts/**/*.html";
-@source "../../_posts/*.md";
-@source "../../*.md";
-@source "../../*.html";
+@source "./_drafts/**/*.html";
+@source "./_includes/**/*.html";
+@source "./_layouts/**/*.html";
+@source "./_posts/*.md";
+@source "./*.md";
+@source "./*.html";
 
 @theme {
   --font-sans: "IBM Plex Mono", sans-serif;

@@ -52,3 +52,6 @@ jobs:
           enable_cache: true
           format_output: true
           prettier_opts: '{ "useTabs": true }'
+
+      - name: Check that Tailwind generated the utilities
+        run: grep -qE '\.flex\s*\{' _site/assets/css/main.css
