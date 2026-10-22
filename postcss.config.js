@@ -1,10 +1,10 @@
+const production = process.env.JEKYLL_ENV == 'production';
+
 module.exports = {
     plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-        ...(process.env.JEKYLL_ENV == 'production'
+        require('@tailwindcss/postcss')({ optimize: production }),
+        ...(production
         ? [require('cssnano')({ preset: 'default' })]
         : [])
     ]
 }
-
