@@ -1,0 +1,277 @@
+import 'dart:math';
+import 'dart:ui';
+
+import 'package:dino_game/components/bird.dart';
+import 'package:dino_game/components/cactus.dart';
+import 'package:dino_game/components/cloud.dart';
+import 'package:dino_game/components/dino.dart';
+import 'package:dino_game/components/game_over_panel.dart';
+import 'package:dino_game/components/ground.dart';
+import 'package:dino_game/components/obstacle.dart';
+import 'package:dino_game/components/score_display.dart';
+import 'package:dino_game/high_score_storage.dart';
+import 'package:dino_game/host_bridge.dart';
+import 'package:dino_game/host_messages.dart';
+import 'package:flame/components.dart';
+import 'package:flame/events.dart';
+import 'package:flame/game.dart';
+
+/// [idle] is the waiting screen: nothing moves until the game is started.
+enum GameState { idle, playing, gameOver }
+
+class DinoGame extends FlameGame
+    with HasCollisionDetection, HasKeyboardHandlerComponents, TapCallbacks {
+  DinoGame({Random? random, HighScoreStorage? storage, HostBridge? bridge})
+    : random = random ?? Random(),
+      _storage = storage ?? HighScoreStorage(),
+      bridge = bridge ?? HostBridge();
+
+  /// Height of the visible world, in sprite pixels (the art is half
+  /// resolution). The game is always scaled to show exactly this height.
+  static const worldHeight = 90.0;
+
+  /// The world is at least this wide, so that obstacles always show up early
+  /// enough, even in a narrow window.
+  static const minWorldWidth = 300.0;
+
+  /// Y coordinate of the line the dino and the obstacles run on.
+  static const groundY = 63.0;
+
+  /// Obstacles spawn at a random interval between these two durations (in
+  /// seconds). The shortest one always leaves time to land and jump again.
+  static const minSpawnPeriod = 0.9;
+  static const maxSpawnPeriod = 2.0;
+
+  /// Clouds spawn at a random interval between these two durations, and fly
+  /// between these heights, below the score.
+  static const _minCloudPeriod = 2.0;
+  static const _maxCloudPeriod = 6.0;
+  static const _minCloudY = 16.0;
+  static const _maxCloudY = 44.0;
+
+  /// Score from which birds can appear, and how often they do.
+  static const birdMinScore = 60;
+  static const _birdChance = 0.3;
+
+  static const initialSpeed = 200.0;
+  static const maxSpeed = 450.0;
+
+  /// Speed gained per second.
+  static const acceleration = 7.0;
+
+  /// A score is one world unit travelled divided by this.
+  static const _distancePerPoint = 20;
+
+  /// Delay before a game over can be dismissed, so that a key hammered at the
+  /// moment of the crash does not restart the game right away.
+  static const restartDelay = 0.3;
+
+  final Random random;
+  final HighScoreStorage _storage;
+
+  /// Link with the page embedding the game.
+  final HostBridge bridge;
+
+  /// Horizontal scrolling speed, in world units per second.
+  double speed = initialSpeed;
+
+  GameState state = GameState.idle;
+
+  int highScore = 0;
+  double _distance = 0;
+  double _sinceGameOver = 0;
+
+  late final Dino dino;
+  late final SpawnComponent _spawner;
+  late final SpawnComponent _cloudSpawner;
+  GameOverPanel? _gameOverPanel;
+
+  bool get isIdle => state == GameState.idle;
+  bool get isPlaying => state == GameState.playing;
+  bool get isGameOver => state == GameState.gameOver;
+
+  /// Visible width of the world, which follows the shape of the window.
+  double get worldWidth => size.x / camera.viewfinder.zoom;
+
+  int get score => _distance ~/ _distancePerPoint;
+
+  @override
+  Color backgroundColor() => const Color(0x00000000);
+
+  @override
+  Future<void> onLoad() async {
+    highScore = await _storage.load();
+    camera.viewfinder.anchor = Anchor.topLeft;
+    dino = Dino();
+    _spawner = SpawnComponent.periodRange(
+      minPeriod: minSpawnPeriod,
+      maxPeriod: maxSpawnPeriod,
+      factory: _createObstacle,
+      selfPositioning: true,
+      autoStart: false,
+      random: random,
+    );
+    _cloudSpawner = SpawnComponent.periodRange(
+      minPeriod: _minCloudPeriod,
+      maxPeriod: _maxCloudPeriod,
+      factory: (_) => _createCloud(x: worldWidth),
+      selfPositioning: true,
+      autoStart: false,
+      random: random,
+    );
+    await world.addAll([
+      Ground(),
+      for (var i = 0; i < 3; i++)
+        _createCloud(x: random.nextDouble() * worldWidth),
+      _cloudSpawner,
+      dino,
+      _spawner,
+      ScoreDisplay(),
+    ]);
+    _updateZoom();
+    bridge
+      ..onCommand = _onHostCommand
+      ..send(HostEvent.ready);
+  }
+
+  @override
+  void onGameResize(Vector2 size) {
+    super.onGameResize(size);
+    _updateZoom();
+  }
+
+  @override
+  void onRemove() {
+    bridge.dispose();
+    super.onRemove();
+  }
+
+  PositionComponent _createObstacle(int amount) {
+    final PositionComponent obstacle;
+    if (score >= birdMinScore && random.nextDouble() < _birdChance) {
+      obstacle = Bird(
+        BirdLevel.values[random.nextInt(BirdLevel.values.length)],
+      );
+    } else {
+      final roll = random.nextDouble();
+      obstacle = Cactus(
+        roll < 0.4
+            ? CactusKind.small
+            : roll < 0.7
+            ? CactusKind.large
+            : CactusKind.group,
+      );
+    }
+    obstacle.position.x = worldWidth;
+    return obstacle;
+  }
+
+  Cloud _createCloud({required double x}) {
+    final y = _minCloudY + random.nextDouble() * (_maxCloudY - _minCloudY);
+    return Cloud(x: x, y: y);
+  }
+
+  void _updateZoom() {
+    if (size.x <= 0 || size.y <= 0) {
+      return;
+    }
+    camera.viewfinder.zoom = min(size.y / worldHeight, size.x / minWorldWidth);
+  }
+
+  void _onHostCommand(String type) {
+    switch (type) {
+      case HostCommand.start:
+        start();
+      case HostCommand.reset:
+        reset();
+    }
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    if (isGameOver) {
+      _sinceGameOver += dt;
+    }
+    if (!isPlaying) {
+      return;
+    }
+    speed = min(maxSpeed, speed + acceleration * dt);
+    _distance += speed * dt;
+  }
+
+  /// The main action of the game: start, jump, or restart once the game is
+  /// over.
+  void onAction() {
+    switch (state) {
+      case GameState.idle:
+        start();
+      case GameState.playing:
+        dino.jump();
+      case GameState.gameOver:
+        if (_sinceGameOver >= restartDelay) {
+          restart();
+        }
+    }
+  }
+
+  /// Starts a run from the waiting screen, or a new one after a game over.
+  void start() {
+    if (isPlaying) {
+      return;
+    }
+    restart();
+  }
+
+  /// Back to the waiting screen.
+  void reset() {
+    _clearRun();
+    dino.idle();
+    state = GameState.idle;
+  }
+
+  /// The player left the game: waits again and tells the page to hide it.
+  void exit() {
+    reset();
+    bridge.send(HostEvent.closed);
+  }
+
+  void gameOver() {
+    if (isGameOver) {
+      return;
+    }
+    state = GameState.gameOver;
+    _spawner.timer.stop();
+    _cloudSpawner.timer.stop();
+    _sinceGameOver = 0;
+    dino.die();
+    if (score > highScore) {
+      highScore = score;
+      _storage.save(highScore);
+    }
+    world.add(_gameOverPanel = GameOverPanel());
+  }
+
+  void restart() {
+    _clearRun();
+    dino.reset();
+    state = GameState.playing;
+    _spawner.timer.start();
+    _cloudSpawner.timer.start();
+  }
+
+  void _clearRun() {
+    world.children.whereType<Obstacle>().forEach(
+      (obstacle) => obstacle.removeFromParent(),
+    );
+    _gameOverPanel?.removeFromParent();
+    _gameOverPanel = null;
+    _spawner.timer.stop();
+    _cloudSpawner.timer.stop();
+    speed = initialSpeed;
+    _distance = 0;
+  }
+
+  @override
+  void onTapDown(TapDownEvent event) => onAction();
+}

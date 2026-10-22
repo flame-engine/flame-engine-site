@@ -1,0 +1,25 @@
+name: dino_game
+description: "Dino game easter egg, made with Flame"
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.4
+
+dependencies:
+  flame: ^1.38.2
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.5.6
+  web: ^1.1.1
+
+dev_dependencies:
+  flame_lint: ^1.4.4
+  flame_test: ^2.3.1
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  assets:
+    - assets/images/

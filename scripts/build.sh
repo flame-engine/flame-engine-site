@@ -8,7 +8,7 @@
 #   ./scripts/build.sh          # build once into _site
 #   ./scripts/build.sh --serve  # serve locally with live reload instead
 #
-# Requires: node + npm, ruby + bundler (see README.md).
+# Requires: node + npm, ruby + bundler, flutter (see README.md).
 
 set -euo pipefail
 
@@ -23,6 +23,13 @@ fi
 
 echo "==> Installing Ruby gems (bundle install)"
 bundle install
+
+echo "==> Building the dino game (easter egg of the home page)"
+if ! command -v flutter >/dev/null; then
+  echo "flutter not found: install it (https://flutter.dev) to build the dino game." >&2
+  exit 1
+fi
+./scripts/build-dino.sh
 
 echo "==> Building Jekyll site"
 if [ "${1:-}" = "--serve" ]; then

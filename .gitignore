@@ -6,3 +6,6 @@ vendor
 node_modules
 
 .idea/
+
+# Built by scripts/build-dino.sh
+assets/dino/
