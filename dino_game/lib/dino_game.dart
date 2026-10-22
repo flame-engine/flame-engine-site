@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:dino_game/components/bird.dart';
 import 'package:dino_game/components/cactus.dart';
-import 'package:dino_game/components/cloud_spawner.dart';
+import 'package:dino_game/components/cloud.dart';
 import 'package:dino_game/components/dino.dart';
 import 'package:dino_game/components/game_over_panel.dart';
 import 'package:dino_game/components/ground.dart';
@@ -42,6 +42,13 @@ class DinoGame extends FlameGame
   static const minSpawnPeriod = 0.9;
   static const maxSpawnPeriod = 2.0;
 
+  /// Clouds spawn at a random interval between these two durations, and fly
+  /// between these heights, below the score.
+  static const _minCloudPeriod = 2.0;
+  static const _maxCloudPeriod = 6.0;
+  static const _minCloudY = 16.0;
+  static const _maxCloudY = 44.0;
+
   /// Score from which birds can appear, and how often they do.
   static const birdMinScore = 60;
   static const _birdChance = 0.3;
@@ -76,6 +83,7 @@ class DinoGame extends FlameGame
 
   late final Dino dino;
   late final SpawnComponent _spawner;
+  late final SpawnComponent _cloudSpawner;
   GameOverPanel? _gameOverPanel;
 
   bool get isIdle => state == GameState.idle;
@@ -103,9 +111,19 @@ class DinoGame extends FlameGame
       autoStart: false,
       random: random,
     );
+    _cloudSpawner = SpawnComponent.periodRange(
+      minPeriod: _minCloudPeriod,
+      maxPeriod: _maxCloudPeriod,
+      factory: (_) => _createCloud(x: worldWidth),
+      selfPositioning: true,
+      autoStart: false,
+      random: random,
+    );
     await world.addAll([
       Ground(),
-      CloudSpawner(),
+      for (var i = 0; i < 3; i++)
+        _createCloud(x: random.nextDouble() * worldWidth),
+      _cloudSpawner,
       dino,
       _spawner,
       ScoreDisplay(),
@@ -146,6 +164,11 @@ class DinoGame extends FlameGame
     }
     obstacle.position.x = worldWidth;
     return obstacle;
+  }
+
+  Cloud _createCloud({required double x}) {
+    final y = _minCloudY + random.nextDouble() * (_maxCloudY - _minCloudY);
+    return Cloud(x: x, y: y);
   }
 
   void _updateZoom() {
@@ -219,6 +242,7 @@ class DinoGame extends FlameGame
     }
     state = GameState.gameOver;
     _spawner.timer.stop();
+    _cloudSpawner.timer.stop();
     _sinceGameOver = 0;
     dino.die();
     if (score > highScore) {
@@ -233,15 +257,17 @@ class DinoGame extends FlameGame
     dino.reset();
     state = GameState.playing;
     _spawner.timer.start();
+    _cloudSpawner.timer.start();
   }
 
   void _clearRun() {
     world.children.whereType<Obstacle>().forEach(
-      (o) => (o as Component).removeFromParent(),
+      (obstacle) => obstacle.removeFromParent(),
     );
     _gameOverPanel?.removeFromParent();
     _gameOverPanel = null;
     _spawner.timer.stop();
+    _cloudSpawner.timer.stop();
     speed = initialSpeed;
     _distance = 0;
   }

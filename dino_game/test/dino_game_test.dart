@@ -139,6 +139,20 @@ void main() {
       expect(x - cloud.position.x, lessThan(game.speed * 0.5 * 0.5));
     });
 
+    testWithGame<DinoGame>('keep spawning while playing', newGame, (
+      game,
+    ) async {
+      await game.ready();
+      game.dino.position.x = -1000;
+      final initialCount = game.world.children.whereType<Cloud>().length;
+      run(game, 6.1);
+      await game.ready();
+      expect(
+        game.world.children.whereType<Cloud>().length,
+        greaterThan(initialCount),
+      );
+    });
+
     testWithGame<DinoGame>('stand still while waiting', newIdleGame, (
       game,
     ) async {
